@@ -1,0 +1,61 @@
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { SiteFrame } from "@/components/layout/site-frame";
+import { SITE_URL, COMPANY } from "@/lib/site";
+import { OrganizationJsonLd } from "@/lib/seo";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${COMPANY.legalName} — ${COMPANY.tagline}`,
+    template: `%s | ${COMPANY.legalName}`,
+  },
+  description: COMPANY.description,
+  applicationName: COMPANY.legalName,
+  authors: [{ name: COMPANY.legalName }],
+  creator: COMPANY.legalName,
+  publisher: COMPANY.legalName,
+  formatDetection: { telephone: false },
+  openGraph: {
+    type: "website",
+    siteName: COMPANY.legalName,
+    url: SITE_URL,
+  },
+  twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en" className={inter.variable}>
+      <body className="flex min-h-screen flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-royal focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to main content
+        </a>
+        <OrganizationJsonLd />
+        <SiteFrame>
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+        </SiteFrame>
+      </body>
+    </html>
+  );
+}

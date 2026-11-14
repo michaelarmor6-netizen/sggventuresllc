@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* ============================================================
+   SGG Ventures — Design Tokens (Apple design language)
+
+   - One interactive colour: `royal`. Every link, primary button
+     and focus ring uses it. Nothing else is an accent.
+   - Brand navy (`midnight`) is the dark tile and the ink colour.
+     Brand gold lives in the logo, not in the interface.
+   - Sections are divided by surface change:
+     canvas (white) → parchment → dark tile. No chrome shadows,
+     no gradients. The only shadow is `shadow-photo`, under
+     photography.
+   - Type weights: 400 body, 600 labels, 700 headlines. No 500.
+   ============================================================ */
+
+@theme {
+  /* Ink and surfaces */
+  --color-midnight: #07182f; /* brand navy — dark tiles, headlines */
+  --color-ink: #1d1d1f; /* body text on light */
+  --color-slateink: #424245; /* secondary text (AA on white and parchment) */
+  --color-muted: #6e6e73; /* captions on white only */
+  --color-coolgray: #f5f5f7; /* parchment — alternating tiles, fields */
+  --color-mist: #f5f5f7;
+  --color-pearl: #fafafc;
+  --color-linehair: #e0e0e0; /* 1px hairline */
+  --color-divider: #f0f0f0; /* softest separator */
+
+  /* The single interactive colour */
+  --color-royal: #134a8e;
+  --color-royal-deep: #0d3768; /* pressed / hover */
+
+  /* Brand gold — logo and favicon only */
+  --color-gold: #b8975a;
+
+  /* Typography — Inter is the off-Apple substitute for SF Pro */
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --text-display-xl: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  --text-display-xl--line-height: 1.05;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-xl--font-weight: 700;
+  --text-display-lg: clamp(2.25rem, 3.5vw + 1rem, 3.5rem);
+  --text-display-lg--line-height: 1.07;
+  --text-display-lg--letter-spacing: -0.025em;
+  --text-display-lg--font-weight: 700;
+  --text-display: clamp(1.875rem, 2.2vw + 1rem, 2.5rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 700;
+  --text-title: 1.75rem;
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.015em;
+  --text-title--font-weight: 700;
+
+  /* Radius scale: sm 6 · md 10 · lg 14 (cards) · xl 20 (hero imagery) · pill */
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 20px;
+
+  /* The one shadow in the system — photography resting on a surface */
+  --shadow-photo: 3px 5px 30px rgb(0 0 0 / 0.22);
+
+  /* Quiet motion */
+  --ease-premium: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  --container-content: 76rem;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* 17px — Apple body */
+  line-height: 1.47;
+  color: var(--color-ink);
+  background-color: #ffffff;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--color-midnight);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.navy-grid h1,
+.navy-grid h2,
+.navy-grid h3,
+.navy-grid h4 {
+  color: #ffffff;
+}
+
+::selection {
+  background: var(--color-royal);
+  color: #ffffff;
+}
+
+/* Focus ring: the interactive colour on light, white on dark tiles. */
+:focus-visible {
+  outline: 2px solid var(--color-royal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.navy-grid :focus-visible {
+  outline-color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-content);
+  padding-inline: 1.5rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Dark tile — flat brand navy. */
+@utility navy-grid {
+  background-color: var(--color-midnight);
+  color: #ffffff;
+}
+
+/* Parchment tile — flat off-white. */
+@utility mist-grid {
+  background-color: var(--color-coolgray);
+}
+
+/* Small section label, kept quiet: weight, not colour. */
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-slateink);
+}
