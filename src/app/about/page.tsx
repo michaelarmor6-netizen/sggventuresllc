@@ -36,7 +36,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Us"
-        title="A firm built around the decision."
+        title="A firm built around the decision"
         description={COMPANY.positioningStatement}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
       />
@@ -45,7 +45,7 @@ export default function AboutPage() {
       <section className="bg-white py-16 md:py-24">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <SectionHeading eyebrow="Who We Are" title="Advisory discipline, technology fluency." as="h2" />
+            <SectionHeading eyebrow="Who We Are" title="Advisory discipline, technology fluency" as="h2" />
             <div className="mt-6 space-y-5 text-[16px] leading-relaxed text-slateink">
               <p>
                 SGG Ventures LLC is a strategic business advisory
@@ -59,8 +59,8 @@ export default function AboutPage() {
                 transformation, business applications, custom software
                 development, websites and digital presence, and AI and
                 automation. Engagements can combine
-                them — a market assessment that becomes a reporting build, or a
-                process review that becomes a workflow system.
+                them. A market assessment might turn into a reporting build, or a
+                process review into a workflow system.
               </p>
               <p>
                 We are a Wyoming limited liability company. Projects are
@@ -103,7 +103,7 @@ export default function AboutPage() {
                     Entity Type
                   </dt>
                   <dd className="mt-0.5 font-semibold text-midnight">
-                    {COMPANY.entityType} — {COMPANY.jurisdiction}
+                    {COMPANY.entityType}, {COMPANY.jurisdiction}
                   </dd>
                 </div>
                 <div>
@@ -187,7 +187,7 @@ export default function AboutPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Core Values"
-            title="How the firm behaves."
+            title="How the firm behaves"
             lead="These are operating commitments, not marketing lines. They shape how engagements are scoped, staffed, and closed."
             as="h2"
           />
@@ -213,7 +213,7 @@ export default function AboutPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Corporate DNA"
-            title="What stays constant across the work."
+            title="What stays constant across the work"
             tone="light"
             as="h2"
           />
@@ -237,7 +237,7 @@ export default function AboutPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Methodology"
-            title="Four stages, every engagement."
+            title="Four stages, every engagement"
             as="h2"
           />
           <ol className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -268,7 +268,7 @@ export default function AboutPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Service Areas"
-            title="Eight capabilities under one firm."
+            title="Eight capabilities under one firm"
             as="h2"
           />
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

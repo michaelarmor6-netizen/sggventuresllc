@@ -6,6 +6,7 @@ import { PageHero, CtaBand } from "@/components/shared/page-hero";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
 import { ContentIcon } from "@/components/services/icon-map";
+import { ServiceAreaChart } from "@/components/services/area-chart";
 import { buttonClass } from "@/components/ui/button";
 import { COMPANY } from "@/lib/site";
 import { createMetadata } from "@/lib/seo";
@@ -56,7 +57,7 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Capabilities"
-        title="Strategy, technology, and the work between them."
+        title="Strategy, technology, and the work between them"
         description="Eight service areas spanning business and management consulting, IT and digital transformation, business applications, custom software, websites, and AI automation. One firm, one engagement lead, one accountable scope."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       >
@@ -72,15 +73,21 @@ export default function ServicesPage() {
       </PageHero>
 
       {/* Service areas */}
-      <section className="bg-white py-20 md:py-28" aria-labelledby="service-areas-heading">
+      <section
+        className="bg-white py-20 md:py-28"
+        aria-labelledby="service-areas-heading"
+      >
         <div className="container-x">
-          <SectionHeading
-            id="service-areas-heading"
-            eyebrow="Service Areas"
-            title="Eight capabilities. One operating standard."
-            lead={`${serviceCount} defined services across the areas below. Every engagement starts with a written scope and a named lead.`}
-            className="max-w-4xl"
-          />
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
+            <SectionHeading
+              id="service-areas-heading"
+              eyebrow="Service Areas"
+              title="Eight areas of work, held to the same standard"
+              lead={`${serviceCount} defined services across the areas below. Every engagement starts with a written scope and a named lead.`}
+              className="lg:col-span-6"
+            />
+            <ServiceAreaChart className="lg:col-span-6" />
+          </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {SERVICE_CATEGORIES.map((category, i) => (
@@ -91,7 +98,10 @@ export default function ServicesPage() {
                 >
                   <div className="flex items-center justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
-                      <ContentIcon name={category.icon} className="h-5.5 w-5.5" />
+                      <ContentIcon
+                        name={category.icon}
+                        className="h-5.5 w-5.5 transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-110"
+                      />
                     </span>
                     <span className="font-display text-[11px] font-semibold tracking-[0.16em] text-slateink/80">
                       {category.code}
@@ -122,7 +132,7 @@ export default function ServicesPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Engagement Process"
-            title="How an SGG Ventures engagement works."
+            title="How an SGG Ventures engagement works"
             lead="A predictable process, whether the work is a strategy decision, a technology assessment, or a software build."
             as="h2"
           />
@@ -155,30 +165,29 @@ export default function ServicesPage() {
           <div className="lg:col-span-5">
             <SectionHeading
               eyebrow="Why one firm"
-              title="The strategy and the system should agree."
+              title="The strategy and the system should agree"
               as="h2"
             />
           </div>
           <div className="space-y-5 text-[16px] leading-relaxed text-slateink lg:col-span-7">
             <p>
               Most firms stop at the recommendation or start at the software.
-              SGG Ventures works across both: a strategy that names the operating
-              changes it requires, and technology work that is tied to a
-              measurable business outcome rather than a product licence.
+              SGG Ventures works across both: a strategy that names the
+              operating changes it requires, and technology work that is tied to
+              a measurable business outcome rather than a product licence.
             </p>
             <p>
-              Engagements can combine service areas — a market entry assessment
-              that becomes a CRM and reporting build, or a process review that
-              becomes a workflow system. The commercial terms are agreed
-              in writing, and the delivery model is stated on every service
-              page.
+              Engagements often cross service areas. A market entry assessment
+              can turn into a CRM and reporting build; a process review can end
+              up as a workflow system. The commercial terms are agreed in
+              writing, and the delivery model is stated on every service page.
             </p>
             <p>
-              SGG Ventures provides consulting, advisory, and technology services
-              directly. Where an engagement requires a licensed professional —
-              legal, tax, accounting, securities, or a regulated technology
-              certification — that work is performed by a qualified third party
-              named in the engagement.
+              SGG Ventures provides consulting, advisory, and technology
+              services directly. Where an engagement requires a licensed
+              professional (legal, tax, accounting, securities, or a regulated
+              technology certification), that work is performed by a qualified
+              third party named in the engagement.
             </p>
           </div>
         </div>

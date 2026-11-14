@@ -148,6 +148,178 @@ h4 {
   }
 }
 
+input,
+textarea {
+  caret-color: var(--color-royal);
+}
+
+/* ============================================================
+   Motion
+   Content is visible by default. data-motion="armed" (set by script,
+   never on the server) moves elements to their start state; "play"
+   runs the entrance. Easing: confident deceleration, no bounce.
+   ============================================================ */
+
+:root {
+  --ease-arrive: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Method timeline ---------------------------------------------------- */
+.method-track {
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: rgb(255 255 255 / 0.12);
+  border-radius: 2px;
+}
+.method-line {
+  position: absolute;
+  inset: 0;
+  background: var(--color-azure-light);
+  transform-origin: top;
+  transition: transform 1000ms cubic-bezier(0.45, 0, 0.55, 1);
+}
+.method-marker {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgb(220 195 145 / 0.25);
+  opacity: 0;
+}
+.method-node {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--color-midnight);
+  border: 2px solid var(--color-azure-light);
+  transition: border-color 300ms ease;
+}
+.method-node-core {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-azure-light);
+  transition: transform 400ms var(--ease-arrive);
+}
+.method-step > :not(.method-node) {
+  transition:
+    opacity 500ms ease,
+    transform 600ms var(--ease-arrive);
+  transition-delay: calc(var(--i) * 250ms + 60ms);
+}
+.method-node,
+.method-node-core {
+  transition-delay: calc(var(--i) * 250ms);
+}
+
+@media (min-width: 1024px) {
+  .method-track {
+    left: 8px;
+    right: 8px;
+    top: 11px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+  .method-line {
+    transform-origin: left;
+  }
+  .method-marker {
+    top: 50%;
+    left: 0;
+  }
+  .method-node {
+    top: 4px;
+  }
+}
+
+[data-motion="armed"] .method-line {
+  transform: scaleY(0);
+}
+[data-motion="armed"] .method-node {
+  border-color: rgb(255 255 255 / 0.2);
+}
+[data-motion="armed"] .method-node-core {
+  transform: scale(0);
+}
+[data-motion="armed"] .method-step > :not(.method-node) {
+  opacity: 0;
+  transform: translateY(10px);
+}
+[data-motion="play"] .method-marker {
+  animation: method-travel-y 1000ms cubic-bezier(0.45, 0, 0.55, 1) both;
+}
+
+@media (min-width: 1024px) {
+  [data-motion="armed"] .method-line {
+    transform: scaleX(0);
+  }
+  [data-motion="play"] .method-marker {
+    animation-name: method-travel-x;
+  }
+}
+
+@keyframes method-travel-y {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes method-travel-x {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Service area chart ------------------------------------------------- */
+.area-bar {
+  transform-origin: left;
+  transition:
+    transform 800ms var(--ease-arrive),
+    background-color 150ms ease;
+  transition-delay: calc(var(--i, 0) * 70ms), 0ms;
+}
+[data-motion="armed"] .area-bar {
+  transform: scaleX(0);
+}
+
+/* Hero photograph: one clip reveal on first paint (CSS only) --------- */
+.hero-photo {
+  animation: hero-clip 900ms var(--ease-arrive) 120ms both;
+}
+.hero-photo img {
+  animation: hero-settle 1400ms var(--ease-arrive) 120ms both;
+}
+@keyframes hero-clip {
+  from { clip-path: inset(0 0 0 100% round 14px); }
+  to { clip-path: inset(0 0 0 0 round 14px); }
+}
+@keyframes hero-settle {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo,
+  .hero-photo img,
+  .method-marker {
+    animation: none !important;
+  }
+}
+
 /* ============================================================
    Utilities
    ============================================================ */

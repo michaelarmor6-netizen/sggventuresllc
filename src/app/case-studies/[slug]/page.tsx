@@ -71,7 +71,7 @@ export default async function CaseStudyPage({
       <section className="bg-white py-16 md:py-20">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <SectionHeading eyebrow="Context" title="The situation." as="h2" />
+            <SectionHeading eyebrow="Context" title="The situation" as="h2" />
             <div className="mt-5 space-y-5">
               {study.context.map((paragraph) => (
                 <p key={paragraph.slice(0, 24)} className="text-[16px] leading-relaxed text-slateink">
@@ -81,7 +81,7 @@ export default async function CaseStudyPage({
             </div>
 
             <div className="mt-12">
-              <SectionHeading eyebrow="Approach" title="What we did." as="h2" />
+              <SectionHeading eyebrow="Approach" title="What we did" as="h2" />
               <ol className="mt-6 space-y-5">
                 {study.approach.map((step, i) => (
                   <Reveal
@@ -105,7 +105,7 @@ export default async function CaseStudyPage({
             </div>
 
             <div className="mt-12">
-              <SectionHeading eyebrow="Outcome" title="What changed." as="h2" />
+              <SectionHeading eyebrow="Outcome" title="What changed" as="h2" />
               <ul className="mt-6 space-y-3">
                 {study.outcome.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-[15px] leading-relaxed text-slateink">
@@ -179,7 +179,7 @@ export default async function CaseStudyPage({
       </section>
 
       <CtaBand
-        title="Discuss a similar engagement."
+        title="Discuss a similar engagement"
         primaryLabel="Request a consultation"
         secondaryLabel="All case studies"
         secondaryHref="/case-studies"

@@ -57,7 +57,7 @@ export default function PartnershipsPage() {
     <>
       <PageHero
         eyebrow="Partnerships"
-        title="Work with us as a partner."
+        title="Work with us as a partner"
         description="We work alongside technology vendors, implementation firms, professional advisers, and managed service providers. Every relationship has a written scope and a named job on both sides."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Partnerships" }]}
       />

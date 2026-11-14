@@ -8,6 +8,7 @@ import { NAV } from "@/lib/navigation";
 import { COMPANY } from "@/lib/site";
 import { Logo } from "@/components/brand/logo";
 import { buttonClass } from "@/components/ui/button";
+import { HeaderAuth, MobileAuth } from "@/components/auth/auth-nav";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -61,7 +62,7 @@ export function SiteHeader() {
       <div className="container-x relative flex h-[4.5rem] items-center justify-between md:h-20">
         <Link
           href="/"
-          aria-label="SGG Ventures — home"
+          aria-label="SGG Ventures home page"
           className="shrink-0 rounded-md transition-opacity hover:opacity-80"
           prefetch={false}
         >
@@ -164,13 +165,7 @@ export function SiteHeader() {
             })}
             <li aria-hidden="true" className="mx-2.5 h-5 w-px bg-linehair" />
             <li>
-              <Link
-                href="/login"
-                aria-current={isActive(pathname, "/login") ? "page" : undefined}
-                className="flex min-h-11 items-center whitespace-nowrap rounded-lg px-3.5 font-display text-[15px] font-semibold tracking-tight text-midnight transition-colors hover:text-royal"
-              >
-                Log in
-              </Link>
+              <HeaderAuth current={isActive(pathname, "/login")} />
             </li>
           </ul>
           <Link
@@ -266,12 +261,7 @@ export function SiteHeader() {
               })}
             </ul>
             <div className="mt-6 space-y-3">
-              <Link
-                href="/login"
-                className={buttonClass("outline", "lg") + " w-full"}
-              >
-                Log in
-              </Link>
+              <MobileAuth />
               <Link
                 href="/contact"
                 className={buttonClass("primary", "lg") + " w-full"}

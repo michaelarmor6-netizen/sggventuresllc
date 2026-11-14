@@ -17,14 +17,17 @@ export function InsightsPreview() {
   const articles = sortedArticles().slice(0, 3);
 
   return (
-    <section className="bg-white py-20 md:py-24" aria-labelledby="insights-heading">
+    <section
+      className="bg-white py-20 md:py-24"
+      aria-labelledby="insights-heading"
+    >
       <div className="container-x">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeading
-            title="Notes from the work."
-            as="h2"
-          />
-          <Link href="/insights" className={buttonClass("outline", "md") + " shrink-0"}>
+          <SectionHeading title="Notes from the work" as="h2" />
+          <Link
+            href="/insights"
+            className={buttonClass("outline", "md") + " shrink-0"}
+          >
             All notes <ArrowRight aria-hidden />
           </Link>
         </div>

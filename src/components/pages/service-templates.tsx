@@ -38,7 +38,10 @@ export function ServiceCard({
     >
       <div className="flex items-center justify-between">
         <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
-          <ContentIcon name={service.icon} className="h-5.5 w-5.5" />
+          <ContentIcon
+            name={service.icon}
+            className="h-5.5 w-5.5 transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-110"
+          />
         </span>
         {showCategoryCode && (
           <span className="font-display text-[11px] font-semibold tracking-[0.16em] text-slateink/90">
@@ -193,10 +196,7 @@ export function ServiceCategoryPage({
       </section>
 
       {/* Other service areas */}
-      <section
-        className="bg-white py-14"
-        aria-label="Other service areas"
-      >
+      <section className="bg-white py-14" aria-label="Other service areas">
         <div className="container-x">
           <h2 className="eyebrow">Other Service Areas</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -243,8 +243,12 @@ export function ServiceDetailPage({
   const related = service.related
     .map((slug) => findService(slug))
     .filter(
-      (item): item is { category: ServiceCategoryContent; service: ServiceContent } =>
-        Boolean(item),
+      (
+        item,
+      ): item is {
+        category: ServiceCategoryContent;
+        service: ServiceContent;
+      } => Boolean(item),
     )
     .filter((item) => item.service.slug !== service.slug)
     .slice(0, 3);
@@ -269,7 +273,7 @@ export function ServiceDetailPage({
         ]}
       />
       <PageHero
-        eyebrow={`${category.name} — Service Area ${category.code}`}
+        eyebrow={`Service area ${category.code} · ${category.name}`}
         title={service.title}
         description={service.summary}
         breadcrumbs={[
@@ -312,7 +316,7 @@ export function ServiceDetailPage({
         <div className="container-x">
           <SectionHeading
             eyebrow="Business Challenges Addressed"
-            title="What this service exists to solve."
+            title="What this service exists to solve"
             as="h2"
           />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -341,7 +345,7 @@ export function ServiceDetailPage({
           <div className="lg:col-span-4">
             <SectionHeading
               eyebrow="Service Capabilities"
-              title="What our team provides."
+              title="What our team provides"
               as="h2"
             />
           </div>
@@ -380,13 +384,16 @@ export function ServiceDetailPage({
         <div className="container-x">
           <SectionHeading
             eyebrow="Service Delivery Approach"
-            title="How an engagement works."
+            title="How an engagement works"
             tone="light"
             as="h2"
           />
           <ol className="mt-10 grid gap-8 md:grid-cols-3 lg:gap-10">
             {service.approach.map((step, i) => (
-              <li key={step.title} className="relative border-l border-white/15 pl-6">
+              <li
+                key={step.title}
+                className="relative border-l border-white/15 pl-6"
+              >
                 <span
                   className="absolute -left-[6.5px] top-1 h-3 w-3 rounded-full border-2 border-azure bg-midnight"
                   aria-hidden="true"
@@ -431,7 +438,7 @@ export function ServiceDetailPage({
         <div className="container-x">
           <SectionHeading
             eyebrow="Related Services"
-            title="Adjacent capabilities across SGG Ventures."
+            title="Adjacent capabilities across SGG Ventures"
             as="h2"
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -448,7 +455,7 @@ export function ServiceDetailPage({
       </section>
 
       <CtaBand
-        title="Discuss this service with our team."
+        title="Discuss this service with our team"
         primaryLabel="Request a Consultation"
         secondaryLabel={`About ${category.name}`}
         secondaryHref={`/services/${category.slug}`}

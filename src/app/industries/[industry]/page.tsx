@@ -111,7 +111,7 @@ export default async function IndustryPage({
         <div className="container-x">
           <SectionHeading
             eyebrow="Most Relevant for This Segment"
-            title="Where this segment typically starts."
+            title="Where this segment typically starts"
             as="h2"
           />
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

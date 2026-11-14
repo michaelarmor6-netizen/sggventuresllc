@@ -4,50 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/server/db";
 import { SERVICE_CATEGORIES } from "@/content/services";
-import {
-  changeOwnPassword,
-  generateTemporaryPassword,
-  hashPassword,
-  requireAdmin,
-  signInWithPassword,
-  signOutCurrent,
-} from "@/lib/server/auth";
-
-const AUTH_FAILED = "That email and password do not match an account.";
-
-export async function portalSignIn(input: { email: string; password: string }) {
-  const email = z.string().email().safeParse(input.email.trim().toLowerCase());
-  if (!email.success || !input.password) return { ok: false as const, error: AUTH_FAILED };
-  try {
-    return await signInWithPassword(email.data, input.password);
-  } catch (error) {
-    console.error("portalSignIn failed", error);
-    return {
-      ok: false as const,
-      error: "Sign-in could not reach the database. Try again shortly.",
-    };
-  }
-}
-
-export async function portalSignOut() {
-  await signOutCurrent();
-}
-
-export async function portalChangePassword(input: {
-  currentPassword: string;
-  nextPassword: string;
-}) {
-  const { requireUser } = await import("@/lib/server/auth");
-  const user = await requireUser();
-  if (!user) return { ok: false as const, error: "Not authorized." };
-  const result = await changeOwnPassword(
-    user.id,
-    input.currentPassword,
-    input.nextPassword,
-  );
-  revalidatePath("/portal");
-  return result;
-}
+import { requireAdmin } from "@/lib/server/auth";
 
 /** Engagement files are classified by service area, matching the public site. */
 const SERVICE_AREAS = SERVICE_CATEGORIES.map((category) => category.slug) as [
@@ -71,15 +28,15 @@ export async function createClientAccount(input: z.infer<typeof clientSchema>) {
 
   const email = parsed.data.email.toLowerCase();
   const existing = await prisma.user.findUnique({ where: { email } });
-  if (existing) return { ok: false as const, error: "That email already has an account." };
+  if (existing) return { ok: false as const, error: "That email already has a client record." };
 
-  const temporaryPassword = generateTemporaryPassword();
+  // No password is issued: the client signs up through Clerk with this
+  // email address, and the record is linked once the address is verified.
   const user = await prisma.user.create({
     data: {
       email,
       name: parsed.data.name,
       organization: parsed.data.organization || null,
-      passwordHash: await hashPassword(temporaryPassword),
       role: "client",
     },
   });
@@ -92,7 +49,7 @@ export async function createClientAccount(input: z.infer<typeof clientSchema>) {
     },
   });
   revalidatePath("/portal");
-  return { ok: true as const, email, temporaryPassword };
+  return { ok: true as const, email };
 }
 
 const fileSchema = z.object({

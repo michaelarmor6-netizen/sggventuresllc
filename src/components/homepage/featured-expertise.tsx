@@ -35,11 +35,14 @@ export function FeaturedExpertise() {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading
             eyebrow="Featured Expertise"
-            title="Where clients start most often."
+            title="Where clients start most often"
             lead="Six capabilities that show how advisory and technology work connect on a single engagement."
             as="h2"
           />
-          <Link href="/services" className={buttonClass("outline", "md") + " shrink-0"}>
+          <Link
+            href="/services"
+            className={buttonClass("outline", "md") + " shrink-0"}
+          >
             All services <ArrowRight aria-hidden />
           </Link>
         </div>

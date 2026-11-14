@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 import { SiteFrame } from "@/components/layout/site-frame";
+import { clerkAppearance } from "@/lib/clerk-appearance";
+import { clerkEnabled } from "@/lib/clerk-config";
 import { SITE_URL, COMPANY } from "@/lib/site";
 import { OrganizationJsonLd } from "@/lib/seo";
 
@@ -50,11 +53,28 @@ export default function RootLayout({
           Skip to main content
         </a>
         <OrganizationJsonLd />
+        {clerkEnabled ? (
+          <ClerkProvider
+            appearance={clerkAppearance}
+            signInUrl="/login"
+            signUpUrl="/signup"
+            signInFallbackRedirectUrl="/portal"
+            signUpFallbackRedirectUrl="/portal"
+            afterSignOutUrl="/"
+          >
         <SiteFrame>
           <main id="main-content" className="flex-1">
             {children}
           </main>
         </SiteFrame>
+          </ClerkProvider>
+        ) : (
+        <SiteFrame>
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+        </SiteFrame>
+        )}
       </body>
     </html>
   );

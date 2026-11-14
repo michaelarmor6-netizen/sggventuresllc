@@ -17,7 +17,7 @@ export default function CareersPage() {
     <>
       <PageHero
         eyebrow="Careers"
-        title="Work here."
+        title="Work here"
         description="Consulting, advisory, and technology work. You own your piece of it. We do not post vacancies that do not exist."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Careers" }]}
       />
@@ -64,7 +64,7 @@ export default function CareersPage() {
       </section>
 
       <CtaBand
-        title="If you want to work on these problems, say so."
+        title="If you want to work on these problems, say so"
         primaryLabel="Send an inquiry"
         secondaryLabel="About the firm"
         secondaryHref="/about"

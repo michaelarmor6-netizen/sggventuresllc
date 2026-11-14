@@ -6,7 +6,7 @@
  */
 
 export const MISSION =
-  "To help organizations make better decisions and build the systems that make those decisions work — combining independent business judgment with practical technology delivery.";
+  "To help organizations make better decisions and build the systems that make those decisions work. That means independent business judgment, backed by people who can actually deliver the technology.";
 
 export const VISION =
   "To be the advisory and technology partner that growing organizations call when the next decision matters, and to be known for work that holds up after the engagement ends.";
@@ -45,7 +45,7 @@ export const CORPORATE_DNA: { title: string; body: string }[] = [
   },
   {
     title: "Technology fluency",
-    body: "We understand how systems, data, and applications actually get built and operated — not only how they are described in a business case.",
+    body: "We understand how systems, data, and applications actually get built and run, which is rarely how the business case described them.",
   },
   {
     title: "Operating focus",
@@ -184,7 +184,7 @@ export const FAQS: FaqItem[] = [
     category: "Engagements",
     question: "Who actually does the work?",
     answer:
-      "SGG Ventures delivers its consulting, advisory, and technology services directly. Where an engagement requires a licensed professional — legal, tax, accounting, securities, or a regulated technology certification — that work is performed by a qualified third party named in the engagement.",
+      "SGG Ventures delivers its consulting, advisory, and technology services directly. Where an engagement requires a licensed professional (legal, tax, accounting, securities, or a regulated technology certification), that work is performed by a qualified third party named in the engagement.",
   },
   {
     category: "Engagements",

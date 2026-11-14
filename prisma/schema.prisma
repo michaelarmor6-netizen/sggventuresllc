@@ -72,58 +72,25 @@ model PartnershipInquiry {
 }
 
 // ---------------------------------------------------------------------------
-// Accounts and sessions. Passwords are scrypt hashes. Session cookies store
-// a random token; only its SHA-256 hash is kept here.
+// Accounts. Sign-in, sessions, passwords, and email verification are handled
+// by Clerk; this table holds the portal role and links to engagement files.
 // ---------------------------------------------------------------------------
 model User {
-  id             String    @id @default(cuid())
-  email          String    @unique
-  name           String
-  organization   String?
-  passwordHash   String
-  role           String // admin | client
-  active         Boolean   @default(true)
-  failedAttempts Int       @default(0)
-  lockedUntil    DateTime?
-  emailVerifiedAt DateTime? // null until the address is confirmed
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id           String   @id @default(cuid())
+  email        String   @unique
+  clerkUserId  String?  @unique // set when the Clerk account is linked
+  name         String
+  organization String?
+  role         String // admin | client
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  sessions    Session[]
-  authTokens  AuthToken[]
-  engagements Engagement[]        @relation("ClientFiles")
+  engagements Engagement[]       @relation("ClientFiles")
   updates     EngagementUpdate[]
 
   @@index([role])
   @@map("users")
-}
-
-model Session {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tokenHash String   @unique
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-
-  @@index([userId])
-  @@map("sessions")
-}
-
-// Single-use tokens for email verification and password reset. Only the
-// SHA-256 hash of the token is stored; the raw token goes in the email link.
-model AuthToken {
-  id        String    @id @default(cuid())
-  userId    String
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  purpose   String // verify-email | reset-password
-  tokenHash String    @unique
-  expiresAt DateTime
-  usedAt    DateTime?
-  createdAt DateTime  @default(now())
-
-  @@index([userId, purpose, createdAt])
-  @@map("auth_tokens")
 }
 
 // A client file: one engagement, one service area, a named delivery role.

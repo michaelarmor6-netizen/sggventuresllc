@@ -23,8 +23,8 @@ export default function CaseStudiesPage() {
     <>
       <PageHero
         eyebrow="Case Studies"
-        title="Representative work, described honestly."
-        description="These are anonymized engagement patterns. They show how the work is structured and what changed — without inventing client names, figures, or attributable results."
+        title="Representative work, described honestly"
+        description="These are anonymized engagement patterns. They show how the work is structured and what changed. We haven't invented client names, figures, or results to dress them up."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Case Studies" }]}
       />
 

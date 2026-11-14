@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-/** The sign-in screen moved to /login. */
+/** Sign-in lives at /login. */
 export default function PortalLoginRedirect() {
   redirect("/login");
 }

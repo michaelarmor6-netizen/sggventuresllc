@@ -123,7 +123,7 @@ export default function InsightsPage() {
       </section>
 
       <CtaBand
-        title="If a note describes your situation, let's talk."
+        title="If a note describes your situation, let's talk"
         secondaryLabel="Our services"
         secondaryHref="/services"
       />

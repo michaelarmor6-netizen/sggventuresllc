@@ -25,7 +25,7 @@ export default function IndustriesPage() {
     <>
       <PageHero
         eyebrow="Industries"
-        title="Who the work is for."
+        title="Who the work is for"
         description="Eight client segments. The service areas are the same. The decision, the constraints, and the operating reality are not."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Industries" }]}
       />

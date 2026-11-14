@@ -9,11 +9,6 @@ import { requireAdmin } from "@/lib/server/auth";
 /* Authentication                                                       */
 /* ------------------------------------------------------------------ */
 
-export async function adminSignOut(): Promise<void> {
-  const { signOutCurrent } = await import("@/lib/server/auth");
-  await signOutCurrent();
-}
-
 export async function isAdminAuthenticated(): Promise<boolean> {
   return Boolean(await requireAdmin());
 }

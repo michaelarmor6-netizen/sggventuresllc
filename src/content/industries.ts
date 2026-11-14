@@ -25,7 +25,7 @@ export const INDUSTRIES: IndustryContent[] = [
     needs: [
       {
         title: "A plan the operators can use",
-        body: "Choices written down with owners, dates, and money — not a strategy deck that is presented once and filed.",
+        body: "Choices written down with owners, dates, and money. Not a strategy deck that gets presented once and filed.",
       },
       {
         title: "Technology that fits the business",
@@ -50,7 +50,7 @@ export const INDUSTRIES: IndustryContent[] = [
       "Early-stage companies that need a credible plan, a defensible operating model, and technology built for the next stage rather than the last one.",
     intro: [
       "Startups often need two things at once: a clear view of the market and business model, and a technology foundation that will not have to be rebuilt at the first sign of growth. Both are easier to get right before the commitments are made.",
-      "We work on defined questions — market entry, business planning, product scope, platform architecture — and we are explicit about what should be built now and what should wait.",
+      "We work on defined questions: market entry, business planning, product scope, platform architecture. We are explicit about what should be built now and what should wait.",
     ],
     needs: [
       {

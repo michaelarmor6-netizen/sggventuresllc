@@ -88,12 +88,11 @@ Case studies are anonymized and labelled representative. Testimonials must not b
 - Confirmed leadership names, titles, and biographies
 - Client-approved case studies or testimonials, if they are ever to be published
 
-## Accounts and sign-in
+## Accounts and sign-in (Clerk)
 
-- `/login`, `/signup`, `/forgot-password`, `/reset-password`, `/verify-email`; the portal is at `/portal` (`/portal/login` redirects to `/login`).
-- Self sign-up creates a **client** account. Staff accounts come from `ADMIN_EMAIL` / `ADMIN_PASSWORD` (first sign-in) or are created in the portal.
-- Passwords are scrypt-hashed; sessions are random tokens stored as SHA-256 hashes in an httpOnly cookie. Five failed log-ins lock an account for 15 minutes.
-- Verification (24 h) and reset (1 h) links are single-use tokens, stored hashed. A password reset signs out every other session.
-- Sign-ups are limited to 5 per network per hour; reset emails to 3 per account per hour.
-- Account emails need `RESEND_API_KEY` and `AUTH_FROM_EMAIL` (or `INQUIRY_FROM_EMAIL`). Without them, links are printed to the server log in development only.
-- Schema changes (`users.emailVerifiedAt`, `auth_tokens`) must be applied with `npx prisma db push` before deploying.
+- Sign-in, sign-up, email verification, password reset, and account settings are handled by **Clerk** (`@clerk/nextjs`). Pages: `/login` and `/signup`; the private portal is `/portal`.
+- `src/middleware.ts` protects `/portal` and `/admin`; signed-out visitors are sent to `/login`.
+- `src/lib/server/auth.ts` links a Clerk user to the local `User` record (portal role and engagement files): by `clerkUserId`, else by **verified** email (so a client record created by staff is claimed at sign-up), else a new client record. A verified email matching `ADMIN_EMAIL` gets the staff role.
+- Theme: `src/lib/clerk-appearance.ts`.
+- Environment: `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY` (see `.env.example`). Local development can run without keys in Clerk's keyless mode.
+- Schema change (`users.clerkUserId`; password and session tables removed) must be applied with `npx prisma db push` before deploying.

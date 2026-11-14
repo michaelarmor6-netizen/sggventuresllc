@@ -31,7 +31,7 @@ export default async function ContactPage({
     <>
       <PageHero
         eyebrow="Contact"
-        title="Start with a conversation."
+        title="Start with a conversation"
         description="Tell us the decision, the constraint, and the timeline. We will tell you which capability applies and whether we are the right firm for it. No cost, no obligation."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
       >

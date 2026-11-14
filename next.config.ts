@@ -36,6 +36,10 @@ const nextConfig: NextConfig = {
       to("/services/mergers-acquisitions/:path*", "/services"),
       to("/services/automation", "/services/ai-automation"),
       to("/services/support", "/services"),
+      // Account recovery and verification are handled inside Clerk's sign-in flow.
+      to("/forgot-password", "/login"),
+      to("/reset-password", "/login"),
+      to("/verify-email", "/login"),
     ];
   },
   async headers() {

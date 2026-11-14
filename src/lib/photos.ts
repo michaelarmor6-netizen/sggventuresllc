@@ -4,7 +4,7 @@
  * photographs (https://unsplash.com/license).
  */
 export const PHOTO_NOTE =
-  "Illustrative image. Not SGG Ventures staff, clients, or premises.";
+  "Illustrative photo, not our team or clients.";
 
 export const PHOTOS = {
   consulting: {

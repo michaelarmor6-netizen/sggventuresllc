@@ -5,6 +5,7 @@ import { Reveal } from "@/components/shared/reveal";
 import { INDUSTRIES } from "@/content/industries";
 import { OPERATING_MODEL_NOTE } from "@/content/services";
 import { DIFFERENTIATORS, METHODOLOGY } from "@/content/company";
+import { MethodTimeline } from "@/components/motion/method-timeline";
 import { ContentIcon } from "@/components/services/icon-map";
 
 /* ------------------------------------------------------------------ */
@@ -31,12 +32,15 @@ const DELIVERY_STRUCTURES = [
 
 export function OperatingModel() {
   return (
-    <section aria-labelledby="operating-model" className="bg-white py-20 md:py-28">
+    <section
+      aria-labelledby="operating-model"
+      className="bg-white py-20 md:py-28"
+    >
       <div className="container-x">
         <SectionHeading
           id="operating-model"
           eyebrow="How We Work"
-          title="Clear delivery boundaries."
+          title="Clear delivery boundaries"
           lead="Every engagement states who does the work, what is included, and where a qualified third party is required. Nothing material is left implied."
           as="h2"
         />
@@ -79,26 +83,12 @@ export function Methodology() {
         <SectionHeading
           id="methodology-heading"
           eyebrow="Methodology"
-          title="A method that survives the handover."
+          title="A method that survives the handover"
           lead="The same four-stage discipline applies to a strategy question, a technology programme, and a software build."
           tone="light"
           as="h2"
         />
-        <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {METHODOLOGY.map((step) => (
-            <li key={step.step} className="border-l border-white/15 pl-6">
-              <span className="font-display text-[13px] font-semibold leading-none tracking-[0.16em] text-azure-light">
-                {step.step}
-              </span>
-              <h3 className="mt-2 font-display text-[18px] font-bold tracking-tight">
-                {step.title}
-              </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-white/65">
-                {step.body}
-              </p>
-            </li>
-          ))}
-        </ol>
+        <MethodTimeline steps={METHODOLOGY} />
       </div>
     </section>
   );
@@ -114,7 +104,7 @@ export function WhySggVentures() {
       <div className="container-x">
         <SectionHeading
           eyebrow="Why SGG Ventures"
-          title="What you are actually buying."
+          title="What you are actually buying"
           lead="Independent advice, a written scope, and technology delivery that is tied to a business outcome rather than a product licence."
           as="h2"
         />
@@ -154,7 +144,7 @@ export function IndustriesStrip() {
           <SectionHeading
             id="industries-heading"
             eyebrow="Who We Serve"
-            title="Built for the mid-market."
+            title="Built for the mid-market"
             lead="SMEs, growth-stage companies, private owners, family businesses, technology firms, investors, and corporate teams."
             as="h2"
           />
@@ -183,7 +173,8 @@ export function IndustriesStrip() {
                   {industry.summary.split(",")[0]}.
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1 font-display text-[13px] font-semibold text-royal opacity-0 transition-colors duration-200 group-hover:opacity-100">
-                  Read more <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  Read more{" "}
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
               </Link>
             </Reveal>

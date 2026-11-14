@@ -52,8 +52,8 @@ const PRIVACY: LegalDoc = {
     {
       heading: "Accounts",
       paragraphs: [
-        "If you create an account, we store your name, email address, company (if given), a one-way hash of your password (never the password itself), whether your email address is confirmed, and records of sign-ins and password changes for security. Email links for confirming your address or resetting your password are single-use and expire after 24 hours and 1 hour respectively.",
-        "You can ask us to close your account and delete this information through the contact page.",
+        "Accounts and sign-in are provided by Clerk, Inc., our authentication provider. When you create an account, Clerk processes your name, email address, password (stored by Clerk in hashed form), and sign-in activity on our behalf, and handles email verification and password resets.",
+        "On our side we store your name, email address, company (if given), your portal role, and the identifier that links your record to your Clerk account. You can ask us to close your account and delete this information through the contact page.",
       ],
     },
     {
@@ -165,9 +165,9 @@ const COOKIES: LegalDoc = {
       ],
     },
     {
-      heading: "Sign-in cookie",
+      heading: "Sign-in cookies",
       paragraphs: [
-        "If you have an account for the private portal and sign in, the website sets one session cookie that keeps you signed in. It is strictly necessary for the portal to work and is not used for anything else. Visitors who do not sign in do not receive it.",
+        "Sign-in is provided by Clerk, our authentication provider, which sets strictly necessary cookies to keep you signed in and to protect sign-in against abuse. They are used for authentication only, not for advertising or analytics.",
       ],
     },
     {
@@ -179,7 +179,7 @@ const COOKIES: LegalDoc = {
     {
       heading: "Managing cookies",
       paragraphs: [
-        "You can delete or block cookies in your browser settings. Blocking the sign-in cookie prevents portal sign-in; the public pages are unaffected.",
+        "You can delete or block cookies in your browser settings. Blocking the sign-in cookies prevents signing in; the public pages are unaffected.",
       ],
     },
   ],
@@ -198,7 +198,7 @@ const REGULATORY_SECTIONS: LegalSection[] = [
     ],
     bullets: [
       "Direct provision by the Company of consulting, advisory, analytical, and technology services that are not reserved to a regulated status the Company does not hold",
-      "Performance by a qualified third party, named in the engagement, where the work requires a licence, registration, or certification the Company does not hold — including legal, tax, accounting, securities, and regulated technology work",
+      "Performance by a qualified third party, named in the engagement, where the work requires a licence, registration, or certification the Company does not hold, including legal, tax, accounting, securities, and regulated technology work",
       "Advisory, coordination, and client-side support provided by the Company around work performed by qualified third parties retained or engaged for the client",
     ],
   },
@@ -249,13 +249,13 @@ const RISK_SECTIONS: LegalSection[] = [
   {
     heading: "No assurance as to outcomes",
     paragraphs: [
-      "Descriptions of the Company's services describe capabilities and processes, not outcomes. No statement, document, or communication by the Company constitutes assurance of any particular result — including regulatory clearance, transaction completion, technology delivery, cost savings, revenue improvement, or financial outcome — unless such assurance is expressly agreed in a signed engagement.",
+      "Descriptions of the Company's services describe capabilities and processes, not outcomes. No statement, document, or communication by the Company constitutes assurance of any particular result (including regulatory clearance, transaction completion, technology delivery, cost savings, revenue improvement, or financial outcome) unless such assurance is expressly agreed in a signed engagement.",
     ],
   },
   {
     heading: "Third-party providers and platforms",
     paragraphs: [
-      "Where services involve, or are coordinated with, third-party providers — software vendors, cloud providers, implementation partners, professional advisers, and other providers — the client bears the risk associated with those parties within applicable law, subject to any express allocation agreed in the engagement. The Company recommends professional evaluation of any provider before engagement.",
+      "Where services involve, or are coordinated with, third-party providers (software vendors, cloud providers, implementation partners, professional advisers, and others), the client bears the risk associated with those parties within applicable law, subject to any express allocation agreed in the engagement. The Company recommends professional evaluation of any provider before engagement.",
     ],
   },
   {
@@ -277,7 +277,7 @@ const REGULATORY: LegalDoc = {
   title: "Regulatory Disclosures",
   shortTitle: "Regulatory",
   summary:
-    "How SGG Ventures' services are positioned against regulated activity — direct provision, qualified third parties, and coordination roles.",
+    "How SGG Ventures' services are positioned against regulated activity: direct provision, qualified third parties, and coordination roles.",
   lastUpdated: LAST_UPDATED,
   intro: INTRO_REGULATORY,
   sections: REGULATORY_SECTIONS,

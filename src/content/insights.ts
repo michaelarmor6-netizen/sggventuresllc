@@ -62,7 +62,7 @@ export const ARTICLES: Article[] = [
       {
         heading: "A test for any plan",
         paragraphs: [
-          "Ask three questions of a strategy document: which decision changes on Monday, who owns it, and what system or record makes it visible? If the answers are not on the page, the plan is not finished — it is a position paper.",
+          "Ask three questions of a strategy document: which decision changes on Monday, who owns it, and what system or record makes it visible? If the answers are not on the page, the plan isn't finished. It's a position paper.",
         ],
       },
     ],
@@ -160,14 +160,14 @@ export const ARTICLES: Article[] = [
       {
         heading: "What is here",
         paragraphs: [
-          "SGG Ventures LLC now has a public website. It describes eight service areas — Business Consulting, Management Consulting, IT Consulting, Digital Transformation, Business Applications, Custom Software Development, Websites & Digital Presence, and AI & Automation — plus a way to request a consultation and a way for specialist firms to propose a partnership.",
+          "We finally have a website. It covers the eight areas we work in, from business and management consulting through to software, websites, and AI automation. You can book a consultation from any page, and specialist firms who want to work alongside us have their own form.",
         ],
       },
       {
         heading: "What is not here yet",
         paragraphs: [
           "We describe work we do directly and work a qualified third party must do. We have kept those descriptions tight. They will change only when a licence, certification, or credential is confirmed.",
-          "Leadership names, additional office addresses, registration numbers, client names, and any claim about results are off the site until they are checked. When they are checked, they will appear here through the same process we use for the rest of the pages.",
+          "You won't find leadership bios, office addresses, client names, or claims about results here yet. We'd rather leave something out than publish it before it's checked. As each item is confirmed, it goes up.",
         ],
         bullets: [
           "Service, industry, and case-study pages are up",

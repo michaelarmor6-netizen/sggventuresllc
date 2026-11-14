@@ -6,7 +6,6 @@ import {
   addEngagementUpdate,
   createClientAccount,
   createEngagement,
-  portalChangePassword,
   setEngagementStatus,
 } from "@/app/actions/portal";
 import { updateInquiry } from "@/app/actions/admin";
@@ -153,8 +152,10 @@ export function AdminPanel({
         </p>
       )}
       {issued && (
-        <p className="mt-4 rounded-[14px] border border-linehair bg-white px-4 py-3 text-[13.5px] text-midnight">
-          Temporary password, shown once: <span className="font-semibold">{issued}</span>
+        <p role="status" className="mt-4 rounded-xl border border-linehair bg-white p-4 text-[15px] text-ink">
+          Client record created for <span className="font-semibold">{issued}</span>. Ask them to
+          sign up at <span className="font-semibold">/signup</span> with this email address; their
+          account links to this record once the address is verified.
         </p>
       )}
 
@@ -176,13 +177,13 @@ export function AdminPanel({
             setBusy(false);
             if (!result.ok) setError(result.error);
             else {
-              setIssued(result.temporaryPassword);
+              setIssued(result.email);
               formEl.reset();
               refresh();
             }
           }}
         >
-          <h2 className="font-display text-[18px] font-bold text-midnight">New client account</h2>
+          <h2 className="font-display text-[18px] font-bold text-midnight">New client record</h2>
           <Field label="Name">
             <FormInput name="name" required autoComplete="name" />
           </Field>
@@ -193,10 +194,10 @@ export function AdminPanel({
             <FormInput name="organization" autoComplete="organization" />
           </Field>
           <Button type="submit" disabled={busy}>
-            {busy ? "Creating…" : "Create account"}
+            {busy ? "Creating…" : "Create client record"}
           </Button>
           <ul className="space-y-2 border-t border-linehair pt-4 text-[14px] text-slateink">
-            {clients.length === 0 && <li>No client accounts yet.</li>}
+            {clients.length === 0 && <li>No client records yet.</li>}
             {clients.map((client) => (
               <li key={client.id}>
                 <span className="font-semibold text-midnight">{client.name}</span>
@@ -424,7 +425,6 @@ export function AdminPanel({
         </ul>
       )}
 
-      <PasswordCard />
     </div>
   );
 }
@@ -467,46 +467,6 @@ export function ClientPanel({ files }: { files: FileItem[] }) {
           </article>
         ))}
       </div>
-      <PasswordCard />
     </div>
-  );
-}
-
-function PasswordCard() {
-  const [message, setMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  return (
-    <form
-      className="mt-8 grid max-w-md gap-3 rounded-[14px] border border-linehair bg-white p-6"
-      onSubmit={async (event) => {
-        event.preventDefault();
-        const formEl = event.currentTarget;
-        const form = new FormData(formEl);
-        setError(null);
-        setMessage(null);
-        const result = await portalChangePassword({
-          currentPassword: String(form.get("current") || ""),
-          nextPassword: String(form.get("next") || ""),
-        });
-        if (!result.ok) setError(result.error ?? "Could not change the password.");
-        else {
-          setMessage("Password updated. Other sessions were signed out.");
-          formEl.reset();
-        }
-      }}
-    >
-      <h2 className="font-display text-[16px] font-bold text-midnight">Change password</h2>
-      <Field label="Current password">
-        <FormInput name="current" type="password" autoComplete="current-password" required />
-      </Field>
-      <Field label="New password">
-        <FormInput name="next" type="password" autoComplete="new-password" required minLength={10} />
-      </Field>
-      {error && <p className="text-[13px] text-red-600">{error}</p>}
-      {message && <p className="text-[13px] text-midnight">{message}</p>}
-      <Button type="submit" size="sm">
-        Update password
-      </Button>
-    </form>
   );
 }

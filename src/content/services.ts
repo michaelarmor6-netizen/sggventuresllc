@@ -48,7 +48,7 @@ export const DELIVERY_LABEL: Record<DeliveryClassification, string> = {
 };
 
 export const OPERATING_MODEL_NOTE =
-  "SGG Ventures provides consulting, advisory, and technology services directly. Where an engagement requires a licensed professional — legal, tax, accounting, securities, or a regulated technology certification — that work is performed by a qualified third party named in the engagement. SGG Ventures does not provide securities brokerage, investment management, or regulated financial advice.";
+  "SGG Ventures provides consulting, advisory, and technology services directly. Where an engagement requires a licensed professional (legal, tax, accounting, securities, or a regulated technology certification), that work is performed by a qualified third party named in the engagement. SGG Ventures does not provide securities brokerage, investment management, or regulated financial advice.";
 
 type ServiceSeed = Omit<ServiceContent, "approach" | "delivery"> & {
   delivery?: Delivery;
@@ -129,7 +129,7 @@ const BUSINESS_CONSULTING = makeCategory({
       summary:
         "A written view of where to compete, what to prioritize, and what to stop.",
       intro:
-        "Strategy work fails when it stays abstract. We help leadership teams make explicit choices about markets, customers, capabilities, and capital allocation — then translate those choices into a plan with owners and dates.",
+        "Strategy work fails when it stays abstract. We help leadership teams make explicit choices about markets, customers, capabilities, and where the money goes. Then we turn those choices into a plan with owners and dates.",
       challenges: [
         {
           title: "Strategy that never leaves the deck",
@@ -163,7 +163,7 @@ const BUSINESS_CONSULTING = makeCategory({
         },
       ],
       related: ["market-entry", "business-planning", "growth-strategies"],
-      icon: "Compass",
+      icon: "Map",
     },
     {
       slug: "market-entry",
@@ -206,7 +206,7 @@ const BUSINESS_CONSULTING = makeCategory({
         },
       ],
       related: ["business-strategy", "business-planning", "growth-strategies"],
-      icon: "Globe2",
+      icon: "Flag",
     },
     {
       slug: "business-planning",
@@ -215,7 +215,7 @@ const BUSINESS_CONSULTING = makeCategory({
       summary:
         "A plan that connects the operating model, the numbers, and the cash.",
       intro:
-        "A business plan is useful when it can be operated. We build plans that link customers, capacity, pricing, costs, and cash — and show which assumptions matter most.",
+        "A business plan is useful when it can be operated. We build plans that link customers, capacity, pricing, costs, and cash, and that make it obvious which assumptions matter most.",
       challenges: [
         {
           title: "Plans built for a lender, not the business",
@@ -482,7 +482,7 @@ const MANAGEMENT_CONSULTING = makeCategory({
         "business-strategy",
         "change-management",
       ],
-      icon: "Briefcase",
+      icon: "MessagesSquare",
     },
     {
       slug: "change-management",
@@ -670,7 +670,7 @@ const MANAGEMENT_CONSULTING = makeCategory({
         "business-strategy",
         "organizational-development",
       ],
-      icon: "ShieldCheck",
+      icon: "Scale",
     },
   ],
 });
@@ -865,7 +865,7 @@ const IT_CONSULTING = makeCategory({
       summary:
         "Risk-based security guidance for leaders, without fear-driven spending.",
       intro:
-        "Cybersecurity is a business risk problem. We help leaders understand what matters, what is proportionate, and what to fix first — without treating every threat as equally urgent.",
+        "Cybersecurity is a business risk problem. We help leaders understand what matters, what is proportionate, and what to fix first. Not every threat is equally urgent, and we won't pretend otherwise.",
       challenges: [
         {
           title: "Security framed as a product list",
@@ -912,7 +912,7 @@ const IT_CONSULTING = makeCategory({
       summary:
         "Reducing cost and fragility in the infrastructure that runs the business.",
       intro:
-        "Infrastructure is often invisible until it fails or the bill arrives. We look at utilization, resilience, supportability, and cost — then prioritize the changes that matter.",
+        "Infrastructure is often invisible until it fails or the bill arrives. We look at utilization, resilience, supportability, and cost, then put the changes that matter at the top of the list.",
       challenges: [
         {
           title: "Overprovisioned capacity",
@@ -1089,7 +1089,7 @@ const DIGITAL_TRANSFORMATION = makeCategory({
         "power-automate",
         "process-improvement",
       ],
-      icon: "Workflow",
+      icon: "Cog",
     },
     {
       slug: "business-systems-integration",
@@ -1136,7 +1136,7 @@ const DIGITAL_TRANSFORMATION = makeCategory({
         "data-strategy",
         "api-integrations",
       ],
-      icon: "Plug",
+      icon: "Cable",
     },
     {
       slug: "data-strategy",
@@ -1510,7 +1510,7 @@ const BUSINESS_APPLICATIONS = makeCategory({
         "business-systems-integration",
         "power-bi",
       ],
-      icon: "Target",
+      icon: "Contact",
     },
     {
       slug: "erp-advisory",
@@ -1604,7 +1604,7 @@ const BUSINESS_APPLICATIONS = makeCategory({
         "process-digitization",
         "business-systems-integration",
       ],
-      icon: "Workflow",
+      icon: "ListChecks",
     },
   ],
 });
@@ -1622,7 +1622,7 @@ const SOFTWARE_DEVELOPMENT = makeCategory({
   summary:
     "Custom web applications, customer portals, enterprise systems, mobile applications, API integrations, and SaaS platforms built around a defined operating need.",
   intro: [
-    "Custom software makes sense when the business need is genuinely different from what packaged products support. We build applications that are maintainable, secure, and owned by the client — not dependent on a single developer or an opaque vendor relationship.",
+    "Custom software makes sense when the business need is genuinely different from what packaged products support. We build applications that are maintainable, secure, and owned by the client. You shouldn't depend on one developer or a vendor you can't see into.",
     "Our work starts with the process and the users, not the technology. We define the smallest useful product, deliver it in increments, and keep the client involved in decisions throughout.",
     "Engagements are scoped around a product outcome, with a clear handover of code, documentation, and operational ownership.",
   ],
@@ -1696,7 +1696,7 @@ const SOFTWARE_DEVELOPMENT = makeCategory({
         "api-integrations",
         "saas-platforms",
       ],
-      icon: "Code2",
+      icon: "Braces",
     },
     {
       slug: "customer-portals",
@@ -1790,7 +1790,7 @@ const SOFTWARE_DEVELOPMENT = makeCategory({
         "business-systems-integration",
         "erp-advisory",
       ],
-      icon: "Server",
+      icon: "Building",
     },
     {
       slug: "mobile-applications",
@@ -1884,7 +1884,7 @@ const SOFTWARE_DEVELOPMENT = makeCategory({
         "enterprise-architecture",
         "custom-web-applications",
       ],
-      icon: "Plug",
+      icon: "Webhook",
     },
     {
       slug: "saas-platforms",
@@ -1931,7 +1931,7 @@ const SOFTWARE_DEVELOPMENT = makeCategory({
         "api-integrations",
         "cloud-strategy",
       ],
-      icon: "Cloud",
+      icon: "Package",
     },
   ],
 });
@@ -2019,7 +2019,7 @@ const WEBSITES = makeCategory({
         },
       ],
       related: ["landing-pages", "content-and-seo", "website-care"],
-      icon: "Globe2",
+      icon: "PanelTop",
     },
     {
       slug: "landing-pages",
@@ -2062,7 +2062,7 @@ const WEBSITES = makeCategory({
         },
       ],
       related: ["corporate-websites", "ecommerce-storefronts", "content-and-seo"],
-      icon: "Target",
+      icon: "MousePointerClick",
     },
     {
       slug: "ecommerce-storefronts",
@@ -2148,7 +2148,7 @@ const WEBSITES = makeCategory({
         },
       ],
       related: ["corporate-websites", "landing-pages", "website-care"],
-      icon: "Search",
+      icon: "PenLine",
     },
     {
       slug: "website-care",
@@ -2191,7 +2191,7 @@ const WEBSITES = makeCategory({
         },
       ],
       related: ["corporate-websites", "content-and-seo", "ecommerce-storefronts"],
-      icon: "ShieldCheck",
+      icon: "LifeBuoy",
     },
   ],
 });
@@ -2377,7 +2377,7 @@ const AI_AUTOMATION = makeCategory({
         "workflow-automation",
         "ai-strategy",
       ],
-      icon: "Workflow",
+      icon: "GitMerge",
     },
     {
       slug: "knowledge-management",
@@ -2471,7 +2471,7 @@ const AI_AUTOMATION = makeCategory({
         "ai-workflows",
         "microsoft-365",
       ],
-      icon: "Bot",
+      icon: "MessageCircle",
     },
   ],
 });

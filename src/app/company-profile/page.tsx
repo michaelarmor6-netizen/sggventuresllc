@@ -237,9 +237,9 @@ export default function CompanyProfilePage() {
           </h2>
           <p className="mt-2 text-[13px] leading-relaxed text-slateink">
             SGG Ventures provides consulting, advisory, and technology services
-            directly. Where an engagement requires a licensed professional —
-            legal, tax, accounting, securities, or a regulated technology
-            certification — that work is performed by a qualified third party
+            directly. Where an engagement requires a licensed professional
+            (legal, tax, accounting, securities, or a regulated technology
+            certification), that work is performed by a qualified third party
             named in the engagement. SGG Ventures does not provide securities
             brokerage, investment management, or regulated financial advice. See
             the{" "}

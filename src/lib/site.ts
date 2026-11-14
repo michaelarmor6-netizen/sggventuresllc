@@ -12,7 +12,7 @@ export const COMPANY = {
   positioning:
     "Strategic business advisory and technology consulting firm",
   positioningStatement:
-    "SGG Ventures LLC is a strategic business advisory and technology consulting firm helping organizations achieve sustainable growth through business and management consulting, digital transformation, and business technology solutions.",
+    "SGG Ventures is a business advisory and technology consulting firm. We help companies decide where to grow, then build the processes and systems that get them there.",
 
   // Confirmed from the Wyoming Articles of Organization filed 2026-11-06.
   // The filing number is published only once supplied.

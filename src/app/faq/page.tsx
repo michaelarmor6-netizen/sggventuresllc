@@ -33,7 +33,7 @@ export default function FaqPage() {
       <FaqJsonLd items={FAQS} />
       <PageHero
         eyebrow="FAQ"
-        title="Questions we are asked first."
+        title="Questions we are asked first"
         description="What the firm does, how an engagement starts, what it costs to find out, and what we do not provide."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
       />
