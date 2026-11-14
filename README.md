@@ -6,7 +6,7 @@ Official website for **SGG Ventures LLC**, a Wyoming limited liability company a
 
 > Strategic Business. Intelligent Technology. Sustainable Growth.
 
-Seven service areas, 39 defined services:
+Eight service areas, 44 defined services:
 
 1. Business Consulting
 2. Management Consulting
@@ -14,7 +14,8 @@ Seven service areas, 39 defined services:
 4. Digital Transformation
 5. Business Applications
 6. Custom Software Development
-7. AI & Automation
+7. Websites & Digital Presence
+8. AI & Automation
 
 The entity is a Wyoming LLC, formed November 6, 2026. Addresses are kept private.
 
@@ -86,3 +87,13 @@ Case studies are anonymized and labelled representative. Testimonials must not b
 - Wyoming LLC filing number (a placeholder in `src/lib/site.ts`)
 - Confirmed leadership names, titles, and biographies
 - Client-approved case studies or testimonials, if they are ever to be published
+
+## Accounts and sign-in
+
+- `/login`, `/signup`, `/forgot-password`, `/reset-password`, `/verify-email`; the portal is at `/portal` (`/portal/login` redirects to `/login`).
+- Self sign-up creates a **client** account. Staff accounts come from `ADMIN_EMAIL` / `ADMIN_PASSWORD` (first sign-in) or are created in the portal.
+- Passwords are scrypt-hashed; sessions are random tokens stored as SHA-256 hashes in an httpOnly cookie. Five failed log-ins lock an account for 15 minutes.
+- Verification (24 h) and reset (1 h) links are single-use tokens, stored hashed. A password reset signs out every other session.
+- Sign-ups are limited to 5 per network per hour; reset emails to 3 per account per hour.
+- Account emails need `RESEND_API_KEY` and `AUTH_FROM_EMAIL` (or `INQUIRY_FROM_EMAIL`). Without them, links are printed to the server log in development only.
+- Schema changes (`users.emailVerifiedAt`, `auth_tokens`) must be applied with `npx prisma db push` before deploying.

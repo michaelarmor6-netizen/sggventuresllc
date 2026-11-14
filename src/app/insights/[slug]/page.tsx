@@ -130,15 +130,15 @@ export default async function InsightArticlePage({
               <Link
                 key={other.slug}
                 href={`/insights/${other.slug}`}
-                className="group block rounded-2xl border border-linehair bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
+                className="group block rounded-xl border border-linehair bg-white p-7 transition-colors duration-200"
               >
-                <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-azure-deep">
+                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-azure-deep">
                   {other.category}
                 </span>
                 <h3 className="mt-2.5 font-display text-[18px] font-bold leading-snug tracking-tight text-midnight">
                   {other.title}
                 </h3>
-                <p className="mt-2.5 text-[13.5px] leading-relaxed text-slateink">
+                <p className="mt-2.5 text-[15px] leading-relaxed text-slateink">
                   {other.excerpt.slice(0, 140)}…
                 </p>
               </Link>

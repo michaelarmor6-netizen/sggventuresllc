@@ -4,6 +4,7 @@ import { prisma } from "@/lib/server/db";
 import { getSessionUser } from "@/lib/server/auth";
 import { projectTypeLabel } from "@/lib/validation/schemas";
 import { PortalShell } from "@/components/portal/shell";
+import { VerifyBanner } from "@/components/portal/verify-banner";
 import { AdminPanel, ClientPanel, type FileItem, type InquiryItem } from "@/components/portal/panels";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const dynamic = "force-dynamic";
 
 export default async function PortalPage() {
   const user = await getSessionUser();
-  if (!user) redirect("/portal/login");
+  if (!user) redirect("/login");
 
   if (user.role === "client") {
     const engagements = await prisma.engagement.findMany({
@@ -48,6 +49,7 @@ export default async function PortalPage() {
     }));
     return (
       <PortalShell name={user.name} role="client">
+        {!user.emailVerified && <VerifyBanner email={user.email} />}
         <ClientPanel files={files} />
       </PortalShell>
     );
@@ -122,6 +124,7 @@ export default async function PortalPage() {
 
   return (
     <PortalShell name={user.name} role="admin">
+      {!user.emailVerified && <VerifyBanner email={user.email} />}
       <AdminPanel
         inquiries={inquiryItems}
         clients={clients}

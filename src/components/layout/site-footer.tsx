@@ -33,10 +33,10 @@ export function SiteFooter() {
           {/* Company block */}
           <div className="lg:col-span-4">
             <Logo tone="light" />
-            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-white/65">
+            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-white/65">
               {COMPANY.positioningStatement}
             </p>
-            <div className="mt-6 space-y-3 text-[13.5px]">
+            <div className="mt-6 space-y-3 text-[15px]">
               <a
                 href={COMPANY.phoneHref}
                 className="flex items-center gap-2.5 text-white/80 transition-colors hover:text-azure-light"
@@ -79,7 +79,7 @@ export function SiteFooter() {
                 key={index}
                 aria-label={index === 0 ? "Service areas" : "More service areas"}
               >
-                <h3 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-light">
+                <h3 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-light">
                   {index === 0 ? "Services" : "Capabilities"}
                 </h3>
                 <ul className="mt-4 space-y-2.5">
@@ -87,7 +87,7 @@ export function SiteFooter() {
                     <li key={category.slug}>
                       <Link
                         href={`/services/${category.slug}`}
-                        className="text-[13.5px] text-white/65 transition-colors hover:text-white"
+                        className="text-[15px] text-white/65 transition-colors hover:text-white"
                       >
                         {category.name}
                       </Link>
@@ -101,7 +101,7 @@ export function SiteFooter() {
           {/* Corporate nav */}
           <div className="lg:col-span-3">
             <nav aria-label="Company">
-              <h3 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-light">
+              <h3 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-light">
                 Company
               </h3>
               <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
@@ -109,7 +109,7 @@ export function SiteFooter() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-[13.5px] text-white/65 transition-colors hover:text-white"
+                      className="text-[15px] text-white/65 transition-colors hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -128,7 +128,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[12.5px] text-white/50 transition-colors hover:text-azure-light"
+                    className="text-[13px] text-white/50 transition-colors hover:text-azure-light"
                   >
                     {link.label}
                   </Link>
@@ -137,7 +137,7 @@ export function SiteFooter() {
             </ul>
           </nav>
           <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="text-[12.5px] text-white/40">
+            <p className="text-[13px] text-white/40">
               © {year} {COMPANY.legalName}. All rights reserved.
             </p>
             <p className="flex items-start gap-2 text-[12px] leading-relaxed text-white/35 md:max-w-xl">
@@ -145,7 +145,8 @@ export function SiteFooter() {
                 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-azure/70"
                 aria-hidden="true"
               />
-              SGG Ventures provides consulting, advisory, and technology services
+              <span>
+                SGG Ventures provides consulting, advisory, and technology services
               directly. Where a licensed professional is required, that work is
               performed by a qualified third party named in the engagement. See
               our{" "}
@@ -156,6 +157,7 @@ export function SiteFooter() {
                 Regulatory Disclosures
               </Link>{" "}
               for important information.
+              </span>
             </p>
           </div>
         </div>

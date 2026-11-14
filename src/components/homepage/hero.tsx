@@ -81,7 +81,7 @@ function HeroGraphic() {
 
 const HERO_PROOF = [
   "Wyoming limited liability company",
-  "7 service areas · 39 defined services",
+  `${SERVICE_CATEGORIES.length} service areas · ${SERVICE_CATEGORIES.reduce((total, category) => total + category.services.length, 0)} defined services`,
   "Advisory and technology delivery in one firm",
 ];
 
@@ -117,7 +117,7 @@ export function HomepageHero() {
                 </Link>
                 <a
                   href={COMPANY.phoneHref}
-                  className="inline-flex h-[52px] items-center gap-2 rounded-full px-4 font-display text-[15px] font-bold text-white/80 transition-colors hover:text-azure-light"
+                  className="inline-flex h-[52px] items-center gap-2 rounded-full px-4 font-display text-[15px] font-semibold text-white/80 transition-colors hover:text-azure-light"
                 >
                   <Phone className="h-4 w-4" aria-hidden />
                   {COMPANY.phone}
@@ -127,7 +127,7 @@ export function HomepageHero() {
           </div>
           <Reveal delay={0.18} className="lg:col-span-5">
             <figure>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] shadow-[0_18px_40px_rgb(0_0_0/0.28)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] shadow-photo">
                 <Image
                   src={PHOTOS.consulting.src}
                   alt={PHOTOS.consulting.alt}
@@ -137,7 +137,7 @@ export function HomepageHero() {
                   className="object-cover"
                 />
               </div>
-              <figcaption className="mt-3 text-[12.5px] leading-snug text-white/55">
+              <figcaption className="mt-3 text-[13px] leading-snug text-white/55">
                 {PHOTO_NOTE}
               </figcaption>
             </figure>
@@ -175,10 +175,10 @@ export function HeroServiceNav() {
             className="group flex items-center justify-between gap-3 bg-white px-5 py-4 transition-colors hover:bg-mist"
           >
             <span className="flex items-center gap-3">
-              <span className="font-display text-[11px] font-bold tracking-[0.14em] text-azure-deep">
+              <span className="font-display text-[11px] font-semibold tracking-[0.14em] text-azure-deep">
                 {category.code}
               </span>
-              <span className="font-display text-[13.5px] font-bold tracking-tight text-midnight">
+              <span className="font-display text-[15px] font-semibold tracking-tight text-midnight">
                 {category.shortName}
               </span>
             </span>
@@ -188,18 +188,6 @@ export function HeroServiceNav() {
             />
           </Link>
         ))}
-        <Link
-          href="/services"
-          className="group flex items-center justify-between gap-3 bg-coolgray px-5 py-4 transition-colors hover:bg-mist"
-        >
-          <span className="font-display text-[13.5px] font-bold tracking-tight text-royal">
-            All service areas
-          </span>
-          <ArrowRight
-            className="h-3.5 w-3.5 text-royal transition-transform group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </Link>
       </div>
     </nav>
   );

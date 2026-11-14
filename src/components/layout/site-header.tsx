@@ -41,17 +41,11 @@ export function SiteHeader() {
     >
       {/* Utility bar */}
       <div className="hidden bg-midnight text-white lg:block">
-        <div className="container-x flex h-9 items-center justify-between text-[12.5px]">
+        <div className="container-x flex h-9 items-center justify-between text-[13px]">
           <p className="font-display font-semibold uppercase tracking-[0.14em] text-azure-light">
             {COMPANY.tagline}
           </p>
           <div className="flex items-center gap-5">
-            <Link
-              href="/portal/login"
-              className="text-white/70 transition-colors hover:text-white"
-            >
-              Sign in
-            </Link>
             <Link
               href="/legal/regulatory-disclosures"
               className="text-white/70 transition-colors hover:text-white"
@@ -82,7 +76,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop navigation */}
-        <nav aria-label="Primary" className="hidden items-center lg:flex">
+        <nav aria-label="Primary" className="hidden items-center xl:flex">
           <ul className="flex items-center gap-0.5">
             {NAV.map((section) => {
               const active = isActive(pathname, section.href);
@@ -101,9 +95,9 @@ export function SiteHeader() {
                     <Link
                       href={section.href}
                       aria-current={active ? "page" : undefined}
-                      className={`flex items-center rounded-lg px-3.5 py-2.5 font-display text-[14.5px] font-bold tracking-tight transition-colors ${
-                        active ? "text-royal" : "text-midnight hover:text-royal"
-                      }`}
+                      className={`flex items-center whitespace-nowrap rounded-lg px-3.5 py-2.5 font-display text-[15px] font-semibold tracking-tight transition-colors ${
+ active ? "text-royal" : "text-midnight hover:text-royal"
+ }`}
                     >
                       {section.label}
                     </Link>
@@ -119,8 +113,8 @@ export function SiteHeader() {
                       >
                         <ChevronDown
                           className={`h-3.5 w-3.5 transition-transform ${
-                            isOpen ? "rotate-180" : ""
-                          }`}
+ isOpen ? "rotate-180" : ""
+ }`}
                           aria-hidden="true"
                         />
                       </button>
@@ -129,19 +123,19 @@ export function SiteHeader() {
                   {hasLinks && isOpen && (
                     <div
                       className={`absolute top-full z-50 -translate-x-1/2 pt-2 ${
-                        section.links!.length > 6
-                          ? "left-1/2 w-[34rem]"
-                          : "left-1/2 w-80 xl:w-[340px]"
-                      }`}
+ section.links!.length > 6
+ ? "left-1/2 w-[34rem]"
+ : "left-1/2 w-80 xl:w-[340px]"
+ }`}
                       onMouseEnter={() => setOpenMenu(section.label)}
                     >
                       <div className="max-h-[calc(100vh-7rem)] overflow-y-auto rounded-[14px] border border-linehair bg-white">
                         <ul
                           className={`p-2 ${
-                            section.links!.length > 6
-                              ? "grid grid-cols-2 gap-1"
-                              : ""
-                          }`}
+ section.links!.length > 6
+ ? "grid grid-cols-2 gap-1"
+ : ""
+ }`}
                         >
                           {section.links!.map((link, i) => (
                             <li key={link.href} className={i > 0 ? "mt-0.5" : ""}>
@@ -149,11 +143,11 @@ export function SiteHeader() {
                                 href={link.href}
                                 className="block rounded-xl px-4 py-3 transition-colors hover:bg-mist"
                               >
-                                <span className="font-display text-[14px] font-bold text-midnight">
+                                <span className="font-display text-[14px] font-semibold text-midnight">
                                   {link.label}
                                 </span>
                                 {link.description && (
-                                  <span className="mt-0.5 block text-[12.5px] leading-snug text-slateink/80">
+                                  <span className="mt-0.5 block text-[13px] leading-snug text-slateink/80">
                                     {link.description}
                                   </span>
                                 )}
@@ -164,7 +158,7 @@ export function SiteHeader() {
                         <div className="border-t border-linehair bg-coolgray px-5 py-3">
                           <Link
                             href={section.href}
-                            className="font-display text-[13px] font-bold text-royal transition-colors hover:text-azure-deep"
+                            className="font-display text-[13px] font-semibold text-royal transition-colors hover:text-azure-deep"
                           >
                             {section.label} overview →
                           </Link>
@@ -176,6 +170,15 @@ export function SiteHeader() {
               );
             })}
             <li aria-hidden="true" className="mx-2.5 h-5 w-px bg-linehair" />
+            <li>
+              <Link
+                href="/login"
+                aria-current={isActive(pathname, "/login") ? "page" : undefined}
+                className="flex min-h-11 items-center whitespace-nowrap rounded-lg px-3.5 font-display text-[15px] font-semibold tracking-tight text-midnight transition-colors hover:text-royal"
+              >
+                Log in
+              </Link>
+            </li>
           </ul>
           <Link
             href="/contact"
@@ -188,7 +191,7 @@ export function SiteHeader() {
         {/* Mobile controls */}
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-lg text-midnight transition-colors hover:bg-coolgray lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-lg text-midnight transition-colors hover:bg-coolgray xl:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -206,7 +209,7 @@ export function SiteHeader() {
       {mobileOpen && (
         <div
           id="mobile-nav"
-          className="fixed inset-0 top-[4.5rem] z-40 flex flex-col bg-white md:top-20 lg:hidden"
+          className="fixed inset-0 top-[4.5rem] z-40 flex flex-col bg-white md:top-20 lg:top-[7.25rem] xl:hidden"
         >
           <nav
             aria-label="Primary mobile"
@@ -221,10 +224,10 @@ export function SiteHeader() {
                       <Link
                         href={section.href}
                         className={`flex-1 py-3.5 font-display text-[17px] font-bold ${
-                          isActive(pathname, section.href)
-                            ? "text-royal"
-                            : "text-midnight"
-                        }`}
+ isActive(pathname, section.href)
+ ? "text-royal"
+ : "text-midnight"
+ }`}
                       >
                         {section.label}
                       </Link>
@@ -240,8 +243,8 @@ export function SiteHeader() {
                         >
                           <ChevronDown
                             className={`h-4.5 w-4.5 transition-transform ${
-                              sectionOpen ? "rotate-180" : ""
-                            }`}
+ sectionOpen ? "rotate-180" : ""
+ }`}
                             aria-hidden="true"
                           />
                         </button>
@@ -254,10 +257,10 @@ export function SiteHeader() {
                             <Link
                               href={link.href}
                               className={`block rounded-lg px-3 py-2.5 text-[15px] ${
-                                isActive(pathname, link.href)
-                                  ? "bg-mist font-semibold text-royal"
-                                  : "text-slateink hover:bg-coolgray"
-                              }`}
+ isActive(pathname, link.href)
+ ? "bg-mist font-semibold text-royal"
+ : "text-slateink hover:bg-coolgray"
+ }`}
                             >
                               {link.label}
                             </Link>
@@ -270,6 +273,12 @@ export function SiteHeader() {
               })}
             </ul>
             <div className="mt-6 space-y-3">
+              <Link
+                href="/login"
+                className={buttonClass("outline", "lg") + " w-full"}
+              >
+                Log in
+              </Link>
               <Link
                 href="/contact"
                 className={buttonClass("primary", "lg") + " w-full"}

@@ -53,7 +53,7 @@ export default async function ContactPage({
             <h2 className="font-display text-[22px] font-bold tracking-tight text-midnight">
               Phone and mail
             </h2>
-            <p className="mt-2 text-[14px] leading-relaxed text-slateink">
+            <p className="mt-2 text-[15px] leading-relaxed text-slateink">
               The form is the surest way to get a written reply. You can also
               call during Eastern business hours.
             </p>
@@ -61,17 +61,17 @@ export default async function ContactPage({
             <div className="mt-7 space-y-5">
               <a
                 href={COMPANY.phoneHref}
-                className="block rounded-2xl border border-linehair bg-white p-6 transition-colors hover:border-azure/40"
+                className="block rounded-xl border border-linehair bg-white p-6 transition-colors hover:bg-pearl"
               >
                 <span className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-royal text-white">
                     <Phone className="h-5 w-5" aria-hidden />
                   </span>
                   <span>
-                    <span className="block font-display text-[13px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                    <span className="block font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                       Telephone
                     </span>
-                    <span className="block font-display text-[16px] font-bold text-midnight">
+                    <span className="block font-display text-[16px] font-semibold text-midnight">
                       {COMPANY.phone}
                     </span>
                   </span>
@@ -80,17 +80,17 @@ export default async function ContactPage({
 
               <a
                 href={`mailto:${COMPANY.email}`}
-                className="block rounded-2xl border border-linehair bg-white p-6 transition-colors hover:border-azure/40"
+                className="block rounded-xl border border-linehair bg-white p-6 transition-colors hover:bg-pearl"
               >
                 <span className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-royal text-white">
                     <Mail className="h-5 w-5" aria-hidden />
                   </span>
                   <span>
-                    <span className="block font-display text-[13px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                    <span className="block font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                       Email
                     </span>
-                    <span className="block font-display text-[16px] font-bold text-midnight">
+                    <span className="block font-display text-[16px] font-semibold text-midnight">
                       {COMPANY.email}
                     </span>
                   </span>
@@ -98,16 +98,16 @@ export default async function ContactPage({
               </a>
 
 
-              <div className="rounded-2xl border border-linehair bg-white p-6">
+              <div className="rounded-xl border border-linehair bg-white p-6">
                 <span className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-royal text-white">
                     <Clock className="h-5 w-5" aria-hidden />
                   </span>
                   <span>
-                    <span className="block font-display text-[13px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                    <span className="block font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                       When we reply
                     </span>
-                    <span className="mt-1 block text-[14.5px] text-midnight">
+                    <span className="mt-1 block text-[15px] text-midnight">
                       We answer inquiries in the order they arrive, usually
                       within two business days.
                     </span>
@@ -115,7 +115,7 @@ export default async function ContactPage({
                 </span>
               </div>
 
-              <div className="rounded-2xl border border-azure/30 bg-mist p-6">
+              <div className="rounded-xl border border-azure/30 bg-mist p-6">
                 <span className="flex items-start gap-3">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-royal" aria-hidden />
                   <p className="text-[13px] leading-relaxed text-slateink">

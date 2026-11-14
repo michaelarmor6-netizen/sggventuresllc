@@ -67,7 +67,7 @@ export default function PartnershipsPage() {
           <h2 className="font-display text-[22px] font-bold tracking-tight text-midnight">
             How a partnership has to work
           </h2>
-          <p className="mt-3 max-w-3xl text-[16.5px] leading-relaxed text-slateink">
+          <p className="mt-3 max-w-3xl text-[17px] leading-relaxed text-slateink">
             Both sides have a named responsibility, documented in writing. We do
             not present a partner&apos;s certification or licence as our own, and
             we do not accept commissions that would compromise an independent
@@ -76,25 +76,25 @@ export default function PartnershipsPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             {PARTNER_PROFILES.map((profile) => (
               <Reveal key={profile.title}>
-                <div className="flex h-full gap-4 rounded-2xl border border-linehair bg-coolgray p-6">
+                <div className="flex h-full gap-4 rounded-xl border border-linehair bg-coolgray p-6">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal text-white">
                     <profile.icon className="h-5.5 w-5.5" aria-hidden />
                   </span>
                   <div>
-                    <h3 className="font-display text-[15.5px] font-bold tracking-tight text-midnight">
+                    <h3 className="font-display text-[16px] font-semibold tracking-tight text-midnight">
                       {profile.title}
                     </h3>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-slateink">
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-slateink">
                       {profile.body}
                     </p>
                   </div>
                 </div>
               </Reveal>
             ))}
-            <div className="flex items-center rounded-2xl border border-azure/30 bg-mist p-6">
+            <div className="flex items-center rounded-xl border border-azure/30 bg-mist p-6">
               <div className="flex items-start gap-4">
                 <Handshake className="mt-1 h-8 w-8 text-royal" aria-hidden />
-                <p className="text-[13.5px] leading-relaxed text-slateink">
+                <p className="text-[15px] leading-relaxed text-slateink">
                   Every partnership is a written agreement. We read proposals
                   one at a time. There is no portal and no volume target.
                 </p>
@@ -113,7 +113,7 @@ export default function PartnershipsPage() {
             <h2 className="font-display text-title text-midnight">
               Send a proposal
             </h2>
-            <p className="mt-3 text-[14.5px] leading-relaxed text-slateink">
+            <p className="mt-3 text-[15px] leading-relaxed text-slateink">
               Say who you are, what you do, and where you work. Proposals we can
               verify get read first.
             </p>

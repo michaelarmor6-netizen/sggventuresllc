@@ -39,16 +39,16 @@ export default function CaseStudiesPage() {
               <Reveal key={study.slug} delay={(i % 3) * 0.06}>
                 <Link
                   href={`/case-studies/${study.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-linehair bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-azure/40 hover:shadow-card"
+                  className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-7 transition-colors duration-200 hover:bg-pearl"
                 >
                   <span className="eyebrow">{study.sector}</span>
                   <h2 className="mt-3 font-display text-[18px] font-bold leading-snug tracking-tight text-midnight">
                     {study.title}
                   </h2>
-                  <p className="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-slateink">
+                  <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-slateink">
                     {study.summary}
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[13px] font-bold text-royal transition-colors group-hover:text-azure-deep">
+                  <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[13px] font-semibold text-royal transition-colors group-hover:text-azure-deep">
                     Read the case study
                     <ArrowRight
                       className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"

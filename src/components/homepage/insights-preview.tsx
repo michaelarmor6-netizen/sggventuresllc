@@ -34,7 +34,7 @@ export function InsightsPreview() {
             <Reveal key={article.slug} delay={i * 0.08}>
               <Link
                 href={`/insights/${article.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-linehair bg-white p-7 shadow-none transition-all duration-300 hover:-translate-y-1 hover:border-azure/40 hover:shadow-card"
+                className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-7 shadow-none transition-colors duration-200 hover:bg-pearl"
               >
                 <div className="flex items-center gap-3 text-[12px]">
                   <span className="rounded-full bg-mist px-3 py-1 font-display font-bold tracking-wide text-royal">
@@ -47,10 +47,10 @@ export function InsightsPreview() {
                 <h3 className="mt-4 font-display text-[19px] font-bold leading-snug tracking-tight text-midnight">
                   {article.title}
                 </h3>
-                <p className="mt-3 flex-1 text-[14px] leading-relaxed text-slateink">
+                <p className="mt-3 flex-1 text-[15px] leading-relaxed text-slateink">
                   {article.excerpt}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[13.5px] font-bold text-royal transition-colors group-hover:text-azure-deep">
+                <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-royal transition-colors group-hover:text-azure-deep">
                   Read
                   <ArrowRight
                     className="h-4 w-4 transition-transform group-hover:translate-x-0.5"

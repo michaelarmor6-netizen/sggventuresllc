@@ -43,14 +43,14 @@ export function OperatingModel() {
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {DELIVERY_STRUCTURES.map((structure, i) => (
             <Reveal key={structure.title} delay={i * 0.08}>
-              <div className="flex h-full flex-col rounded-2xl border border-linehair bg-coolgray p-7">
+              <div className="flex h-full flex-col rounded-xl border border-linehair bg-coolgray p-7">
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-royal text-white">
                   <ContentIcon name={structure.icon} className="h-5.5 w-5.5" />
                 </span>
                 <h3 className="mt-4 font-display text-[17px] font-bold tracking-tight">
                   {structure.title}
                 </h3>
-                <p className="mt-2.5 flex-1 text-[14px] leading-relaxed text-slateink">
+                <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-slateink">
                   {structure.body}
                 </p>
               </div>
@@ -87,13 +87,13 @@ export function Methodology() {
         <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {METHODOLOGY.map((step) => (
             <li key={step.step} className="border-l border-white/15 pl-6">
-              <span className="font-display text-[12.5px] font-bold leading-none tracking-[0.16em] text-azure-light">
+              <span className="font-display text-[13px] font-semibold leading-none tracking-[0.16em] text-azure-light">
                 {step.step}
               </span>
               <h3 className="mt-2 font-display text-[18px] font-bold tracking-tight">
                 {step.title}
               </h3>
-              <p className="mt-2 text-[14px] leading-relaxed text-white/65">
+              <p className="mt-2 text-[15px] leading-relaxed text-white/65">
                 {step.body}
               </p>
             </li>
@@ -126,7 +126,7 @@ export function WhySggVentures() {
                   <h3 className="font-display text-[17.5px] font-bold tracking-tight text-midnight">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-[14.5px] leading-relaxed text-slateink">
+                  <p className="mt-2 text-[15px] leading-relaxed text-slateink">
                     {item.body}
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export function IndustriesStrip() {
           />
           <Link
             href="/industries"
-            className="inline-flex shrink-0 items-center gap-2 font-display text-[14px] font-bold text-royal transition-colors hover:text-azure-deep"
+            className="inline-flex shrink-0 items-center gap-2 font-display text-[14px] font-semibold text-royal transition-colors hover:text-azure-deep"
           >
             All industries <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
@@ -171,18 +171,18 @@ export function IndustriesStrip() {
             <Reveal key={industry.slug} delay={(i % 4) * 0.06}>
               <Link
                 href={`/industries/${industry.slug}`}
-                className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-azure/40 hover:shadow-card"
+                className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-6 transition-colors duration-200 hover:bg-pearl"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
                   <ContentIcon name={industry.icon} className="h-5 w-5" />
                 </span>
-                <h3 className="mt-4 font-display text-[15.5px] font-bold leading-snug tracking-tight text-midnight">
+                <h3 className="mt-4 font-display text-[16px] font-semibold leading-snug tracking-tight text-midnight">
                   {industry.name}
                 </h3>
                 <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slateink/90">
                   {industry.summary.split(",")[0]}.
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1 font-display text-[12.5px] font-bold text-royal opacity-0 transition-all duration-300 group-hover:opacity-100">
+                <span className="mt-4 inline-flex items-center gap-1 font-display text-[13px] font-semibold text-royal opacity-0 transition-colors duration-200 group-hover:opacity-100">
                   Read more <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
               </Link>

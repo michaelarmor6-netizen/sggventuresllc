@@ -77,15 +77,15 @@ export default function GovernancePage() {
               {PILLARS.map((pillar) => (
                 <li
                   key={pillar.title}
-                  className="rounded-2xl border border-linehair bg-coolgray p-6"
+                  className="rounded-xl border border-linehair bg-coolgray p-6"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-royal text-white">
                     <pillar.icon className="h-5 w-5" aria-hidden />
                   </span>
-                  <h3 className="mt-3.5 font-display text-[15.5px] font-bold tracking-tight text-midnight">
+                  <h3 className="mt-3.5 font-display text-[16px] font-semibold tracking-tight text-midnight">
                     {pillar.title}
                   </h3>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-slateink">
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-slateink">
                     {pillar.body}
                   </p>
                 </li>

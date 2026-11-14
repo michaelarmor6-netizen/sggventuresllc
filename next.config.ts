@@ -23,8 +23,8 @@ const nextConfig: NextConfig = {
     ],
   },
   // M&A advisory is not offered; its old pages go to the services overview.
-  // The short-lived /services/websites, /automation and /support pages map
-  // to the closest current service area.
+  // The short-lived /services/automation and /support pages map to the
+  // closest current service area.
   async redirects() {
     const to = (source: string, destination: string) => ({
       source,
@@ -34,7 +34,6 @@ const nextConfig: NextConfig = {
     return [
       to("/services/mergers-acquisitions", "/services"),
       to("/services/mergers-acquisitions/:path*", "/services"),
-      to("/services/websites", "/services/software-development"),
       to("/services/automation", "/services/ai-automation"),
       to("/services/support", "/services"),
     ];

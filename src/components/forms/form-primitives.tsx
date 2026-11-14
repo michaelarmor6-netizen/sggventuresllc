@@ -37,7 +37,7 @@ export function Field({
       </label>
       {children}
       {hint && !error && (
-        <p id={`${htmlFor}-hint`} className="mt-1.5 text-[13.5px] text-slateink">
+        <p id={`${htmlFor}-hint`} className="mt-1.5 text-[15px] text-slateink">
           {hint}
         </p>
       )}

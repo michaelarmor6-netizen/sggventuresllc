@@ -13,7 +13,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata: Metadata = createMetadata({
   title: "Services — Business, Management & Technology Consulting",
   description:
-    "SGG Ventures LLC provides business consulting, management consulting, IT consulting, digital transformation, business applications, custom software development, and AI automation.",
+    "SGG Ventures LLC provides business consulting, management consulting, IT consulting, digital transformation, business applications, custom software development, websites, and AI automation.",
   path: "/services",
   keywords: [
     "business consulting",
@@ -57,7 +57,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Capabilities"
         title="Strategy, technology, and the work between them."
-        description="Seven service areas spanning business and management consulting, IT and digital transformation, business applications, custom software, and AI automation. One firm, one engagement lead, one accountable scope."
+        description="Eight service areas spanning business and management consulting, IT and digital transformation, business applications, custom software, websites, and AI automation. One firm, one engagement lead, one accountable scope."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       >
         <div className="flex flex-wrap gap-3">
@@ -77,7 +77,7 @@ export default function ServicesPage() {
           <SectionHeading
             id="service-areas-heading"
             eyebrow="Service Areas"
-            title="Seven capabilities. One operating standard."
+            title="Eight capabilities. One operating standard."
             lead={`${serviceCount} defined services across the areas below. Every engagement starts with a written scope and a named lead.`}
             className="max-w-4xl"
           />
@@ -87,23 +87,23 @@ export default function ServicesPage() {
               <Reveal key={category.slug} delay={(i % 4) * 0.06}>
                 <Link
                   href={`/services/${category.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-linehair bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-azure/40 hover:shadow-card"
+                  className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-7 transition-colors duration-200 hover:bg-pearl"
                 >
                   <div className="flex items-center justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
                       <ContentIcon name={category.icon} className="h-5.5 w-5.5" />
                     </span>
-                    <span className="font-display text-[11px] font-bold tracking-[0.16em] text-slateink/80">
+                    <span className="font-display text-[11px] font-semibold tracking-[0.16em] text-slateink/80">
                       {category.code}
                     </span>
                   </div>
                   <h2 className="mt-4 font-display text-[17.5px] font-bold leading-snug tracking-tight text-midnight">
                     {category.name}
                   </h2>
-                  <p className="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-slateink">
+                  <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-slateink">
                     {category.tagline}
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[13px] font-bold text-royal transition-colors group-hover:text-azure-deep">
+                  <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[13px] font-semibold text-royal transition-colors group-hover:text-azure-deep">
                     {category.services.length} services
                     <ArrowRight
                       className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
@@ -132,15 +132,15 @@ export default function ServicesPage() {
                 as="li"
                 key={step.title}
                 delay={i * 0.07}
-                className="h-full rounded-2xl border border-linehair bg-white p-7"
+                className="h-full rounded-xl border border-linehair bg-white p-7"
               >
-                <span className="font-display text-[13px] font-bold tracking-[0.14em] text-azure-deep">
+                <span className="font-display text-[13px] font-semibold tracking-[0.14em] text-azure-deep">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-3 font-display text-[17px] font-bold tracking-tight text-midnight">
                   {step.title}
                 </h3>
-                <p className="mt-2.5 text-[13.5px] leading-relaxed text-slateink">
+                <p className="mt-2.5 text-[15px] leading-relaxed text-slateink">
                   {step.body}
                 </p>
               </Reveal>

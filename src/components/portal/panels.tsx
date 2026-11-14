@@ -111,7 +111,7 @@ export function AdminPanel({
 
   return (
     <div>
-      <p className="font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-[#0066cc]">
+      <p className="font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-azure-deep">
         Staff desk
       </p>
       <h1 className="mt-2 font-display text-[2rem] font-bold tracking-tight text-midnight">
@@ -432,7 +432,7 @@ export function AdminPanel({
 export function ClientPanel({ files }: { files: FileItem[] }) {
   return (
     <div>
-      <p className="font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-[#0066cc]">
+      <p className="font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-azure-deep">
         Your files
       </p>
       <h1 className="mt-2 font-display text-[2rem] font-bold tracking-tight text-midnight">

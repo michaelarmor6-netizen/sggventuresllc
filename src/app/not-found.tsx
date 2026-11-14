@@ -14,7 +14,7 @@ export default function NotFound() {
         <h1 className="mt-3 font-display text-display-lg text-midnight">
           This page is not on the site.
         </h1>
-        <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-slateink">
+        <p className="mt-4 max-w-md text-[16px] leading-relaxed text-slateink">
           It may have moved, or it was never published. Use the menu, or go
           home.
         </p>

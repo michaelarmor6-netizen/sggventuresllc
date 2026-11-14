@@ -67,11 +67,11 @@ export default async function LegalPage({
               key={d.slug}
               href={`/legal/${d.slug}`}
               aria-current={d.slug === doc.slug ? "page" : undefined}
-              className={`rounded-full px-4 py-2 font-display text-[12.5px] font-bold transition-colors ${
-                d.slug === doc.slug
-                  ? "bg-azure-deep text-white"
-                  : "border border-white/20 bg-white/5 text-white/75 hover:text-white"
-              }`}
+              className={`rounded-full px-4 py-2 font-display text-[13px] font-semibold transition-colors ${
+ d.slug === doc.slug
+ ? "bg-azure-deep text-white"
+ : "border border-white/20 bg-white/5 text-white/75 hover:text-white"
+ }`}
             >
               {d.title}
             </Link>
@@ -114,7 +114,7 @@ export default async function LegalPage({
                     {section.bullets.map((bullet) => (
                       <li
                         key={bullet}
-                        className="flex items-start gap-3 text-[14.5px] leading-relaxed text-slateink"
+                        className="flex items-start gap-3 text-[15px] leading-relaxed text-slateink"
                       >
                         <span
                           className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-azure"
@@ -130,7 +130,7 @@ export default async function LegalPage({
           </div>
 
           {doc.legalReview && (
-            <p className="mt-12 flex items-start gap-3 rounded-xl border border-linehair bg-coolgray p-5 text-[12.5px] leading-relaxed text-slateink">
+            <p className="mt-12 flex items-start gap-3 rounded-xl border border-linehair bg-coolgray p-5 text-[13px] leading-relaxed text-slateink">
               <ShieldAlert
                 className="mt-0.5 h-4 w-4 shrink-0 text-royal/70"
                 aria-hidden

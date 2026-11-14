@@ -33,10 +33,10 @@ export function PortalShell({
               type="button"
               onClick={async () => {
                 await portalSignOut();
-                router.push("/portal/login");
+                router.push("/login");
                 router.refresh();
               }}
-              className="h-9 rounded-full border border-linehair bg-white px-4 font-display text-[13px] font-semibold text-midnight hover:border-[#0066cc] hover:text-[#0066cc]"
+              className="inline-flex min-h-9 items-center rounded-full border border-royal bg-white px-4 text-[14px] text-royal transition-colors hover:bg-royal/5"
             >
               Sign out
             </button>

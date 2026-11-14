@@ -54,10 +54,11 @@ export default function AboutPage() {
                 decisions work.
               </p>
               <p>
-                The firm brings together seven service areas: business
+                The firm brings together eight service areas: business
                 consulting, management consulting, IT consulting, digital
                 transformation, business applications, custom software
-                development, and AI and automation. Engagements can combine
+                development, websites and digital presence, and AI and
+                automation. Engagements can combine
                 them — a market assessment that becomes a reporting build, or a
                 process review that becomes a workflow system.
               </p>
@@ -84,13 +85,13 @@ export default function AboutPage() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-linehair bg-coolgray p-7">
-              <h2 className="font-display text-[15px] font-bold text-midnight">
+            <div className="rounded-xl border border-linehair bg-coolgray p-7">
+              <h2 className="font-display text-[15px] font-semibold text-midnight">
                 Company facts
               </h2>
               <dl className="mt-4 space-y-4 text-[14px]">
                 <div>
-                  <dt className="font-display text-[12px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                  <dt className="font-display text-[12px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                     Legal Name
                   </dt>
                   <dd className="mt-0.5 font-semibold text-midnight">
@@ -98,7 +99,7 @@ export default function AboutPage() {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-display text-[12px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                  <dt className="font-display text-[12px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                     Entity Type
                   </dt>
                   <dd className="mt-0.5 font-semibold text-midnight">
@@ -106,7 +107,7 @@ export default function AboutPage() {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-display text-[12px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                  <dt className="font-display text-[12px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                     Registration
                   </dt>
                   <dd className="mt-0.5 text-slateink">
@@ -120,7 +121,7 @@ export default function AboutPage() {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-display text-[12px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                  <dt className="font-display text-[12px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                     Telephone
                   </dt>
                   <dd className="mt-0.5">
@@ -133,7 +134,7 @@ export default function AboutPage() {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-display text-[12px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                  <dt className="font-display text-[12px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                     Email
                   </dt>
                   <dd className="mt-0.5">
@@ -147,7 +148,7 @@ export default function AboutPage() {
                 </div>
                 {COMPANY.address && (
                   <div>
-                    <dt className="font-display text-[12px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                    <dt className="font-display text-[12px] font-semibold uppercase tracking-[0.14em] text-slateink/85">
                       {COMPANY.address.label}
                     </dt>
                     <dd className="mt-0.5 text-slateink">
@@ -170,9 +171,9 @@ export default function AboutPage() {
             { label: "What makes us different", body: UNIQUE_VALUE_PROPOSITION },
           ].map((item, i) => (
             <Reveal key={item.label} delay={i * 0.07}>
-              <div className="h-full rounded-2xl border border-linehair bg-white p-7">
+              <div className="h-full rounded-xl border border-linehair bg-white p-7">
                 <p className="eyebrow">{item.label}</p>
-                <p className="mt-3 text-[15.5px] leading-relaxed text-slateink">
+                <p className="mt-3 text-[16px] leading-relaxed text-slateink">
                   {item.body}
                 </p>
               </div>
@@ -193,11 +194,11 @@ export default function AboutPage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {CORE_VALUES.map((value, i) => (
               <Reveal key={value.title} delay={(i % 3) * 0.06}>
-                <div className="h-full rounded-2xl border border-linehair bg-coolgray p-6">
-                  <h3 className="font-display text-[16px] font-bold tracking-tight text-midnight">
+                <div className="h-full rounded-xl border border-linehair bg-coolgray p-6">
+                  <h3 className="font-display text-[16px] font-semibold tracking-tight text-midnight">
                     {value.title}
                   </h3>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-slateink">
+                  <p className="mt-2 text-[15px] leading-relaxed text-slateink">
                     {value.body}
                   </p>
                 </div>
@@ -219,10 +220,10 @@ export default function AboutPage() {
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {CORPORATE_DNA.map((item) => (
               <div key={item.title} className="border-l border-white/15 pl-5">
-                <h3 className="font-display text-[16.5px] font-bold tracking-tight">
+                <h3 className="font-display text-[17px] font-semibold tracking-tight">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-[13.5px] leading-relaxed text-white/65">
+                <p className="mt-2 text-[15px] leading-relaxed text-white/65">
                   {item.body}
                 </p>
               </div>
@@ -245,15 +246,15 @@ export default function AboutPage() {
                 as="li"
                 key={step.step}
                 delay={i * 0.06}
-                className="h-full rounded-2xl border border-linehair bg-coolgray p-6"
+                className="h-full rounded-xl border border-linehair bg-coolgray p-6"
               >
-                <span className="font-display text-[13px] font-bold tracking-[0.14em] text-azure-deep">
+                <span className="font-display text-[13px] font-semibold tracking-[0.14em] text-azure-deep">
                   {step.step}
                 </span>
                 <h3 className="mt-2 font-display text-[17px] font-bold tracking-tight text-midnight">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-[13.5px] leading-relaxed text-slateink">
+                <p className="mt-2 text-[15px] leading-relaxed text-slateink">
                   {step.body}
                 </p>
               </Reveal>
@@ -267,7 +268,7 @@ export default function AboutPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Service Areas"
-            title="Seven capabilities under one firm."
+            title="Eight capabilities under one firm."
             as="h2"
           />
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -275,16 +276,16 @@ export default function AboutPage() {
               <Link
                 key={category.slug}
                 href={`/services/${category.slug}`}
-                className="group flex items-start gap-4 rounded-xl border border-linehair bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-azure/40 hover:shadow-card"
+                className="group flex items-start gap-4 rounded-xl border border-linehair bg-white p-5 transition-all hover:bg-pearl"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
                   <ContentIcon name={category.icon} className="h-5 w-5" />
                 </span>
                 <span>
-                  <span className="block font-display text-[14.5px] font-bold leading-snug tracking-tight text-midnight">
+                  <span className="block font-display text-[15px] font-semibold leading-snug tracking-tight text-midnight">
                     {category.name}
                   </span>
-                  <span className="mt-1 block text-[12.5px] leading-snug text-slateink">
+                  <span className="mt-1 block text-[13px] leading-snug text-slateink">
                     {category.tagline}
                   </span>
                 </span>
@@ -305,7 +306,7 @@ export default function AboutPage() {
               <Link
                 key={i.slug}
                 href={`/industries/${i.slug}`}
-                className="inline-flex items-center gap-2 rounded-full border border-linehair bg-white px-5 py-2.5 font-display text-[13.5px] font-bold text-midnight transition-colors hover:border-azure/50 hover:text-royal"
+                className="inline-flex items-center gap-2 rounded-full border border-linehair bg-white px-5 py-2.5 font-display text-[15px] font-semibold text-midnight transition-colors hover:bg-pearl hover:text-royal"
               >
                 {i.name}
                 <ArrowRight className="h-3.5 w-3.5 text-slateink" aria-hidden />

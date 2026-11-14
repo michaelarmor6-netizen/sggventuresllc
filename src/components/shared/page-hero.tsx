@@ -22,7 +22,7 @@ export function PageHero({
       <div className="container-x pb-14 pt-16 md:pb-20 md:pt-24">
         {breadcrumbs && (
           <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex flex-wrap items-center gap-1 text-[12.5px] text-white/50">
+            <ol className="flex flex-wrap items-center gap-1 text-[13px] text-white/50">
               <li>
                 <Link href="/" className="transition-colors hover:text-white">
                   Home
@@ -99,7 +99,7 @@ export function CtaBand({
       <div className="container-x flex flex-col gap-6 py-14 md:flex-row md:items-center md:justify-between md:py-16">
         <div className="max-w-xl">
           <h2 className="font-display text-display">{title}</h2>
-          <p className="mt-3 text-[15.5px] leading-relaxed text-slateink">
+          <p className="mt-3 text-[16px] leading-relaxed text-slateink">
             {body}
           </p>
         </div>

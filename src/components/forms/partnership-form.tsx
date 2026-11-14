@@ -59,10 +59,10 @@ export function PartnershipForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-azure/30 bg-mist p-8 text-center" role="status">
+      <div className="rounded-xl border border-azure/30 bg-mist p-8 text-center" role="status">
         <CheckCircle2 className="mx-auto h-12 w-12 text-azure" aria-hidden="true" />
         <h3 className="mt-4 font-display text-title">Partnership inquiry received.</h3>
-        <p className="mx-auto mt-2 max-w-md text-[14.5px] leading-relaxed text-slateink">
+        <p className="mx-auto mt-2 max-w-md text-[15px] leading-relaxed text-slateink">
           We have the proposal. If the licenses and the work line up, someone
           will write back.
         </p>
@@ -79,7 +79,7 @@ export function PartnershipForm() {
     <form
       onSubmit={handleSubmit(onValid)}
       noValidate
-      className="rounded-2xl border border-linehair bg-white p-7 shadow-card md:p-9"
+      className="rounded-xl border border-linehair bg-white p-7 shadow-card md:p-9"
     >
       <HoneypotField {...register("websiteUrl")} />
       <input type="hidden" {...register("formStartedAt")} value={startedAt} />
@@ -184,7 +184,7 @@ export function PartnershipForm() {
       </div>
 
       <div className="mt-5">
-        <label htmlFor="p-consent" className="flex items-start gap-3 text-[13.5px] text-slateink">
+        <label htmlFor="p-consent" className="flex items-start gap-3 text-[15px] text-slateink">
           <input
             id="p-consent"
             type="checkbox"
@@ -204,7 +204,7 @@ export function PartnershipForm() {
           </span>
         </label>
         {errors.consent?.message && (
-          <p role="alert" className="mt-1.5 text-[12.5px] font-semibold text-red-600">
+          <p role="alert" className="mt-1.5 text-[13px] font-semibold text-red-600">
             {errors.consent.message}
           </p>
         )}
@@ -213,7 +213,7 @@ export function PartnershipForm() {
       {status === "error" && errorMessage && (
         <div className="mt-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4" role="alert">
           <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" aria-hidden="true" />
-          <p className="text-[13.5px] text-red-800">{errorMessage}</p>
+          <p className="text-[15px] text-red-800">{errorMessage}</p>
         </div>
       )}
 

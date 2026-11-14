@@ -34,14 +34,14 @@ export function ServiceCard({
   return (
     <Link
       href={`/services/${categorySlug}/${service.slug}`}
-      className="group flex h-full flex-col rounded-2xl border border-linehair bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-azure/40 hover:shadow-card"
+      className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-7 transition-colors duration-200 hover:bg-pearl"
     >
       <div className="flex items-center justify-between">
         <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
           <ContentIcon name={service.icon} className="h-5.5 w-5.5" />
         </span>
         {showCategoryCode && (
-          <span className="font-display text-[11px] font-bold tracking-[0.16em] text-slateink/90">
+          <span className="font-display text-[11px] font-semibold tracking-[0.16em] text-slateink/90">
             {showCategoryCode}
           </span>
         )}
@@ -49,10 +49,10 @@ export function ServiceCard({
       <h3 className="mt-4 font-display text-[17.5px] font-bold tracking-tight text-midnight">
         {service.title}
       </h3>
-      <p className="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-slateink">
+      <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-slateink">
         {service.summary}
       </p>
-      <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[13.5px] font-bold text-royal transition-colors group-hover:text-azure-deep">
+      <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-royal transition-colors group-hover:text-azure-deep">
         Explore this service
         <ArrowRight
           className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -120,7 +120,7 @@ export function ServiceCategoryPage({
                   className="object-cover"
                 />
               </div>
-              <figcaption className="mt-2.5 text-[12.5px] leading-snug text-slateink/85">
+              <figcaption className="mt-2.5 text-[13px] leading-snug text-slateink/85">
                 {PHOTO_NOTE}
               </figcaption>
             </figure>
@@ -140,8 +140,8 @@ export function ServiceCategoryPage({
             </div>
           </div>
           <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-linehair bg-coolgray p-7 lg:sticky lg:top-32">
-              <h3 className="font-display text-[15px] font-bold text-midnight">
+            <div className="rounded-xl border border-linehair bg-coolgray p-7 lg:sticky lg:top-32">
+              <h3 className="font-display text-[15px] font-semibold text-midnight">
                 What sits in this service area
               </h3>
               <ul className="mt-4 space-y-3">
@@ -160,7 +160,7 @@ export function ServiceCategoryPage({
               </ul>
               <a
                 href={COMPANY.phoneHref}
-                className="mt-6 flex items-center gap-2 border-t border-linehair pt-5 font-display text-[14px] font-bold text-royal transition-colors hover:text-azure-deep"
+                className="mt-6 flex items-center gap-2 border-t border-linehair pt-5 font-display text-[14px] font-semibold text-royal transition-colors hover:text-azure-deep"
               >
                 <Phone className="h-4 w-4" aria-hidden />
                 {COMPANY.phone}
@@ -204,13 +204,13 @@ export function ServiceCategoryPage({
               <Link
                 key={item.slug}
                 href={`/services/${item.slug}`}
-                className="group flex items-center justify-between rounded-xl border border-linehair bg-coolgray px-6 py-4 transition-all hover:border-azure/50 hover:bg-mist"
+                className="group flex items-center justify-between rounded-xl border border-linehair bg-coolgray px-6 py-4 transition-all hover:bg-pearl hover:bg-mist"
               >
                 <span className="flex items-center gap-4">
-                  <span className="font-display text-[12px] font-bold tracking-[0.14em] text-azure-deep">
+                  <span className="font-display text-[12px] font-semibold tracking-[0.14em] text-azure-deep">
                     {item.code}
                   </span>
-                  <span className="font-display text-[15px] font-bold text-midnight">
+                  <span className="font-display text-[15px] font-semibold text-midnight">
                     {item.name}
                   </span>
                 </span>
@@ -290,9 +290,9 @@ export function ServiceDetailPage({
             </p>
           </div>
           <div className="lg:col-span-4">
-            <div className="rounded-2xl border border-azure/30 bg-mist p-6">
+            <div className="rounded-xl border border-azure/30 bg-mist p-6">
               <p className="eyebrow">Delivery Structure</p>
-              <p className="mt-2 font-display text-[16px] font-bold text-midnight">
+              <p className="mt-2 font-display text-[16px] font-semibold text-midnight">
                 {DELIVERY_LABEL[service.delivery.classification]}
               </p>
               <Link
@@ -318,14 +318,14 @@ export function ServiceDetailPage({
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {service.challenges.map((challenge, i) => (
               <Reveal key={challenge.title} delay={i * 0.07}>
-                <div className="h-full rounded-2xl border border-linehair bg-white p-7">
-                  <span className="font-display text-[13px] font-bold tracking-[0.14em] text-azure-deep">
+                <div className="h-full rounded-xl border border-linehair bg-white p-7">
+                  <span className="font-display text-[13px] font-semibold tracking-[0.14em] text-azure-deep">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-3 font-display text-[16.5px] font-bold leading-snug tracking-tight text-midnight">
+                  <h3 className="mt-3 font-display text-[17px] font-semibold leading-snug tracking-tight text-midnight">
                     {challenge.title}
                   </h3>
-                  <p className="mt-2.5 text-[13.5px] leading-relaxed text-slateink">
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-slateink">
                     {challenge.body}
                   </p>
                 </div>
@@ -358,10 +358,10 @@ export function ServiceDetailPage({
                     <ContentIcon name={service.icon} className="h-5 w-5" />
                   </span>
                   <div>
-                    <h3 className="font-display text-[15.5px] font-bold tracking-tight">
+                    <h3 className="font-display text-[16px] font-semibold tracking-tight">
                       {capability.title}
                     </h3>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-slateink">
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-slateink">
                       {capability.body}
                     </p>
                   </div>
@@ -391,13 +391,13 @@ export function ServiceDetailPage({
                   className="absolute -left-[6.5px] top-1 h-3 w-3 rounded-full border-2 border-azure bg-midnight"
                   aria-hidden="true"
                 />
-                <span className="font-display text-[12.5px] font-bold leading-none tracking-[0.16em] text-azure-light">
+                <span className="font-display text-[13px] font-semibold leading-none tracking-[0.16em] text-azure-light">
                   STEP {i + 1}
                 </span>
                 <h3 className="mt-2 font-display text-[17.5px] font-bold tracking-tight">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-white/65">
+                <p className="mt-2 text-[15px] leading-relaxed text-white/65">
                   {step.body}
                 </p>
               </li>
@@ -415,7 +415,7 @@ export function ServiceDetailPage({
           </h2>
           <div className="mt-5 space-y-4">
             {service.delivery.text.map((text, i) => (
-              <p key={i} className="text-[15.5px] leading-relaxed text-slateink">
+              <p key={i} className="text-[16px] leading-relaxed text-slateink">
                 {text}
               </p>
             ))}

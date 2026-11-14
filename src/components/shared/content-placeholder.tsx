@@ -12,7 +12,7 @@ const Root = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={`mx-auto max-w-2xl rounded-2xl border border-azure/30 bg-mist p-8 text-center ${className ?? ""}`}>
+  <div className={`mx-auto max-w-2xl rounded-xl border border-azure/30 bg-mist p-8 text-center ${className ?? ""}`}>
     {children}
   </div>
 );
@@ -30,11 +30,11 @@ const Title = ({ children }: { children: React.ReactNode }) => (
 );
 
 const Body = ({ children }: { children: React.ReactNode }) => (
-  <p className="mt-2.5 text-[14px] leading-relaxed text-slateink">{children}</p>
+  <p className="mt-2.5 text-[15px] leading-relaxed text-slateink">{children}</p>
 );
 
 const Note = ({ children }: { children: React.ReactNode }) => (
-  <p className="mt-4 flex items-start justify-center gap-2 border-t border-azure/20 pt-4 text-left text-[12.5px] leading-relaxed text-slateink/85">
+  <p className="mt-4 flex items-start justify-center gap-2 border-t border-azure/20 pt-4 text-left text-[13px] leading-relaxed text-slateink/85">
     <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-royal/70" aria-hidden />
     {children}
   </p>

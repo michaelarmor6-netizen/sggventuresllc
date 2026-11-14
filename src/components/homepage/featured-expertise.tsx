@@ -49,16 +49,16 @@ export function FeaturedExpertise() {
             <Reveal key={item.href} delay={(i % 3) * 0.06}>
               <Link
                 href={item.href}
-                className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-azure/40 hover:shadow-card"
+                className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-6 transition-colors duration-200 hover:bg-pearl"
               >
                 <span className="eyebrow">{item.categoryName}</span>
                 <h3 className="mt-3 font-display text-[17px] font-bold leading-snug tracking-tight text-midnight">
                   {item.title}
                 </h3>
-                <p className="mt-2 flex-1 text-[13.5px] leading-relaxed text-slateink">
+                <p className="mt-2 flex-1 text-[15px] leading-relaxed text-slateink">
                   {item.summary}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 font-display text-[13px] font-bold text-royal transition-colors group-hover:text-azure-deep">
+                <span className="mt-4 inline-flex items-center gap-1.5 font-display text-[13px] font-semibold text-royal transition-colors group-hover:text-azure-deep">
                   Read more
                   <ArrowRight
                     className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"

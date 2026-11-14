@@ -35,7 +35,7 @@ export default function CompanyProfilePage() {
           <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/70 print:text-slateink">
             {COMPANY.positioningStatement}
           </p>
-          <p className="mt-4 font-display text-[15px] font-bold text-azure-light print:text-royal">
+          <p className="mt-4 font-display text-[15px] font-semibold text-azure-light print:text-royal">
             {COMPANY.tagline}
           </p>
           <div className="mt-8 flex flex-wrap gap-3 print:hidden">
@@ -53,7 +53,7 @@ export default function CompanyProfilePage() {
       <div className="container-x max-w-4xl py-12 md:py-16">
         {/* Firm facts */}
         <section>
-          <h2 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-deep">
+          <h2 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-deep">
             Firm Facts
           </h2>
           <dl className="mt-4 grid gap-4 border-y border-linehair py-6 sm:grid-cols-2">
@@ -95,7 +95,7 @@ export default function CompanyProfilePage() {
               <dt className="text-[12px] font-semibold uppercase tracking-[0.12em] text-slateink/80">
                 Registration
               </dt>
-              <dd className="mt-1 text-[14px] leading-relaxed text-slateink">
+              <dd className="mt-1 text-[15px] leading-relaxed text-slateink">
                 {COMPANY.registration.number
                   ? `Wyoming LLC No. ${COMPANY.registration.number}${
                       COMPANY.registration.formedOn
@@ -110,29 +110,29 @@ export default function CompanyProfilePage() {
 
         {/* Mission & vision */}
         <section className="mt-10 grid gap-6 sm:grid-cols-2">
-          <div className="rounded-2xl border border-linehair bg-coolgray p-6">
-            <h2 className="font-display text-[15px] font-bold text-midnight">Mission</h2>
-            <p className="mt-2 text-[14px] leading-relaxed text-slateink">{MISSION}</p>
+          <div className="rounded-xl border border-linehair bg-coolgray p-6">
+            <h2 className="font-display text-[15px] font-semibold text-midnight">Mission</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-slateink">{MISSION}</p>
           </div>
-          <div className="rounded-2xl border border-linehair bg-coolgray p-6">
-            <h2 className="font-display text-[15px] font-bold text-midnight">Vision</h2>
-            <p className="mt-2 text-[14px] leading-relaxed text-slateink">{VISION}</p>
+          <div className="rounded-xl border border-linehair bg-coolgray p-6">
+            <h2 className="font-display text-[15px] font-semibold text-midnight">Vision</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-slateink">{VISION}</p>
           </div>
         </section>
 
         {/* Service areas */}
         <section className="mt-12">
-          <h2 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-deep">
+          <h2 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-deep">
             Service Areas
           </h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {SERVICE_CATEGORIES.map((category) => (
               <div key={category.slug} className="rounded-xl border border-linehair p-5">
                 <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="font-display text-[15px] font-bold text-midnight">
+                  <h3 className="font-display text-[15px] font-semibold text-midnight">
                     {category.name}
                   </h3>
-                  <span className="font-display text-[11px] font-bold tracking-[0.14em] text-azure-deep">
+                  <span className="font-display text-[11px] font-semibold tracking-[0.14em] text-azure-deep">
                     {category.code}
                   </span>
                 </div>
@@ -141,7 +141,7 @@ export default function CompanyProfilePage() {
                 </p>
                 <ul className="mt-3 space-y-1.5">
                   {category.services.map((service) => (
-                    <li key={service.slug} className="text-[12.5px] leading-snug text-slateink">
+                    <li key={service.slug} className="text-[13px] leading-snug text-slateink">
                       {service.title}
                     </li>
                   ))}
@@ -153,13 +153,13 @@ export default function CompanyProfilePage() {
 
         {/* Values */}
         <section className="mt-12">
-          <h2 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-deep">
+          <h2 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-deep">
             Core Values
           </h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {CORE_VALUES.map((value) => (
               <div key={value.title}>
-                <h3 className="font-display text-[14.5px] font-bold text-midnight">
+                <h3 className="font-display text-[15px] font-semibold text-midnight">
                   {value.title}
                 </h3>
                 <p className="mt-1 text-[13px] leading-relaxed text-slateink">
@@ -172,16 +172,16 @@ export default function CompanyProfilePage() {
 
         {/* Methodology */}
         <section className="mt-12">
-          <h2 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-deep">
+          <h2 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-deep">
             Methodology
           </h2>
           <ol className="mt-4 grid gap-4 sm:grid-cols-2">
             {METHODOLOGY.map((step) => (
               <li key={step.step} className="rounded-xl border border-linehair p-5">
-                <span className="font-display text-[12px] font-bold tracking-[0.14em] text-azure-deep">
+                <span className="font-display text-[12px] font-semibold tracking-[0.14em] text-azure-deep">
                   {step.step}
                 </span>
-                <h3 className="mt-1 font-display text-[14.5px] font-bold text-midnight">
+                <h3 className="mt-1 font-display text-[15px] font-semibold text-midnight">
                   {step.title}
                 </h3>
                 <p className="mt-1 text-[13px] leading-relaxed text-slateink">
@@ -194,17 +194,17 @@ export default function CompanyProfilePage() {
 
         {/* Engagement process */}
         <section className="mt-12">
-          <h2 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-deep">
+          <h2 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-deep">
             Engagement Process
           </h2>
           <ol className="mt-4 space-y-4">
             {ENGAGEMENT_PROCESS.map((step) => (
               <li key={step.step} className="flex gap-4 border-b border-linehair pb-4">
-                <span className="font-display text-[13px] font-bold text-azure-deep">
+                <span className="font-display text-[13px] font-semibold text-azure-deep">
                   {step.step}
                 </span>
                 <div>
-                  <h3 className="font-display text-[14.5px] font-bold text-midnight">
+                  <h3 className="font-display text-[15px] font-semibold text-midnight">
                     {step.title}
                   </h3>
                   <p className="mt-1 text-[13px] leading-relaxed text-slateink">
@@ -218,12 +218,12 @@ export default function CompanyProfilePage() {
 
         {/* Differentiators */}
         <section className="mt-12">
-          <h2 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-deep">
+          <h2 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-deep">
             Why SGG Ventures
           </h2>
           <ul className="mt-4 space-y-3">
             {DIFFERENTIATORS.map((item) => (
-              <li key={item.title} className="text-[13.5px] leading-relaxed text-slateink">
+              <li key={item.title} className="text-[15px] leading-relaxed text-slateink">
                 <strong className="font-semibold text-midnight">{item.title}.</strong>{" "}
                 {item.body}
               </li>
@@ -232,10 +232,10 @@ export default function CompanyProfilePage() {
         </section>
 
         <section className="mt-12 rounded-xl border border-linehair bg-mist p-5">
-          <h2 className="font-display text-[13px] font-bold text-midnight">
+          <h2 className="font-display text-[13px] font-semibold text-midnight">
             Important information
           </h2>
-          <p className="mt-2 text-[12.5px] leading-relaxed text-slateink">
+          <p className="mt-2 text-[13px] leading-relaxed text-slateink">
             SGG Ventures provides consulting, advisory, and technology services
             directly. Where an engagement requires a licensed professional —
             legal, tax, accounting, securities, or a regulated technology

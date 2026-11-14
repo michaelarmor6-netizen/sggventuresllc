@@ -151,7 +151,7 @@ export const ARTICLES: Article[] = [
     slug: "website-launch",
     title: "This website is live",
     excerpt:
-      "A public site for SGG Ventures LLC: seven service areas, how to reach us, and the disclosures. Names, credentials, and offices still go up only when we can show them.",
+      "A public site for SGG Ventures LLC: eight service areas, how to reach us, and the disclosures. Names, credentials, and offices still go up only when we can show them.",
     category: "News & Updates",
     date: "2026-11-03",
     readMinutes: 3,
@@ -160,7 +160,7 @@ export const ARTICLES: Article[] = [
       {
         heading: "What is here",
         paragraphs: [
-          "SGG Ventures LLC now has a public website. It describes seven service areas — Business Consulting, Management Consulting, IT Consulting, Digital Transformation, Business Applications, Custom Software Development, and AI & Automation — plus a way to request a consultation and a way for specialist firms to propose a partnership.",
+          "SGG Ventures LLC now has a public website. It describes eight service areas — Business Consulting, Management Consulting, IT Consulting, Digital Transformation, Business Applications, Custom Software Development, Websites & Digital Presence, and AI & Automation — plus a way to request a consultation and a way for specialist firms to propose a partnership.",
         ],
       },
       {

@@ -32,6 +32,10 @@ export const PHOTOS = {
     alt: "Business analytics dashboard on a laptop screen",
   },
   businessApplications: {
+    src: "/images/business-applications.jpg",
+    alt: "Colleagues working together on laptops in an office",
+  },
+  websites: {
     src: "/images/photo-laptop.webp",
     alt: "Two colleagues reviewing work together on a laptop",
   },
@@ -53,5 +57,6 @@ export const CATEGORY_PHOTO: Record<string, { src: string; alt: string }> = {
   "digital-transformation": PHOTOS.digitalTransformation,
   "business-applications": PHOTOS.businessApplications,
   "software-development": PHOTOS.softwareDevelopment,
+  websites: PHOTOS.websites,
   "ai-automation": PHOTOS.aiAutomation,
 };

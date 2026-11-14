@@ -93,10 +93,10 @@ export default async function IndustryPage({
                   delay={i * 0.05}
                   className="rounded-xl border border-linehair bg-coolgray p-5"
                 >
-                  <h3 className="font-display text-[14.5px] font-bold tracking-tight text-midnight">
+                  <h3 className="font-display text-[15px] font-semibold tracking-tight text-midnight">
                     {need.title}
                   </h3>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-slateink">
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-slateink">
                     {need.body}
                   </p>
                 </Reveal>
@@ -125,7 +125,7 @@ export default async function IndustryPage({
             ))}
           </div>
           <div className="mt-8 flex justify-center">
-            <Link href="/contact" className="inline-flex items-center gap-2 font-display text-[14px] font-bold text-royal transition-colors hover:text-azure-deep">
+            <Link href="/contact" className="inline-flex items-center gap-2 font-display text-[14px] font-semibold text-royal transition-colors hover:text-azure-deep">
               Request a segment-specific consultation
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
@@ -142,10 +142,10 @@ export default async function IndustryPage({
               <Link
                 key={i.slug}
                 href={`/industries/${i.slug}`}
-                className="inline-flex items-center gap-2.5 rounded-full border border-linehair bg-coolgray px-5 py-2.5 transition-colors hover:border-azure/50 hover:bg-mist"
+                className="inline-flex items-center gap-2.5 rounded-full border border-linehair bg-coolgray px-5 py-2.5 transition-colors hover:bg-pearl hover:bg-mist"
               >
                 <ContentIcon name={i.icon} className="h-4 w-4 text-royal" />
-                <span className="font-display text-[13.5px] font-bold text-midnight">
+                <span className="font-display text-[15px] font-semibold text-midnight">
                   {i.name}
                 </span>
               </Link>

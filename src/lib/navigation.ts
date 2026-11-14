@@ -57,7 +57,7 @@ export const NAV: NavSection[] = [
       {
         label: "Services Overview",
         href: "/services",
-        description: "The seven service areas",
+        description: "The eight service areas",
       },
       {
         label: "Business Consulting",
@@ -88,6 +88,11 @@ export const NAV: NavSection[] = [
         label: "Custom Software Development",
         href: "/services/software-development",
         description: "Web, portals, mobile, APIs, SaaS",
+      },
+      {
+        label: "Websites & Digital Presence",
+        href: "/services/websites",
+        description: "Corporate sites, landing pages, e-commerce",
       },
       {
         label: "AI & Automation",
@@ -165,6 +170,7 @@ export const ALL_ROUTES: string[] = [
   "/services/digital-transformation",
   "/services/business-applications",
   "/services/software-development",
+  "/services/websites",
   "/services/ai-automation",
   "/industries",
   "/industries/smes",

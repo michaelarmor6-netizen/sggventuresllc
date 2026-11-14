@@ -1,5 +1,5 @@
 /**
- * Services content layer — the seven service areas and their portfolios.
+ * Services content layer — the eight service areas and their portfolios.
  *
  * Each category is a page at /services/[category]; each service is a page at
  * /services/[category]/[service]. Copy is deliberately specific and avoids
@@ -1937,12 +1937,272 @@ const SOFTWARE_DEVELOPMENT = makeCategory({
 });
 
 /* ============================================================================
-   SERVICE AREA 07 — AI & AUTOMATION
+   SERVICE AREA 07 — WEBSITES & DIGITAL PRESENCE
+   ==========================================================================*/
+
+const WEBSITES = makeCategory({
+  slug: "websites",
+  code: "07",
+  name: "Websites & Digital Presence",
+  shortName: "Websites",
+  tagline: "A website that explains the business and earns the enquiry.",
+  summary:
+    "Corporate websites, landing pages, e-commerce storefronts, content and search foundations, and ongoing website care, built to explain the business clearly and turn visitors into enquiries.",
+  intro: [
+    "A company's website is often the first conversation a customer, partner, or lender has with it. We build websites that say plainly what the business does, who it serves, and how to take the next step, and that load quickly on any device.",
+    "The work starts with the message and the audience, not the template. We agree the pages, the content each one needs, and the action each visitor should take before design begins, then build on a stack the client owns.",
+    "Engagements are scoped around a defined site and launch, with a clear handover of the code, the content, the domain, and the accounts.",
+  ],
+  highlights: [
+    "Corporate and company websites",
+    "Landing pages and campaign sites",
+    "E-commerce storefronts",
+    "Content structure and search foundations",
+    "Enquiry forms and integrations",
+    "Website care and support",
+  ],
+  icon: "Globe2",
+  approach: [
+    {
+      title: "Plan",
+      body: "Agree the audience, the message, the page structure, and the action each page should drive.",
+    },
+    {
+      title: "Build",
+      body: "Design and develop in reviewable stages, with content placed early so nothing is designed around placeholder text.",
+    },
+    {
+      title: "Launch",
+      body: "Test, connect the domain, hand over the accounts and documentation, and support the site in operation.",
+    },
+  ],
+  delivery: DIRECT_DELIVERY,
+  services: [
+    {
+      slug: "corporate-websites",
+      title: "Corporate Websites",
+      shortTitle: "Corporate Websites",
+      summary:
+        "A clear, fast company website that explains what the business does and how to engage it.",
+      intro:
+        "A corporate website has one job: help the right visitor understand the business quickly and take the next step. We plan the structure around the questions customers actually ask, write or edit the copy with you, and build a responsive, accessible site you own.",
+      challenges: [
+        {
+          title: "A site that does not say what the company does",
+          body: "Visitors leave because the offer, the audience, and the next step are buried or unclear.",
+        },
+        {
+          title: "Slow and hard to read on a phone",
+          body: "Most first visits happen on mobile, where heavy pages and small text lose the reader.",
+        },
+        {
+          title: "Locked into a builder or a single developer",
+          body: "The business cannot change its own site or move it without starting again.",
+        },
+      ],
+      capabilities: [
+        {
+          title: "Structure and messaging",
+          body: "Page plan, navigation, and the key message for each audience.",
+        },
+        {
+          title: "Responsive design",
+          body: "Layouts that read well on phones, tablets, and desktops, with accessible contrast and type.",
+        },
+        {
+          title: "Development and launch",
+          body: "A fast, secure build, domain connection, and pre-launch testing.",
+        },
+        {
+          title: "Ownership and handover",
+          body: "Code, content, domain, and accounts transferred to the client.",
+        },
+      ],
+      related: ["landing-pages", "content-and-seo", "website-care"],
+      icon: "Globe2",
+    },
+    {
+      slug: "landing-pages",
+      title: "Landing Pages & Campaign Sites",
+      shortTitle: "Landing Pages",
+      summary:
+        "Focused pages for a product, a launch, or a campaign, built to drive one action.",
+      intro:
+        "A landing page works when it has one audience, one message, and one action. We build focused pages for product launches, campaigns, and new offers, connected to the forms and tools that capture the response.",
+      challenges: [
+        {
+          title: "Campaign traffic sent to the home page",
+          body: "Paid or earned attention lands on a general page and drifts away.",
+        },
+        {
+          title: "Too many messages on one page",
+          body: "Competing offers and links dilute the action the campaign needs.",
+        },
+        {
+          title: "No way to tell what worked",
+          body: "Responses are not captured or attributed, so the next campaign starts blind.",
+        },
+      ],
+      capabilities: [
+        {
+          title: "Offer and message",
+          body: "A single, clear proposition for a defined audience.",
+        },
+        {
+          title: "Page design and build",
+          body: "Fast, mobile-first pages with one primary call to action.",
+        },
+        {
+          title: "Forms and capture",
+          body: "Enquiry, sign-up, or booking forms connected to where the team works.",
+        },
+        {
+          title: "Measurement",
+          body: "Privacy-conscious tracking of visits and responses, agreed in advance.",
+        },
+      ],
+      related: ["corporate-websites", "ecommerce-storefronts", "content-and-seo"],
+      icon: "Target",
+    },
+    {
+      slug: "ecommerce-storefronts",
+      title: "E-commerce Storefronts",
+      shortTitle: "E-commerce",
+      summary:
+        "Online stores with product catalogues, checkout, and order handling for growing sellers.",
+      intro:
+        "Selling online needs more than a product page. We set up storefronts with a clear catalogue, a checkout customers trust, and an order flow the team can actually run, on a platform sized to the business.",
+      challenges: [
+        {
+          title: "Orders taken by message and spreadsheet",
+          body: "Sales arrive through chat and social pages, and details are copied by hand.",
+        },
+        {
+          title: "A checkout customers abandon",
+          body: "Unclear prices, shipping, or payment steps lose the sale at the last moment.",
+        },
+        {
+          title: "The wrong platform for the stage",
+          body: "Too little for growth, or too much cost and complexity for the volume.",
+        },
+      ],
+      capabilities: [
+        {
+          title: "Platform selection",
+          body: "A recommendation sized to catalogue, volume, and budget.",
+        },
+        {
+          title: "Catalogue and checkout",
+          body: "Product structure, pricing, shipping rules, and payment setup.",
+        },
+        {
+          title: "Order handling",
+          body: "Notifications, fulfilment steps, and connections to existing tools.",
+        },
+        {
+          title: "Launch support",
+          body: "Testing, go-live, and a handover the team can run day to day.",
+        },
+      ],
+      related: ["corporate-websites", "website-care", "workflow-automation"],
+      icon: "Store",
+    },
+    {
+      slug: "content-and-seo",
+      title: "Website Content & Search Foundations",
+      shortTitle: "Content & SEO",
+      summary:
+        "Clear page content and the technical groundwork that helps search engines understand the site.",
+      intro:
+        "Good content and sound technical foundations make a site easier to find and easier to trust. We structure and edit page content, set up titles, descriptions, sitemaps, and structured data, and fix the technical issues that hold a site back.",
+      challenges: [
+        {
+          title: "Pages that say little",
+          body: "Thin or generic copy gives visitors and search engines nothing to go on.",
+        },
+        {
+          title: "Technical problems nobody sees",
+          body: "Missing titles, broken links, and slow pages quietly limit how a site performs.",
+        },
+        {
+          title: "Promises of rankings",
+          body: "Guaranteed positions are not something any honest provider can offer.",
+        },
+      ],
+      capabilities: [
+        {
+          title: "Content structure",
+          body: "Page hierarchy, headings, and copy written for the reader first.",
+        },
+        {
+          title: "Technical foundations",
+          body: "Titles, descriptions, sitemaps, structured data, and link previews.",
+        },
+        {
+          title: "Performance and accessibility",
+          body: "Faster pages and accessible markup that help every visitor.",
+        },
+        {
+          title: "Clear reporting",
+          body: "What was changed and what to watch, without ranking guarantees.",
+        },
+      ],
+      related: ["corporate-websites", "landing-pages", "website-care"],
+      icon: "Search",
+    },
+    {
+      slug: "website-care",
+      title: "Website Care & Support",
+      shortTitle: "Website Care",
+      summary:
+        "Updates, monitoring, fixes, and small improvements under an agreed support scope.",
+      intro:
+        "A website needs looking after once it is live. We keep sites updated, secure, and working, handle content changes and fixes, and agree larger improvements before work starts.",
+      challenges: [
+        {
+          title: "Nobody owns the site after launch",
+          body: "Updates are missed, forms break, and problems are found by customers first.",
+        },
+        {
+          title: "Small changes take weeks",
+          body: "Simple edits wait in a queue because there is no agreed way to request them.",
+        },
+        {
+          title: "Costs that are hard to predict",
+          body: "Ad hoc fixes are billed without a scope or an allowance.",
+        },
+      ],
+      capabilities: [
+        {
+          title: "Updates and security",
+          body: "Routine updates to the software the site depends on.",
+        },
+        {
+          title: "Monitoring and fixes",
+          body: "Checks on uptime and forms, and repair of reported faults.",
+        },
+        {
+          title: "Content changes",
+          body: "Edits and small additions within the agreed allowance.",
+        },
+        {
+          title: "Planned improvements",
+          body: "Larger changes estimated and agreed before work begins.",
+        },
+      ],
+      related: ["corporate-websites", "content-and-seo", "ecommerce-storefronts"],
+      icon: "ShieldCheck",
+    },
+  ],
+});
+
+/* ============================================================================
+   SERVICE AREA 08 — AI & AUTOMATION
    ==========================================================================*/
 
 const AI_AUTOMATION = makeCategory({
   slug: "ai-automation",
-  code: "07",
+  code: "08",
   name: "AI & Automation",
   shortName: "AI & Automation",
   tagline: "Practical AI, tied to a measurable business outcome.",
@@ -2223,6 +2483,7 @@ export const SERVICE_CATEGORIES: ServiceCategoryContent[] = [
   DIGITAL_TRANSFORMATION,
   BUSINESS_APPLICATIONS,
   SOFTWARE_DEVELOPMENT,
+  WEBSITES,
   AI_AUTOMATION,
 ];
 

@@ -42,14 +42,14 @@ export default function FaqPage() {
         <div className="container-x max-w-4xl">
           {grouped.map((group) => (
             <div key={group.category} className="mb-12 last:mb-0">
-              <h2 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-deep">
+              <h2 className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-azure-deep">
                 {group.category}
               </h2>
               <div className="mt-4 divide-y divide-linehair border-y border-linehair">
                 {group.items.map((item) => (
                   <details key={item.question} className="group py-5">
                     <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
-                      <h3 className="font-display text-[16.5px] font-bold leading-snug tracking-tight text-midnight">
+                      <h3 className="font-display text-[17px] font-semibold leading-snug tracking-tight text-midnight">
                         {item.question}
                       </h3>
                       <span
@@ -59,7 +59,7 @@ export default function FaqPage() {
                         +
                       </span>
                     </summary>
-                    <p className="mt-3 max-w-3xl text-[14.5px] leading-relaxed text-slateink">
+                    <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-slateink">
                       {item.answer}
                     </p>
                   </details>

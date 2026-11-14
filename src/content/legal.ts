@@ -50,6 +50,13 @@ const PRIVACY: LegalDoc = {
       ],
     },
     {
+      heading: "Accounts",
+      paragraphs: [
+        "If you create an account, we store your name, email address, company (if given), a one-way hash of your password (never the password itself), whether your email address is confirmed, and records of sign-ins and password changes for security. Email links for confirming your address or resetting your password are single-use and expire after 24 hours and 1 hour respectively.",
+        "You can ask us to close your account and delete this information through the contact page.",
+      ],
+    },
+    {
       heading: "Information recorded automatically",
       paragraphs: [
         "When an enquiry is submitted, we record the address of the page it was sent from and a shortened, one-way hashed fingerprint derived from your network address. The fingerprint is used only to limit repeated submissions; your network address itself is not stored with the enquiry.",
@@ -186,7 +193,7 @@ const REGULATORY_SECTIONS: LegalSection[] = [
   {
     heading: "General positioning",
     paragraphs: [
-      "SGG Ventures LLC is a Wyoming limited liability company. The Company is a strategic business advisory and technology consulting firm operating across seven service areas: Business Consulting, Management Consulting, IT Consulting, Digital Transformation, Business Applications, Custom Software Development, and AI & Automation.",
+      "SGG Ventures LLC is a Wyoming limited liability company. The Company is a strategic business advisory and technology consulting firm operating across eight service areas: Business Consulting, Management Consulting, IT Consulting, Digital Transformation, Business Applications, Custom Software Development, Websites & Digital Presence, and AI & Automation.",
       "Services are provided through the following delivery structures, in each case as disclosed in the relevant service description:",
     ],
     bullets: [

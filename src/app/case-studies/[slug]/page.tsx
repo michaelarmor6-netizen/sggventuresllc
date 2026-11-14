@@ -90,13 +90,13 @@ export default async function CaseStudyPage({
                     delay={i * 0.05}
                     className="rounded-xl border border-linehair bg-coolgray p-5"
                   >
-                    <span className="font-display text-[12.5px] font-bold tracking-[0.14em] text-azure-deep">
+                    <span className="font-display text-[13px] font-semibold tracking-[0.14em] text-azure-deep">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="mt-1 font-display text-[16px] font-bold tracking-tight text-midnight">
+                    <h3 className="mt-1 font-display text-[16px] font-semibold tracking-tight text-midnight">
                       {step.title}
                     </h3>
-                    <p className="mt-1.5 text-[14px] leading-relaxed text-slateink">
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-slateink">
                       {step.body}
                     </p>
                   </Reveal>
@@ -121,8 +121,8 @@ export default async function CaseStudyPage({
           </div>
 
           <aside className="lg:col-span-4">
-            <div className="rounded-2xl border border-linehair bg-coolgray p-6 lg:sticky lg:top-32">
-              <h2 className="font-display text-[15px] font-bold text-midnight">
+            <div className="rounded-xl border border-linehair bg-coolgray p-6 lg:sticky lg:top-32">
+              <h2 className="font-display text-[15px] font-semibold text-midnight">
                 Service areas involved
               </h2>
               <ul className="mt-4 space-y-3">
@@ -145,7 +145,7 @@ export default async function CaseStudyPage({
                 </p>
                 <Link
                   href="/contact"
-                  className="mt-4 inline-flex items-center gap-1.5 font-display text-[13.5px] font-bold text-royal transition-colors hover:text-azure-deep"
+                  className="mt-4 inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-royal transition-colors hover:text-azure-deep"
                 >
                   Request a consultation
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden />
@@ -164,12 +164,12 @@ export default async function CaseStudyPage({
               <Link
                 key={item.slug}
                 href={`/case-studies/${item.slug}`}
-                className="group rounded-xl border border-linehair bg-white p-5 transition-all hover:border-azure/40 hover:shadow-card"
+                className="group rounded-xl border border-linehair bg-white p-5 transition-all hover:bg-pearl"
               >
                 <span className="block text-[12px] font-semibold uppercase tracking-[0.12em] text-azure-deep">
                   {item.sector}
                 </span>
-                <span className="mt-2 block font-display text-[14.5px] font-bold leading-snug text-midnight">
+                <span className="mt-2 block font-display text-[15px] font-semibold leading-snug text-midnight">
                   {item.title}
                 </span>
               </Link>

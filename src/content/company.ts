@@ -147,7 +147,7 @@ export const FAQS: FaqItem[] = [
     category: "The firm",
     question: "What kind of firm is SGG Ventures LLC?",
     answer:
-      "SGG Ventures LLC is a strategic business advisory and technology consulting firm. We provide business and management consulting, IT consulting, digital transformation, business applications, custom software development, and AI and automation services.",
+      "SGG Ventures LLC is a strategic business advisory and technology consulting firm. We provide business and management consulting, IT consulting, digital transformation, business applications, custom software development, websites and digital presence, and AI and automation services.",
   },
   {
     category: "The firm",

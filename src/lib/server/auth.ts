@@ -7,6 +7,8 @@ import {
 import { promisify } from "util";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/server/db";
+import { sendAccountEmail } from "@/lib/server/email";
+import { SITE_URL } from "@/lib/site";
 
 const scrypt = promisify(scryptCallback);
 
@@ -21,7 +23,21 @@ export type SessionUser = {
   name: string;
   organization: string | null;
   role: "admin" | "client";
+  emailVerified: boolean;
 };
+
+/** Password rules shared by sign-up, reset, and change-password. */
+export const PASSWORD_MIN = 10;
+export const PASSWORD_MAX = 200;
+
+export function passwordProblem(password: string, email?: string): string | null {
+  if (password.length < PASSWORD_MIN) return `Use at least ${PASSWORD_MIN} characters.`;
+  if (password.length > PASSWORD_MAX) return `Use at most ${PASSWORD_MAX} characters.`;
+  if (email && password.trim().toLowerCase() === email.trim().toLowerCase()) {
+    return "Your password cannot be your email address.";
+  }
+  return null;
+}
 
 function sha256(value: string) {
   return createHash("sha256").update(value).digest("hex");
@@ -71,6 +87,7 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     name: session.user.name,
     organization: session.user.organization,
     role: session.user.role as "admin" | "client",
+    emailVerified: Boolean(session.user.emailVerifiedAt),
   };
 }
 
@@ -84,7 +101,7 @@ export async function requireAdmin(): Promise<SessionUser | null> {
   return user;
 }
 
-async function startSession(userId: string): Promise<void> {
+export async function startSession(userId: string): Promise<void> {
   const token = randomBytes(32).toString("base64url");
   await prisma.session.create({
     data: {
@@ -103,7 +120,7 @@ async function startSession(userId: string): Promise<void> {
   });
 }
 
-const AUTH_FAILED = "Authentication failed.";
+const AUTH_FAILED = "That email and password do not match an account.";
 
 export async function signInWithPassword(
   email: string,
@@ -132,6 +149,7 @@ export async function signInWithPassword(
           name: "SGG Ventures administrator",
           passwordHash: await hashPassword(bootPassword),
           role: "admin",
+          emailVerifiedAt: new Date(),
         },
       });
     }
@@ -192,11 +210,10 @@ export async function changeOwnPassword(
   currentPassword: string,
   nextPassword: string,
 ): Promise<{ ok: boolean; error?: string }> {
-  if (nextPassword.length < 10) {
-    return { ok: false, error: "Use at least 10 characters." };
-  }
   const user = await prisma.user.findUnique({ where: { id: userId } });
   if (!user) return { ok: false, error: "Not authorized." };
+  const problem = passwordProblem(nextPassword, user.email);
+  if (problem) return { ok: false, error: problem };
   const valid = await verifyPassword(currentPassword, user.passwordHash);
   if (!valid) return { ok: false, error: "Current password is wrong." };
   await prisma.user.update({
@@ -208,5 +225,202 @@ export async function changeOwnPassword(
   await prisma.auditLog.create({
     data: { actor: user.email, action: "auth.password.change" },
   });
+  return { ok: true };
+}
+
+/* ------------------------------------------------------------------ */
+/* Single-use tokens                                                    */
+/* ------------------------------------------------------------------ */
+
+export type TokenPurpose = "verify-email" | "reset-password";
+
+const TOKEN_TTL_MS: Record<TokenPurpose, number> = {
+  "verify-email": 1000 * 60 * 60 * 24, // 24 hours
+  "reset-password": 1000 * 60 * 60, // 1 hour
+};
+
+async function issueToken(userId: string, purpose: TokenPurpose): Promise<string> {
+  const token = randomBytes(32).toString("base64url");
+  await prisma.authToken.create({
+    data: {
+      userId,
+      purpose,
+      tokenHash: sha256(token),
+      expiresAt: new Date(Date.now() + TOKEN_TTL_MS[purpose]),
+    },
+  });
+  return token;
+}
+
+/**
+ * Marks a token used and returns its user id, or null when the token is
+ * unknown, expired, already used, or for a different purpose. The update is
+ * conditional on `usedAt: null`, so a token can only be redeemed once even
+ * under concurrent requests.
+ */
+async function consumeToken(rawToken: string, purpose: TokenPurpose): Promise<string | null> {
+  if (!rawToken || rawToken.length > 200) return null;
+  const tokenHash = sha256(rawToken);
+  const token = await prisma.authToken.findUnique({ where: { tokenHash } });
+  if (!token || token.purpose !== purpose || token.usedAt || token.expiresAt.getTime() < Date.now()) {
+    return null;
+  }
+  const claimed = await prisma.authToken.updateMany({
+    where: { id: token.id, usedAt: null },
+    data: { usedAt: new Date() },
+  });
+  return claimed.count === 1 ? token.userId : null;
+}
+
+async function recentTokenCount(userId: string, purpose: TokenPurpose): Promise<number> {
+  return prisma.authToken.count({
+    where: { userId, purpose, createdAt: { gte: new Date(Date.now() - 60 * 60 * 1000) } },
+  });
+}
+
+/* ------------------------------------------------------------------ */
+/* Sign-up, verification, password reset                                */
+/* ------------------------------------------------------------------ */
+
+async function sendVerificationEmail(userId: string, email: string): Promise<void> {
+  const token = await issueToken(userId, "verify-email");
+  await sendAccountEmail({
+    to: email,
+    subject: "Confirm your email for SGG Ventures",
+    heading: "Confirm your email address",
+    body: "Thanks for creating an account. Confirm this is your email address to finish setting it up.",
+    actionLabel: "Confirm email",
+    actionUrl: `${SITE_URL}/verify-email?token=${encodeURIComponent(token)}`,
+    footnote: "This link expires in 24 hours. If you did not create an account, you can ignore this email.",
+  });
+}
+
+export async function createAccount(input: {
+  name: string;
+  email: string;
+  organization?: string;
+  password: string;
+}): Promise<{ ok: true } | { ok: false; error: string; field?: "email" | "password" }> {
+  const email = input.email.trim().toLowerCase();
+  const problem = passwordProblem(input.password, email);
+  if (problem) return { ok: false, error: problem, field: "password" };
+
+  const existing = await prisma.user.findUnique({ where: { email } });
+  if (existing) {
+    return {
+      ok: false,
+      field: "email",
+      error: "An account with this email already exists. Log in, or reset your password.",
+    };
+  }
+
+  const user = await prisma.user.create({
+    data: {
+      email,
+      name: input.name.trim(),
+      organization: input.organization?.trim() || null,
+      passwordHash: await hashPassword(input.password),
+      role: "client",
+    },
+  });
+  await prisma.auditLog.create({
+    data: { actor: email, action: "auth.signup", targetId: user.id },
+  });
+  await startSession(user.id);
+  try {
+    await sendVerificationEmail(user.id, email);
+  } catch (error) {
+    // The account exists and the user is signed in; they can resend from the portal.
+    console.error("[auth] verification email failed:", error);
+  }
+  return { ok: true };
+}
+
+export async function resendVerification(userId: string): Promise<{ ok: boolean; error?: string }> {
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+  if (!user) return { ok: false, error: "Not authorized." };
+  if (user.emailVerifiedAt) return { ok: true };
+  if ((await recentTokenCount(userId, "verify-email")) >= 3) {
+    return { ok: false, error: "We have sent several links already. Check your inbox and spam folder, or try again in an hour." };
+  }
+  try {
+    await sendVerificationEmail(user.id, user.email);
+  } catch {
+    return { ok: false, error: "The email could not be sent. Try again shortly." };
+  }
+  return { ok: true };
+}
+
+export async function verifyEmailToken(rawToken: string): Promise<boolean> {
+  const userId = await consumeToken(rawToken, "verify-email");
+  if (!userId) return false;
+  const user = await prisma.user.update({
+    where: { id: userId },
+    data: { emailVerifiedAt: new Date() },
+  });
+  await prisma.auditLog.create({
+    data: { actor: user.email, action: "auth.email.verified", targetId: user.id },
+  });
+  return true;
+}
+
+/**
+ * Always resolves without revealing whether the address has an account.
+ * Sends at most three reset emails per account per hour.
+ */
+export async function requestPasswordReset(rawEmail: string): Promise<void> {
+  const email = rawEmail.trim().toLowerCase();
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user || !user.active) return;
+  if ((await recentTokenCount(user.id, "reset-password")) >= 3) return;
+  const token = await issueToken(user.id, "reset-password");
+  await prisma.auditLog.create({
+    data: { actor: email, action: "auth.password.reset.requested", targetId: user.id },
+  });
+  await sendAccountEmail({
+    to: email,
+    subject: "Reset your SGG Ventures password",
+    heading: "Reset your password",
+    body: "We received a request to reset the password for your account. Choose a new password using the button below.",
+    actionLabel: "Choose a new password",
+    actionUrl: `${SITE_URL}/reset-password?token=${encodeURIComponent(token)}`,
+    footnote: "This link expires in 1 hour and works once. If you did not ask to reset your password, you can ignore this email; your password has not changed.",
+  });
+}
+
+export async function resetPasswordWithToken(
+  rawToken: string,
+  nextPassword: string,
+): Promise<{ ok: true } | { ok: false; error: string; expired?: boolean }> {
+  const tokenHash = sha256(rawToken || "");
+  const pending = await prisma.authToken.findUnique({ where: { tokenHash }, include: { user: true } });
+  if (pending?.purpose === "reset-password") {
+    const problem = passwordProblem(nextPassword, pending.user.email);
+    if (problem) return { ok: false, error: problem };
+  }
+  const userId = await consumeToken(rawToken, "reset-password");
+  if (!userId) {
+    return { ok: false, expired: true, error: "This reset link is invalid or has expired. Request a new one." };
+  }
+  const user = await prisma.user.update({
+    where: { id: userId },
+    data: {
+      passwordHash: await hashPassword(nextPassword),
+      failedAttempts: 0,
+      lockedUntil: null,
+      // Receiving the reset email proves control of the address.
+      emailVerifiedAt: pending?.user.emailVerifiedAt ?? new Date(),
+    },
+  });
+  // Invalidate other outstanding reset links and every existing session.
+  await prisma.authToken.updateMany({
+    where: { userId, purpose: "reset-password", usedAt: null },
+    data: { usedAt: new Date() },
+  });
+  await prisma.session.deleteMany({ where: { userId } });
+  await prisma.auditLog.create({
+    data: { actor: user.email, action: "auth.password.reset", targetId: user.id },
+  });
+  await startSession(userId);
   return { ok: true };
 }

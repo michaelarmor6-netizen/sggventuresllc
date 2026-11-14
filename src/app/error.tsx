@@ -17,7 +17,7 @@ export default function GlobalError({
         <h1 className="mt-3 max-w-xl font-display text-display text-midnight">
           This page did not load.
         </h1>
-        <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-slateink">
+        <p className="mt-4 max-w-md text-[16px] leading-relaxed text-slateink">
           Try again, or go back to the homepage.
         </p>
         <div className="mt-8 flex gap-3">

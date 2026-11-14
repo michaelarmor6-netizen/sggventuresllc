@@ -85,10 +85,12 @@ model User {
   active         Boolean   @default(true)
   failedAttempts Int       @default(0)
   lockedUntil    DateTime?
+  emailVerifiedAt DateTime? // null until the address is confirmed
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 
   sessions    Session[]
+  authTokens  AuthToken[]
   engagements Engagement[]        @relation("ClientFiles")
   updates     EngagementUpdate[]
 
@@ -106,6 +108,22 @@ model Session {
 
   @@index([userId])
   @@map("sessions")
+}
+
+// Single-use tokens for email verification and password reset. Only the
+// SHA-256 hash of the token is stored; the raw token goes in the email link.
+model AuthToken {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  purpose   String // verify-email | reset-password
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId, purpose, createdAt])
+  @@map("auth_tokens")
 }
 
 // A client file: one engagement, one service area, a named delivery role.

@@ -13,7 +13,7 @@ import {
   signOutCurrent,
 } from "@/lib/server/auth";
 
-const AUTH_FAILED = "Authentication failed.";
+const AUTH_FAILED = "That email and password do not match an account.";
 
 export async function portalSignIn(input: { email: string; password: string }) {
   const email = z.string().email().safeParse(input.email.trim().toLowerCase());

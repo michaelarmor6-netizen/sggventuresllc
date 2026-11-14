@@ -36,7 +36,7 @@ export default function IndustriesPage() {
             <Reveal key={industry.slug} delay={(i % 4) * 0.06}>
               <Link
                 href={`/industries/${industry.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-linehair bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-azure/40 hover:shadow-card"
+                className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-7 transition-colors duration-200 hover:bg-pearl"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
                   <ContentIcon name={industry.icon} className="h-6 w-6" />
@@ -44,10 +44,10 @@ export default function IndustriesPage() {
                 <h2 className="mt-5 font-display text-[19px] font-bold tracking-tight text-midnight">
                   {industry.name}
                 </h2>
-                <p className="mt-2.5 flex-1 text-[14px] leading-relaxed text-slateink">
+                <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-slateink">
                   {industry.summary}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[13.5px] font-bold text-royal transition-colors group-hover:text-azure-deep">
+                <span className="mt-5 inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-royal transition-colors group-hover:text-azure-deep">
                   View segment
                   <ArrowRight
                     className="h-4 w-4 transition-transform group-hover:translate-x-0.5"

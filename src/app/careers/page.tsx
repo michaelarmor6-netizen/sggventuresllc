@@ -41,14 +41,14 @@ export default function CareersPage() {
           </div>
 
           {/* General-interest applications */}
-          <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-linehair bg-white p-8 text-center">
+          <div className="mx-auto mt-10 max-w-2xl rounded-xl border border-linehair bg-white p-8 text-center">
             <ContentPlaceholder.Icon>
               <UserRound className="h-6 w-6" aria-hidden />
             </ContentPlaceholder.Icon>
             <h2 className="mt-4 font-display text-[20px] font-bold tracking-tight text-midnight">
               Write to us anyway
             </h2>
-            <p className="mt-2.5 text-[14px] leading-relaxed text-slateink">
+            <p className="mt-2.5 text-[15px] leading-relaxed text-slateink">
               If you work in management consulting, technology
               consulting, software delivery, or AI and automation, send a note.
               We keep it confidential and we read it.
