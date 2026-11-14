@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/classnames";
 import { buttonClass } from "@/components/ui/button";
 
-/** Interior-page hero: white canvas, large tight headline, breadcrumb. */
+/** Full-width hero used by all interior pages. Navy engineered backdrop. */
 export function PageHero({
   eyebrow,
   title,
@@ -18,31 +18,28 @@ export function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="bg-white">
-      <div className="container-x pb-12 pt-10 md:pb-16 md:pt-14">
+    <section className="navy-grid relative overflow-hidden text-white">
+      <div className="container-x pb-14 pt-16 md:pb-20 md:pt-24">
         {breadcrumbs && (
-          <nav aria-label="Breadcrumb" className="mb-10">
-            <ol className="flex flex-wrap items-center gap-1 text-[14px] text-slateink">
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-1 text-[12.5px] text-white/50">
               <li>
-                <Link
-                  href="/"
-                  className="inline-flex min-h-8 items-center underline-offset-4 hover:text-royal hover:underline"
-                >
+                <Link href="/" className="transition-colors hover:text-white">
                   Home
                 </Link>
               </li>
               {breadcrumbs.map((crumb) => (
                 <li key={crumb.label} className="flex items-center gap-1">
-                  <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  <ChevronRight className="h-3 w-3" aria-hidden="true" />
                   {crumb.href ? (
                     <Link
                       href={crumb.href}
-                      className="inline-flex min-h-8 items-center underline-offset-4 hover:text-royal hover:underline"
+                      className="transition-colors hover:text-white"
                     >
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className="font-semibold text-ink" aria-current="page">
+                    <span className="text-white/80" aria-current="page">
                       {crumb.label}
                     </span>
                   )}
@@ -51,12 +48,14 @@ export function PageHero({
             </ol>
           </nav>
         )}
-        {eyebrow ? <p className="eyebrow mb-3">{eyebrow}</p> : null}
-        <h1 className="max-w-4xl font-display text-display-lg text-midnight">
+        {eyebrow ? (
+          <p className="text-[14px] text-azure-light">{eyebrow}</p>
+        ) : null}
+        <h1 className="mt-3 max-w-4xl font-display text-display-lg">
           {title}
         </h1>
         {description && (
-          <p className="mt-5 max-w-2xl text-[21px] leading-[1.38] text-slateink">
+          <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/70">
             {description}
           </p>
         )}
@@ -69,18 +68,24 @@ export function PageHero({
 /** Hairline divider between content sections. */
 export function SectionRule({ className }: { className?: string }) {
   return (
-    <div aria-hidden="true" className={cn("container-x h-px bg-linehair", className)} />
+    <div
+      aria-hidden="true"
+      className={cn(
+        "container-x h-px bg-gradient-to-r from-linehair via-linehair to-transparent",
+        className,
+      )}
+    />
   );
 }
 
-/** Closing project-enquiry tile: dark brand navy, centred, one white pill. */
+/** Inline "Contact our team" CTA band reused across pages. */
 export function CtaBand({
-  title = "Tell us what you want to build.",
-  body = "Share a little about your business, the problem you want to solve, and your preferred timeline. We will review your enquiry and discuss whether the project fits our services.",
-  primaryLabel = "Discuss your project",
+  title = "If this sounds like your problem, let's talk.",
+  body = "Describe the decision, the constraint, and the timeline. We will tell you which capability applies and whether we are the right firm for it.",
+  primaryLabel = "Request a consultation",
   primaryHref = "/contact",
-  secondaryHref,
-  secondaryLabel,
+  secondaryHref = "/services",
+  secondaryLabel = "Our services",
 }: {
   title?: string;
   body?: string;
@@ -90,21 +95,21 @@ export function CtaBand({
   secondaryLabel?: string;
 }) {
   return (
-    <section className="navy-grid">
-      <div className="container-x flex flex-col items-center py-20 text-center md:py-28">
-        <h2 className="max-w-3xl font-display text-display-lg text-white">{title}</h2>
-        <p className="mt-5 max-w-2xl text-[19px] leading-[1.42] text-white/80">
-          {body}
-        </p>
-        <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
-          <Link href={primaryHref} className={buttonClass("inverse", "lg")}>
-            {primaryLabel}
+    <section className="border-t border-linehair bg-coolgray">
+      <div className="container-x flex flex-col gap-6 py-14 md:flex-row md:items-center md:justify-between md:py-16">
+        <div className="max-w-xl">
+          <h2 className="font-display text-display">{title}</h2>
+          <p className="mt-3 text-[15.5px] leading-relaxed text-slateink">
+            {body}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Link href={primaryHref} className={buttonClass("primary", "lg")}>
+            {primaryLabel} <ArrowRight aria-hidden />
           </Link>
-          {secondaryHref && secondaryLabel && (
-            <Link href={secondaryHref} className={buttonClass("inverseOutline", "lg")}>
-              {secondaryLabel}
-            </Link>
-          )}
+          <Link href={secondaryHref} className={buttonClass("outline", "lg")}>
+            {secondaryLabel}
+          </Link>
         </div>
       </div>
     </section>

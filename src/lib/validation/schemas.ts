@@ -1,12 +1,15 @@
 import { z } from "zod";
 
-/** Project types selectable in the enquiry form. Values match service slugs. */
+/** Service areas selectable in the enquiry form. Values match service slugs. */
 export const PROJECT_TYPES = [
-  { value: "websites", label: "Business website" },
-  { value: "business-applications", label: "Custom business application" },
-  { value: "automation", label: "AI or workflow automation" },
-  { value: "support", label: "Maintenance and support" },
-  { value: "not-sure", label: "Not sure yet" },
+  { value: "business-consulting", label: "Business Consulting" },
+  { value: "management-consulting", label: "Management Consulting" },
+  { value: "it-consulting", label: "IT Consulting" },
+  { value: "digital-transformation", label: "Digital Transformation" },
+  { value: "business-applications", label: "Business Applications" },
+  { value: "software-development", label: "Custom Software Development" },
+  { value: "ai-automation", label: "AI & Automation" },
+  { value: "not-sure", label: "General / Not yet sure" },
 ] as const;
 
 export type ProjectType = (typeof PROJECT_TYPES)[number]["value"];
@@ -46,7 +49,7 @@ export const enquirySchema = z.object({
     .min(2, "Enter your business name.")
     .max(160, "Business name is too long (160 characters maximum)."),
   projectType: z.enum(PROJECT_TYPE_VALUES, {
-    message: "Choose a project type.",
+    message: "Please select a service area.",
   }),
   description: z
     .string()
@@ -75,6 +78,70 @@ export const enquirySchema = z.object({
 });
 
 export type EnquiryInput = z.infer<typeof enquirySchema>;
+
+export const PARTNER_TYPES = [
+  { value: "technology", label: "Technology & Software Partner" },
+  { value: "implementation", label: "Implementation & Delivery Partner" },
+  { value: "professional-advisory", label: "Professional & Advisory Firm" },
+  { value: "managed-services", label: "Managed Services Provider" },
+  { value: "institutional", label: "Institutional Relationship" },
+] as const;
+
+export const partnershipSchema = z.object({
+  organization: z
+    .string()
+    .trim()
+    .min(2, "Please enter your organization's name.")
+    .max(160, "Organization name is too long."),
+  contactName: z
+    .string()
+    .trim()
+    .min(2, "Please enter a contact name.")
+    .max(120, "Contact name is too long."),
+  email: z
+    .string()
+    .trim()
+    .min(3, "Please enter a business email address.")
+    .email("Please enter a valid email address.")
+    .max(200, "Email is too long."),
+  phone: z
+    .string()
+    .trim()
+    .max(32, "Phone number is too long.")
+    .regex(/^[+\d()][\d\s()+\-.]{4,31}$/, "Please enter a valid telephone number.")
+    .optional()
+    .or(z.literal("")),
+  country: z
+    .string()
+    .trim()
+    .min(2, "Please enter your country.")
+    .max(80, "Country name is too long."),
+  website: z
+    .string()
+    .trim()
+    .url("Please enter a valid URL, including https://")
+    .max(200)
+    .optional()
+    .or(z.literal("")),
+  partnerType: z.enum(
+    PARTNER_TYPES.map((t) => t.value) as [string, ...string[]],
+    { message: "Please select a partnership category." },
+  ),
+  capabilities: z
+    .string()
+    .trim()
+    .min(30, "Please describe capabilities in at least 30 characters.")
+    .max(3000, "Description is too long (max 3000 characters)."),
+  consent: z
+    .boolean()
+    .refine((v) => v === true, {
+      message: "You must accept the Privacy Policy to submit.",
+    }),
+  websiteUrl: z.string().max(0, "Spam detected.").optional().or(z.literal("")),
+  formStartedAt: z.number().int().nonnegative(),
+});
+
+export type PartnershipInput = z.infer<typeof partnershipSchema>;
 
 /** Minimum seconds a genuine fill takes. */
 export const FORM_MIN_FILL_SECONDS = 3;

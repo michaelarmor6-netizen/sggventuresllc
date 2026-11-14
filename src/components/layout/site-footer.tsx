@@ -1,97 +1,134 @@
 import Link from "next/link";
+import { Phone, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
-import { COMPANY, PUBLIC_FACTS, phoneHref } from "@/lib/site";
+import { COMPANY } from "@/lib/site";
 import { LEGAL_LINKS } from "@/lib/navigation";
 import { SERVICE_CATEGORIES } from "@/content/services";
 
-const COMPANY_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
+const SERVICE_COLUMNS = [
+  SERVICE_CATEGORIES.slice(0, 4),
+  SERVICE_CATEGORIES.slice(4, 8),
 ];
 
-const headingClass = "text-[14px] font-semibold text-midnight";
-const linkClass =
-  "inline-flex min-h-8 items-center text-[14px] text-slateink underline-offset-4 hover:text-royal hover:underline";
+const COMPANY_LINKS = [
+  { label: "About Us", href: "/about" },
+  { label: "Leadership", href: "/about/leadership" },
+  { label: "Governance", href: "/about/governance" },
+  { label: "Company Profile", href: "/company-profile" },
+  { label: "Industries", href: "/industries" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Insights", href: "/insights" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Partnerships", href: "/partnerships" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact Us", href: "/contact" },
+];
 
-/** Parchment footer: small type, hairline rules, no chrome. */
 export function SiteFooter() {
   const year = new Date().getFullYear();
-  const { email, phone, address, entityDescription } = PUBLIC_FACTS;
-
   return (
-    <footer className="bg-coolgray">
-      <div className="container-x pb-10 pt-14">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          <div className="md:col-span-2 lg:col-span-6">
-            <Logo />
-            <p className="mt-5 max-w-md text-[14px] leading-[1.5] text-slateink">
-              {COMPANY.description}
+    <footer className="navy-grid text-white">
+      <div className="container-x pb-10 pt-14 md:pt-16">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+          {/* Company block */}
+          <div className="lg:col-span-4">
+            <Logo tone="light" />
+            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-white/65">
+              {COMPANY.positioningStatement}
             </p>
-            {(email || phone || address) && (
-              <ul className="mt-5 space-y-1">
-                {email && (
-                  <li>
-                    <a href={`mailto:${email}`} className={linkClass}>
-                      {email}
-                    </a>
-                  </li>
-                )}
-                {phone && (
-                  <li>
-                    <a href={phoneHref(phone)} className={linkClass}>
-                      {phone}
-                    </a>
-                  </li>
-                )}
-                {address && (
-                  <li className="text-[14px] text-slateink">
-                    {address.label}: {address.lines.join(", ")}
-                  </li>
-                )}
-              </ul>
-            )}
+            <div className="mt-6 space-y-3 text-[13.5px]">
+              <a
+                href={COMPANY.phoneHref}
+                className="flex items-center gap-2.5 text-white/80 transition-colors hover:text-azure-light"
+              >
+                <Phone className="h-4 w-4 text-azure" aria-hidden="true" />
+                <span className="font-semibold tracking-wide">
+                  {COMPANY.phone}
+                </span>
+              </a>
+              <a
+                href={`mailto:${COMPANY.email}`}
+                className="flex items-center gap-2.5 text-white/80 transition-colors hover:text-azure-light"
+              >
+                <Mail className="h-4 w-4 text-azure" aria-hidden="true" />
+                <span className="font-semibold tracking-wide">
+                  {COMPANY.email}
+                </span>
+              </a>
+              {COMPANY.address && (
+                <p className="flex items-start gap-2.5 text-white/55">
+                  <MapPin
+                    className="mt-0.5 h-4 w-4 shrink-0 text-azure"
+                    aria-hidden="true"
+                  />
+                  <span>
+                    {COMPANY.address.lines.join(", ")}
+                    <span className="mt-0.5 block text-[12px] text-white/40">
+                      {COMPANY.address.label}
+                    </span>
+                  </span>
+                </p>
+              )}
+            </div>
           </div>
 
-          <nav aria-label="Services" className="lg:col-span-3">
-            <h2 className={headingClass}>Services</h2>
-            <ul className="mt-3">
-              {SERVICE_CATEGORIES.map((category) => (
-                <li key={category.slug}>
-                  <Link href={`/services/${category.slug}`} className={linkClass}>
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* Service links */}
+          <div className="grid gap-8 sm:grid-cols-2 lg:col-span-5">
+            {SERVICE_COLUMNS.map((column, index) => (
+              <nav
+                key={index}
+                aria-label={index === 0 ? "Service areas" : "More service areas"}
+              >
+                <h3 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-light">
+                  {index === 0 ? "Services" : "Capabilities"}
+                </h3>
+                <ul className="mt-4 space-y-2.5">
+                  {column.map((category) => (
+                    <li key={category.slug}>
+                      <Link
+                        href={`/services/${category.slug}`}
+                        className="text-[13.5px] text-white/65 transition-colors hover:text-white"
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
+          </div>
 
-          <nav aria-label="Company" className="lg:col-span-3">
-            <h2 className={headingClass}>Company</h2>
-            <ul className="mt-3">
-              {COMPANY_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className={linkClass}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* Corporate nav */}
+          <div className="lg:col-span-3">
+            <nav aria-label="Company">
+              <h3 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-azure-light">
+                Company
+              </h3>
+              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
+                {COMPANY_LINKS.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-[13.5px] text-white/65 transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-linehair pt-6 md:flex-row md:items-center md:justify-between">
-          <p className="text-[13px] text-slateink">
-            © {year} {COMPANY.legalName}
-            {entityDescription ? `, a ${entityDescription}` : ""}. All rights reserved.
-          </p>
+        {/* Legal strip */}
+        <div className="mt-12 border-t border-white/10 pt-6">
           <nav aria-label="Legal">
-            <ul className="flex flex-wrap gap-x-5">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-8 items-center text-[13px] text-slateink underline-offset-4 hover:text-royal hover:underline"
+                    className="text-[12.5px] text-white/50 transition-colors hover:text-azure-light"
                   >
                     {link.label}
                   </Link>
@@ -99,6 +136,28 @@ export function SiteFooter() {
               ))}
             </ul>
           </nav>
+          <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <p className="text-[12.5px] text-white/40">
+              © {year} {COMPANY.legalName}. All rights reserved.
+            </p>
+            <p className="flex items-start gap-2 text-[12px] leading-relaxed text-white/35 md:max-w-xl">
+              <ShieldCheck
+                className="mt-0.5 h-3.5 w-3.5 shrink-0 text-azure/70"
+                aria-hidden="true"
+              />
+              SGG Ventures provides consulting, advisory, and technology services
+              directly. Where a licensed professional is required, that work is
+              performed by a qualified third party named in the engagement. See
+              our{" "}
+              <Link
+                href="/legal/regulatory-disclosures"
+                className="underline decoration-white/25 underline-offset-2 transition-colors hover:text-azure-light"
+              >
+                Regulatory Disclosures
+              </Link>{" "}
+              for important information.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

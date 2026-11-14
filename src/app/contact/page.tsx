@@ -1,34 +1,25 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ClipboardList, Mail, MapPin, MessagesSquare, Phone, ShieldCheck } from "lucide-react";
+import { Phone, Mail, Clock, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/shared/page-hero";
+import Link from "next/link";
 import { EnquiryForm } from "@/components/forms/inquiry-form";
-import { PUBLIC_FACTS, phoneHref } from "@/lib/site";
+import { buttonClass } from "@/components/ui/button";
 import { isProjectType } from "@/lib/validation/schemas";
+import { COMPANY } from "@/lib/site";
 import { createMetadata } from "@/lib/seo";
+
 export const metadata: Metadata = createMetadata({
-  title: "Contact",
+  title: "Contact & Consultation Request",
   description:
-    "Tell SGG Ventures LLC what you want to build. Share your business, the problem you want to solve, and your preferred timeline.",
+    "Request a consultation or discovery call with SGG Ventures LLC. Tell us the decision, the constraint, and the timeline.",
   path: "/contact",
+  keywords: [
+    "business consulting consultation",
+    "management consulting contact",
+    "IT consulting consultation",
+  ],
 });
-const NEXT_STEPS = [
-  {
-    icon: ClipboardList,
-    title: "We review your enquiry",
-    body: "We read what you have sent and consider whether the project fits our services.",
-  },
-  {
-    icon: MessagesSquare,
-    title: "We reply by email",
-    body: "If it looks like a fit, we arrange a conversation about your workflow, goals, and constraints.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Nothing starts without a scope",
-    body: "Deliverables, milestones, and commercial terms are agreed in writing before any work begins.",
-  },
-];
+
 export default async function ContactPage({
   searchParams,
 }: {
@@ -36,98 +27,117 @@ export default async function ContactPage({
 }) {
   const { type } = await searchParams;
   const defaultProjectType = isProjectType(type) ? type : undefined;
-  const { email, phone, address } = PUBLIC_FACTS;
   return (
     <>
       <PageHero
-        title="Tell us what you want to build."
-        description="Share a little about your business, the problem you want to solve, and your preferred timeline. We will review your enquiry and discuss whether the project fits our services."
-        breadcrumbs={[{ label: "Contact" }]}
-      />
-      <section className="mist-grid py-16 md:py-24">
+        eyebrow="Contact"
+        title="Start with a conversation."
+        description="Tell us the decision, the constraint, and the timeline. We will tell you which capability applies and whether we are the right firm for it. No cost, no obligation."
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
+      >
+        <div className="flex flex-wrap gap-3">
+          <a href="#inquiry-form" className={buttonClass("primary", "lg")}>
+            Request a consultation
+          </a>
+          <a href={COMPANY.phoneHref} className={buttonClass("inverse", "lg")}>
+            <Phone className="h-4 w-4" aria-hidden />
+            {COMPANY.phone}
+          </a>
+        </div>
+      </PageHero>
+
+      <section className="bg-coolgray py-16 md:py-20">
         <div className="container-x grid gap-10 lg:grid-cols-12">
-          <div id="enquiry-form" className="scroll-mt-28 lg:col-span-8">
-            <EnquiryForm
-              defaultProjectType={defaultProjectType}
-              fallbackEmail={email}
-            />
-          </div>
-          <aside className="lg:col-span-4" aria-label="What happens next">
-            <h2 className="font-display text-[24px] font-bold tracking-[-0.015em] text-midnight">
-              What happens next
+          {/* Inquiry information */}
+          <div className="lg:col-span-4">
+            <h2 className="font-display text-[22px] font-bold tracking-tight text-midnight">
+              Phone and mail
             </h2>
-            <ol className="mt-5 space-y-4">
-              {NEXT_STEPS.map((step) => (
-                <li
-                  key={step.title}
-                  className="flex gap-4 rounded-xl bg-white p-6"
-                >
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center text-midnight">
-                    <step.icon className="h-5 w-5" aria-hidden="true" />
+            <p className="mt-2 text-[14px] leading-relaxed text-slateink">
+              The form is the surest way to get a written reply. You can also
+              call during Eastern business hours.
+            </p>
+
+            <div className="mt-7 space-y-5">
+              <a
+                href={COMPANY.phoneHref}
+                className="block rounded-2xl border border-linehair bg-white p-6 transition-colors hover:border-azure/40"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-royal text-white">
+                    <Phone className="h-5 w-5" aria-hidden />
                   </span>
                   <span>
-                    <span className="block text-[17px] font-semibold text-midnight">
-                      {step.title}
+                    <span className="block font-display text-[13px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                      Telephone
                     </span>
-                    <span className="mt-1 block text-[15px] leading-[1.47] text-slateink">
-                      {step.body}
+                    <span className="block font-display text-[16px] font-bold text-midnight">
+                      {COMPANY.phone}
                     </span>
                   </span>
-                </li>
-              ))}
-            </ol>
-            {(email || phone || address) && (
-              <div className="mt-8 rounded-xl bg-white p-6">
-                <h2 className="text-[17px] font-semibold text-midnight">
-                  Contact us directly
-                </h2>
-                <ul className="mt-3 space-y-3 text-[15px]">
-                  {email && (
-                    <li>
-                      <a
-                        href={`mailto:${email}`}
-                        className="inline-flex min-h-8 items-center gap-2.5 font-semibold text-royal underline-offset-2 hover:underline"
-                      >
-                        <Mail className="h-4 w-4" aria-hidden="true" />
-                        {email}
-                      </a>
-                    </li>
-                  )}
-                  {phone && (
-                    <li>
-                      <a
-                        href={phoneHref(phone)}
-                        className="inline-flex min-h-8 items-center gap-2.5 font-semibold text-royal underline-offset-2 hover:underline"
-                      >
-                        <Phone className="h-4 w-4" aria-hidden="true" />
-                        {phone}
-                      </a>
-                    </li>
-                  )}
-                  {address && (
-                    <li className="flex items-start gap-2.5 text-slateink">
-                      <MapPin className="mt-1 h-4 w-4 shrink-0" aria-hidden="true" />
-                      <span>
-                        <span className="block text-[13px]">{address.label}</span>
-                        {address.lines.join(", ")}
-                      </span>
-                    </li>
-                  )}
-                </ul>
-              </div>
-            )}
-            <p className="mt-6 text-[14px] leading-relaxed text-slateink">
-              Please do not include passwords or confidential documents in a
-              first enquiry. Details you send are handled as described in our{" "}
-              <Link
-                href="/legal/privacy-policy"
-                className="font-semibold text-royal underline underline-offset-2 hover:text-royal-deep"
+                </span>
+              </a>
+
+              <a
+                href={`mailto:${COMPANY.email}`}
+                className="block rounded-2xl border border-linehair bg-white p-6 transition-colors hover:border-azure/40"
               >
-                Privacy Policy
-              </Link>
-              .
-            </p>
-          </aside>
+                <span className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-royal text-white">
+                    <Mail className="h-5 w-5" aria-hidden />
+                  </span>
+                  <span>
+                    <span className="block font-display text-[13px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                      Email
+                    </span>
+                    <span className="block font-display text-[16px] font-bold text-midnight">
+                      {COMPANY.email}
+                    </span>
+                  </span>
+                </span>
+              </a>
+
+
+              <div className="rounded-2xl border border-linehair bg-white p-6">
+                <span className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-royal text-white">
+                    <Clock className="h-5 w-5" aria-hidden />
+                  </span>
+                  <span>
+                    <span className="block font-display text-[13px] font-bold uppercase tracking-[0.14em] text-slateink/85">
+                      When we reply
+                    </span>
+                    <span className="mt-1 block text-[14.5px] text-midnight">
+                      We answer inquiries in the order they arrive, usually
+                      within two business days.
+                    </span>
+                  </span>
+                </span>
+              </div>
+
+              <div className="rounded-2xl border border-azure/30 bg-mist p-6">
+                <span className="flex items-start gap-3">
+                  <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-royal" aria-hidden />
+                  <p className="text-[13px] leading-relaxed text-slateink">
+                    We check submissions on the server and handle them under our{" "}
+                    <Link
+                      href="/legal/privacy-policy"
+                      className="font-semibold text-royal underline decoration-azure/40 underline-offset-2"
+                    >
+                      Privacy Policy
+                    </Link>
+                    . Please do not include confidential documents in an initial
+                    inquiry.
+                  </p>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div id="inquiry-form" className="lg:col-span-8 scroll-mt-28">
+            <EnquiryForm defaultProjectType={defaultProjectType} fallbackEmail={COMPANY.email} />
+          </div>
         </div>
       </section>
     </>

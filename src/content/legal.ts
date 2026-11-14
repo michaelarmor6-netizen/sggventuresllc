@@ -1,10 +1,10 @@
 /**
- * Policy content.
+ * Legal and disclosure content.
  *
- * Describes what the website does today: what the enquiry form collects,
- * where it goes, and which cookies are set. Retention periods, governing-law
- * clauses, and provider names are added once confirmed. Have counsel review
- * before launch (see docs/SGG_CONTENT_CONFIRMATIONS.md).
+ * Privacy, terms, and cookies describe what the website does today: what the
+ * forms collect, where submissions go, and which cookies are set. Retention
+ * periods, governing-law clauses, and provider names are added once
+ * confirmed. All pages are flagged for review by counsel.
  */
 
 export type LegalSection = { heading: string; paragraphs: string[]; bullets?: string[] };
@@ -12,31 +12,41 @@ export type LegalSection = { heading: string; paragraphs: string[]; bullets?: st
 export type LegalDoc = {
   slug: string;
   title: string;
+  shortTitle: string;
   summary: string;
   lastUpdated: string;
   intro: string[];
   sections: LegalSection[];
+  legalReview: boolean;
 };
 
-const LAST_UPDATED = "2026-11-13";
+const LAST_UPDATED = "2026-11-14";
 
 const PRIVACY: LegalDoc = {
   slug: "privacy-policy",
   title: "Privacy Policy",
   summary: "What this website collects when you send an enquiry, and how it is used.",
+  shortTitle: "Privacy",
   lastUpdated: LAST_UPDATED,
+  legalReview: true,
   intro: [
     "This policy explains what information SGG Ventures LLC (\"we\") receives through this website and what we do with it. It covers the website and its enquiry form. Information shared during a client project is handled under the terms agreed for that project.",
   ],
   sections: [
     {
       heading: "Information you give us",
-      paragraphs: ["When you send a project enquiry, we receive the details you enter in the form:"],
+      paragraphs: ["When you send an enquiry, we receive the details you enter in the form:"],
       bullets: [
         "Your name and email address",
         "Your business name",
-        "The project type you select and your project description",
+        "The service area you select and the details of your enquiry",
         "Your budget and timeline, if you choose to give them",
+      ],
+    },
+    {
+      heading: "Partnership enquiries",
+      paragraphs: [
+        "If you submit the partnership form, we also receive your organization's name, a contact name, email address, telephone number (optional), country, website (optional), the partnership category, and your description of the proposed relationship.",
       ],
     },
     {
@@ -78,7 +88,9 @@ const TERMS: LegalDoc = {
   slug: "terms-of-use",
   title: "Terms of Use",
   summary: "The terms that apply when you use this website.",
+  shortTitle: "Terms",
   lastUpdated: LAST_UPDATED,
+  legalReview: true,
   intro: [
     "These terms apply to your use of this website, which is operated by SGG Ventures LLC. By using the website you agree to them.",
   ],
@@ -132,7 +144,9 @@ const COOKIES: LegalDoc = {
   slug: "cookie-policy",
   title: "Cookie Policy",
   summary: "The cookies this website sets, and why.",
+  shortTitle: "Cookies",
   lastUpdated: LAST_UPDATED,
+  legalReview: true,
   intro: [
     "This website is built to work without tracking. This page lists the only cookie it sets.",
   ],
@@ -164,7 +178,118 @@ const COOKIES: LegalDoc = {
   ],
 };
 
-export const LEGAL_DOCS: LegalDoc[] = [PRIVACY, TERMS, COOKIES];
+const INTRO_REGULATORY = [
+  "This page describes the regulatory positioning that governs the presentation of SGG Ventures LLC's services. It exists so that prospective clients and partners can rely on a single, accurate statement of what the Company does itself, what is performed by qualified third parties, and what it provides as advisory, analytical, or technical work.",
+];
+
+const REGULATORY_SECTIONS: LegalSection[] = [
+  {
+    heading: "General positioning",
+    paragraphs: [
+      "SGG Ventures LLC is a Wyoming limited liability company. The Company is a strategic business advisory and technology consulting firm operating across seven service areas: Business Consulting, Management Consulting, IT Consulting, Digital Transformation, Business Applications, Custom Software Development, and AI & Automation.",
+      "Services are provided through the following delivery structures, in each case as disclosed in the relevant service description:",
+    ],
+    bullets: [
+      "Direct provision by the Company of consulting, advisory, analytical, and technology services that are not reserved to a regulated status the Company does not hold",
+      "Performance by a qualified third party, named in the engagement, where the work requires a licence, registration, or certification the Company does not hold — including legal, tax, accounting, securities, and regulated technology work",
+      "Advisory, coordination, and client-side support provided by the Company around work performed by qualified third parties retained or engaged for the client",
+    ],
+  },
+  {
+    heading: "Name and regulated activity",
+    paragraphs: [
+      "The Company's legal name includes the word \"Ventures\". That name does not mean, and should not be read to mean, that the Company is a venture capital fund, securities broker, dealer, placement agent, investment adviser, or licensed financial intermediary. The Company does not provide securities brokerage, securities dealing, investment management, investment advice, or regulated financial advice.",
+      "Where an engagement involves activity that requires a securities licence or another regulated authorisation, that activity is performed by appropriately licensed institutions engaged for that purpose. The Company's role is confined to disclosed advisory, analytical, coordination, or support functions on the client's side of the matter.",
+    ],
+  },
+  {
+    heading: "Regarding technology services",
+    paragraphs: [
+      "The Company provides technology assessment, architecture, implementation, software development, and automation services directly. Product licensing, cloud consumption, and third-party platform terms are agreements between the client and the relevant vendor; the Company does not resell licences or accept vendor commissions that would compromise an independent recommendation.",
+      "Where an engagement requires a regulated technology certification, security attestation, or professional accreditation the Company does not hold, that work is performed by a qualified third party named in the engagement.",
+    ],
+  },
+  {
+    heading: "Verification status",
+    paragraphs: [
+      "This page intentionally omits any statement of regulatory registrations, licences, memberships, or affiliations until they have been independently verified at the appropriate level for publication. Where a disclosure on this page is superseded by verified information, the verified statement will be published here with its effective date.",
+    ],
+    bullets: [
+      "Licences and registrations held: to be published upon verified confirmation",
+      "Regulated memberships and affiliations: to be published upon verified confirmation",
+      "Authorised partner institutions: published only with the partner's verified authorisation scope",
+    ],
+  },
+  {
+    heading: "Contact",
+    paragraphs: [
+      "Questions about regulatory positioning, or reports of any presentation inconsistent with this page, may be directed to the Company's contact channels published in the website footer.",
+    ],
+  },
+];
+
+const INTRO_RISK = [
+  "The following risk disclosures apply generally to the matters described in the Company's services and publications. They are precautionary and do not purport to describe all risks relevant to any specific transaction, business, technology programme, or jurisdiction. Nothing on this page is investment, legal, tax, or accounting advice.",
+];
+
+const RISK_SECTIONS: LegalSection[] = [
+  {
+    heading: "General",
+    paragraphs: [
+      "Business, financial, technology, and cross-border activities involve risk, including the possible loss of capital, project cost overruns, business disruption, cyber incidents, and the costs arising from delay, failure of counterparties, and changes in regulation. Prospective clients should evaluate risk with their own professional advisers before acting on any matter discussed with the Company.",
+    ],
+  },
+  {
+    heading: "No assurance as to outcomes",
+    paragraphs: [
+      "Descriptions of the Company's services describe capabilities and processes, not outcomes. No statement, document, or communication by the Company constitutes assurance of any particular result — including regulatory clearance, transaction completion, technology delivery, cost savings, revenue improvement, or financial outcome — unless such assurance is expressly agreed in a signed engagement.",
+    ],
+  },
+  {
+    heading: "Third-party providers and platforms",
+    paragraphs: [
+      "Where services involve, or are coordinated with, third-party providers — software vendors, cloud providers, implementation partners, professional advisers, and other providers — the client bears the risk associated with those parties within applicable law, subject to any express allocation agreed in the engagement. The Company recommends professional evaluation of any provider before engagement.",
+    ],
+  },
+  {
+    heading: "Technology and AI",
+    paragraphs: [
+      "Technology programmes carry delivery, integration, data quality, adoption, and security risk. AI and automation outputs may be incomplete, inaccurate, or unsuitable for a particular decision and require human review. Regulatory requirements affecting data protection, AI, and cross-border technology change frequently and vary by jurisdiction. Structures, processes, and configurations described on this website may be affected by such changes between publication and use.",
+    ],
+  },
+  {
+    heading: "Content on this website",
+    paragraphs: [
+      "Insights and other editorial content on this website reflect analysis and perspective as of the date of publication. They are generalised and informational and are not tailored to any recipient's circumstances. Forward-looking statements are inherently uncertain and are identified as such.",
+    ],
+  },
+];
+
+const REGULATORY: LegalDoc = {
+  slug: "regulatory-disclosures",
+  title: "Regulatory Disclosures",
+  shortTitle: "Regulatory",
+  summary:
+    "How SGG Ventures' services are positioned against regulated activity — direct provision, qualified third parties, and coordination roles.",
+  lastUpdated: LAST_UPDATED,
+  intro: INTRO_REGULATORY,
+  sections: REGULATORY_SECTIONS,
+  legalReview: true,
+};
+
+const RISK: LegalDoc = {
+  slug: "risk-disclosures",
+  title: "Risk Disclosures",
+  shortTitle: "Risk",
+  summary:
+    "General risk disclosures relevant to matters discussed in the Company's service descriptions and publications.",
+  lastUpdated: LAST_UPDATED,
+  intro: INTRO_RISK,
+  sections: RISK_SECTIONS,
+  legalReview: true,
+};
+
+export const LEGAL_DOCS: LegalDoc[] = [PRIVACY, TERMS, REGULATORY, RISK, COOKIES];
 
 export function getLegalDoc(slug: string): LegalDoc | undefined {
   return LEGAL_DOCS.find((doc) => doc.slug === slug);

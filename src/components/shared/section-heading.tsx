@@ -1,6 +1,6 @@
 import { cn } from "@/lib/classnames";
 
-/** Section headline with optional lead. Weight and size do the work. */
+/** Editorial section heading with eyebrow + display title + lead text. */
 export function SectionHeading({
   eyebrow,
   title,
@@ -29,15 +29,15 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <p className={cn("eyebrow mb-3", tone === "light" && "text-white/75")}>
+        <p className={cn("eyebrow", tone === "light" && "text-azure-light")}>
           {eyebrow}
         </p>
       )}
       <Tag
         id={id}
         className={cn(
-          "font-display",
-          Tag === "h2" ? "text-display" : "text-display-lg",
+          "mt-3 font-display",
+          Tag === "h2" ? "text-display lg:text-display-lg" : "text-display-lg",
           tone === "light" ? "text-white" : "text-midnight",
         )}
       >
@@ -46,9 +46,8 @@ export function SectionHeading({
       {lead && (
         <p
           className={cn(
-            "mt-4 text-[19px] leading-[1.42]",
-            align === "center" && "mx-auto max-w-2xl",
-            tone === "light" ? "text-white/80" : "text-slateink",
+            "mt-4 text-[16.5px] leading-relaxed",
+            tone === "light" ? "text-white/70" : "text-slateink",
           )}
         >
           {lead}

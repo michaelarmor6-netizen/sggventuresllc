@@ -2,6 +2,15 @@
 
 Last updated: 13 November 2026
 
+> **Update 14 November 2026.** At the owner's direction, the site again uses the full content and structure of the earlier consulting site (service areas, featured expertise, delivery boundaries, methodology, industries, case studies, insights, FAQ, company profile, partnerships, careers, regulatory and risk disclosures), rebranded to SGG Ventures LLC. **M&A advisory has been removed** everywhere. Company facts use the confirmed Wyoming formation, email, and phone; addresses stay private. Sections below that describe the earlier four-service version are superseded. Items still worth confirming:
+>
+> - Microsoft Power Platform, Microsoft 365, CRM, and ERP services are offered as written.
+> - The "independent by design / no vendor commissions" commitment holds.
+> - "When we reply: usually within two business days" on the Contact page is an operating commitment.
+> - The case studies are labelled as representative, anonymized patterns; keep that label unless they become real client work with permission.
+> - Insight articles carry dates in September–November 2026, some before the LLC was formed on 6 November. Re-date or edit them if that matters.
+> - Leadership, careers, and partnership pages hold placeholder copy until names and roles are confirmed.
+
 This file lists every fact the website needs from the owner before it can be published, and where to enter it once confirmed. Until an item is confirmed, the site **omits** it — nothing below is shown to visitors as a placeholder.
 
 Most confirmed facts go in one place: `PUBLIC_FACTS` in `src/lib/site.ts`. Setting a value there publishes it in the footer, the About page, the Contact page, and the structured data.

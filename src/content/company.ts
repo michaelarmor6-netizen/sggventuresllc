@@ -1,134 +1,214 @@
 /**
- * Company and homepage content.
+ * Corporate identity and trust content.
  *
- * Process and practice descriptions only. Client names, testimonials,
- * metrics, team members, credentials, and partnerships are published only
- * with evidence (see docs/SGG_CONTENT_CONFIRMATIONS.md).
+ * Everything here is positioning and process description. It contains no
+ * invented credentials, client names, testimonials, or performance metrics.
  */
 
-export const PURPOSE =
-  "To help small businesses and online sellers turn everyday tasks into simpler digital workflows, with software that is clear to use and sized to the business.";
+export const MISSION =
+  "To help organizations make better decisions and build the systems that make those decisions work — combining independent business judgment with practical technology delivery.";
 
-/** How we work — used on the homepage, services overview, and service pages. */
-export const HOW_WE_WORK: { step: string; title: string; body: string }[] = [
+export const VISION =
+  "To be the advisory and technology partner that growing organizations call when the next decision matters, and to be known for work that holds up after the engagement ends.";
+
+export const CORE_VALUES: { title: string; body: string }[] = [
+  {
+    title: "Independence",
+    body: "We are paid for the analysis and the delivery, not for a product, a transaction, or a referral. Recommendations include the option of doing nothing.",
+  },
+  {
+    title: "Clarity",
+    body: "Scope, roles, assumptions, and trade-offs are written down. A client should be able to explain what we are doing and why.",
+  },
+  {
+    title: "Accountability",
+    body: "Every engagement has a named lead. Decisions, dependencies, and open items are recorded rather than remembered.",
+  },
+  {
+    title: "Discretion",
+    body: "Client information is handled under the engagement terms and the safeguards appropriate to its sensitivity.",
+  },
+  {
+    title: "Practicality",
+    body: "A recommendation that cannot be operated is not finished. We design for the team that has to run it after we leave.",
+  },
+  {
+    title: "Candour",
+    body: "If a problem is outside our capability, we say so. If a licence or specialist is required, that work is performed by a qualified third party named in the engagement.",
+  },
+];
+
+export const CORPORATE_DNA: { title: string; body: string }[] = [
+  {
+    title: "Advisory discipline",
+    body: "Structured diagnosis, explicit options, and a written recommendation. The same standard applies to a strategy question and a software build.",
+  },
+  {
+    title: "Technology fluency",
+    body: "We understand how systems, data, and applications actually get built and operated — not only how they are described in a business case.",
+  },
+  {
+    title: "Operating focus",
+    body: "The measure of the work is what changes in the business: a decision made, a process improved, a system adopted, a risk reduced.",
+  },
+  {
+    title: "Commercial realism",
+    body: "Recommendations account for cost, capacity, cash, and the management attention required to execute them.",
+  },
+];
+
+export const UNIQUE_VALUE_PROPOSITION =
+  "One firm for the strategy and the system: independent business advice and technology delivery under a single accountable scope.";
+
+export const DIFFERENTIATORS: { title: string; body: string }[] = [
+  {
+    title: "Strategy and execution on one file",
+    body: "The recommendation and the operating change are designed together, so the plan does not stall at the handover to a technology team.",
+  },
+  {
+    title: "Independent by design",
+    body: "We do not earn commissions from software vendors, cloud providers, or transaction counterparties. The advice is the service.",
+  },
+  {
+    title: "Written scope, named lead",
+    body: "Every engagement states what is included, what is not, who leads the work, and how progress will be reported.",
+  },
+  {
+    title: "Technology that fits the business",
+    body: "We configure and build around the operating model, and we say when an existing system should be improved rather than replaced.",
+  },
+  {
+    title: "Clear delivery boundaries",
+    body: "Where legal, tax, accounting, securities, or regulated technology work is required, a qualified third party performs it and is named in the engagement.",
+  },
+  {
+    title: "Built for the mid-market",
+    body: "Our approach is sized for SMEs, growth-stage companies, private owners, and corporate teams that need senior attention without a large-firm structure.",
+  },
+];
+
+export const TAGLINE_OPTIONS = [
+  "Strategic Business. Intelligent Technology. Sustainable Growth.",
+  "Advisory, Technology, and Growth Solutions.",
+  "From Strategy to Execution.",
+] as const;
+
+/** Firm-wide methodology, referenced on /about and /company-profile. */
+export const METHODOLOGY: { step: string; title: string; body: string }[] = [
   {
     step: "01",
-    title: "Understand your business",
-    body: "We discuss your users, current workflow, goals, and constraints.",
+    title: "Understand",
+    body: "Establish the facts, the decision, the constraints, and the people who will have to act on the outcome.",
   },
   {
     step: "02",
-    title: "Agree the scope",
-    body: "Deliverables, responsibilities, milestones, and commercial terms are defined before work begins.",
+    title: "Define",
+    body: "Agree the question, the scope, the success measures, and the delivery model in writing before work begins.",
   },
   {
     step: "03",
-    title: "Build and review",
-    body: "We develop in agreed stages, with your feedback on working progress.",
+    title: "Deliver",
+    body: "Work in defined stages with a named lead, scheduled checkpoints, and decisions documented as they are made.",
   },
   {
     step: "04",
-    title: "Launch and support",
-    body: "We complete the handover and provide the support agreed for the project.",
+    title: "Embed",
+    body: "Transfer the deliverable, the documentation, and the ownership so the result survives after the engagement ends.",
   },
 ];
 
-/** Who we help — three customer groups. */
-export const AUDIENCES: { title: string; body: string; icon: string }[] = [
+export const ENGAGEMENT_PROCESS: { step: string; title: string; body: string }[] = [
   {
-    title: "Small businesses",
-    body: "Improving their online presence or the internal systems they run on.",
-    icon: "Store",
+    step: "01",
+    title: "Initial conversation",
+    body: "A short discovery call to understand the situation, the timeline, and whether SGG Ventures is a sensible fit. No cost, no obligation.",
   },
   {
-    title: "Online sellers",
-    body: "Managing customer enquiries, checkout, and orders.",
-    icon: "ShoppingBag",
+    step: "02",
+    title: "Scope and proposal",
+    body: "A written proposal covering the question, the work, the deliverables, the team, the fees, and what is explicitly out of scope.",
   },
   {
-    title: "Startups",
-    body: "Developing and validating an initial product.",
-    icon: "Rocket",
-  },
-];
-
-/** Practical solutions — examples of the kind of tool we build. */
-export const SOLUTIONS: { title: string; body: string; href: string }[] = [
-  {
-    title: "Order management",
-    body: "One place to record orders, track their status, and see what needs attention.",
-    href: "/services/business-applications",
+    step: "03",
+    title: "Engagement",
+    body: "Work begins against the agreed plan. Progress is reported at scheduled checkpoints, with decisions and dependencies recorded.",
   },
   {
-    title: "Checkout workflows",
-    body: "Checkout links and payment steps connected to the order they belong to.",
-    href: "/services/business-applications",
-  },
-  {
-    title: "Customer messaging",
-    body: "Enquiries routed to the right person, with drafted replies ready for review.",
-    href: "/services/automation",
-  },
-  {
-    title: "Internal tools",
-    body: "Simple applications for bookings, customer records, and day-to-day operations.",
-    href: "/services/business-applications",
-  },
-];
-
-/** What your project includes. */
-export const PROJECT_INCLUDES: { title: string; body: string; icon: string }[] = [
-  {
-    title: "A written scope",
-    body: "What will be built, what is not included, and what we need from you.",
-    icon: "ClipboardList",
-  },
-  {
-    title: "Milestones",
-    body: "Work divided into stages, each with something you can review.",
-    icon: "Milestone",
-  },
-  {
-    title: "Regular communication",
-    body: "An agreed channel and rhythm for updates, questions, and feedback.",
-    icon: "MessagesSquare",
-  },
-  {
-    title: "Ownership terms",
-    body: "Who owns the code, content, and accounts, stated in the project terms.",
-    icon: "FileCheck2",
-  },
-  {
+    step: "04",
     title: "Handover",
-    body: "The access, files, and notes you need to run what was built.",
-    icon: "PackageCheck",
+    body: "Deliverables, documentation, and ownership are transferred. Ongoing support or a follow-on phase is agreed separately.",
   },
 ];
 
-/** Why work with SGG — delivery practices, not superiority claims. */
-export const PRACTICES: { title: string; body: string }[] = [
+export type FaqItem = { question: string; answer: string; category: string };
+
+export const FAQS: FaqItem[] = [
   {
-    title: "Scope before code",
-    body: "Deliverables and terms are written down and agreed before development starts.",
+    category: "The firm",
+    question: "What kind of firm is SGG Ventures LLC?",
+    answer:
+      "SGG Ventures LLC is a strategic business advisory and technology consulting firm. We provide business and management consulting, IT consulting, digital transformation, business applications, custom software development, and AI and automation services.",
   },
   {
-    title: "Working progress, not status reports",
-    body: "You review something that runs at each stage, so problems surface early.",
+    category: "The firm",
+    question:
+      "The name includes 'Ventures'. Does the firm provide investment, brokerage, or fund management services?",
+    answer:
+      "No. SGG Ventures does not provide securities brokerage, investment management, or regulated financial advice, and does not present itself as a broker, dealer, placement agent, or licensed intermediary. Where a transaction involves securities, regulated brokerage or placement activity is performed by appropriately licensed institutions engaged for that purpose.",
   },
   {
-    title: "Sized to the business",
-    body: "We recommend the simplest thing that solves the problem, and say when an existing tool would do.",
+    category: "The firm",
+    question: "Where is the company organized?",
+    answer:
+      "SGG Ventures LLC is a Wyoming limited liability company, formed on November 6, 2026.",
   },
   {
-    title: "Costs stated plainly",
-    body: "Ongoing costs such as hosting and third-party fees are identified up front.",
+    category: "Engagements",
+    question: "How does an engagement start?",
+    answer:
+      "With a discovery call and a written scope. We discuss the decision or problem, the constraints, and the timeline, then propose a defined piece of work with deliverables, fees, and a named lead. No engagement begins without a signed written agreement.",
   },
   {
-    title: "Human review where it matters",
-    body: "Automation and AI features include a point where a person checks the result.",
+    category: "Engagements",
+    question: "How are fees structured?",
+    answer:
+      "Fees depend on the service and the scope. Most work is priced as a fixed fee for a defined deliverable or as a staged programme with agreed checkpoints. The fee, the payment schedule, and the assumptions are stated in the proposal before work begins.",
   },
   {
-    title: "A proper handover",
-    body: "You receive the access and documentation agreed for the project.",
+    category: "Engagements",
+    question: "Do you work with clients outside the United States?",
+    answer:
+      "Yes. Projects are delivered remotely, so we work with clients across the United States and internationally. Travel, where needed, is agreed case by case and reflected in the scope.",
+  },
+  {
+    category: "Engagements",
+    question: "Who actually does the work?",
+    answer:
+      "SGG Ventures delivers its consulting, advisory, and technology services directly. Where an engagement requires a licensed professional — legal, tax, accounting, securities, or a regulated technology certification — that work is performed by a qualified third party named in the engagement.",
+  },
+  {
+    category: "Engagements",
+    question: "How is confidential information handled?",
+    answer:
+      "Client information is handled under the engagement terms and the safeguards appropriate to its sensitivity. We are willing to sign a mutual confidentiality agreement before detailed information is shared.",
+  },
+  {
+    category: "Technology",
+    question:
+      "Can you implement the technology, or only advise on it?",
+    answer:
+      "Both. We provide assessments, architecture, and roadmaps, and we also build and implement business applications, integrations, custom software, and AI-assisted workflows. The delivery model is stated on each service page.",
+  },
+  {
+    category: "Technology",
+    question: "Do you resell software licences?",
+    answer:
+      "No. We do not earn commissions from software vendors or cloud providers. Where a platform is recommended, the licensing relationship is between the client and the vendor.",
+  },
+  {
+    category: "Working together",
+    question: "What if we are not sure which service we need?",
+    answer:
+      "That is a normal starting point. Describe the decision or the problem in the contact form, and we will tell you which capability applies and whether a short diagnostic is the right first step.",
   },
 ];

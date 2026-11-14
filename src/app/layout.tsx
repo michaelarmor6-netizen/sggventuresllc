@@ -14,10 +14,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${COMPANY.legalName} — ${COMPANY.tagline}`,
+    default: COMPANY.legalName,
     template: `%s | ${COMPANY.legalName}`,
   },
-  description: COMPANY.description,
+  description: COMPANY.positioningStatement,
   applicationName: COMPANY.legalName,
   authors: [{ name: COMPANY.legalName }],
   creator: COMPANY.legalName,

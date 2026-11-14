@@ -22,8 +22,9 @@ const nextConfig: NextConfig = {
       "./node_modules/@prisma/client/**",
     ],
   },
-  // Routes retired from the previous site. Each maps to the closest current page;
-  // routes with no relevant replacement are left to return 404.
+  // M&A advisory is not offered; its old pages go to the services overview.
+  // The short-lived /services/websites, /automation and /support pages map
+  // to the closest current service area.
   async redirects() {
     const to = (source: string, destination: string) => ({
       source,
@@ -31,25 +32,11 @@ const nextConfig: NextConfig = {
       permanent: true,
     });
     return [
-      // Old two-level service pages collapse into the four service pages.
-      to("/services/software-development/:path*", "/services/business-applications"),
-      to("/services/business-applications/:service", "/services/business-applications"),
-      to("/services/ai-automation/:path*", "/services/automation"),
-      to("/services/digital-transformation/:path*", "/services/automation"),
-      // Advisory areas that are no longer offered go to the overview.
-      to("/services/business-consulting/:path*", "/services"),
-      to("/services/management-consulting/:path*", "/services"),
+      to("/services/mergers-acquisitions", "/services"),
       to("/services/mergers-acquisitions/:path*", "/services"),
-      to("/services/it-consulting/:path*", "/services"),
-      // Company pages folded into About.
-      to("/about/leadership", "/about"),
-      to("/about/governance", "/about"),
-      to("/company-profile", "/about"),
-      // Audience pages are now one homepage section.
-      to("/industries", "/#who-we-help"),
-      to("/industries/:path*", "/#who-we-help"),
-      // Process questions are answered on the services overview.
-      to("/faq", "/services#how-we-work"),
+      to("/services/websites", "/services/software-development"),
+      to("/services/automation", "/services/ai-automation"),
+      to("/services/support", "/services"),
     ];
   },
   async headers() {

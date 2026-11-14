@@ -30,8 +30,22 @@
   --color-royal: #134a8e;
   --color-royal-deep: #0d3768; /* pressed / hover */
 
-  /* Brand gold — logo and favicon only */
+  /* Brand gold — accents: section labels, markers, rules */
   --color-gold: #b8975a;
+
+  /* Accent aliases used by the page components. The accent family is the
+     brand gold; interactive elements stay on royal. */
+  --color-azure: #b8975a;
+  --color-azure-deep: #7a5c1e; /* gold text on white — AA */
+  --color-azure-light: #dcc391; /* gold text on navy — AA */
+  --color-azure-pale: #efe2c4;
+  --color-royal-light: #1c559b;
+  --color-navy-900: #0a2138;
+  --color-navy-800: #0e2c4c;
+
+  /* Chrome stays flat: card and panel shadows resolve to nothing. */
+  --shadow-card: 0 0 #0000;
+  --shadow-panel: 0 0 #0000;
 
   /* Typography — Inter is the off-Apple substitute for SF Pro */
   --font-display: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -159,10 +173,12 @@ h4 {
   background-color: var(--color-coolgray);
 }
 
-/* Small section label, kept quiet: weight, not colour. */
+/* Section label above headings. */
 @utility eyebrow {
   font-family: var(--font-display);
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-slateink);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-azure-deep);
 }

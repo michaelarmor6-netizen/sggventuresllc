@@ -1,122 +1,101 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { PhotoFigure } from "@/components/shared/photo";
-import { PHOTOS } from "@/lib/photos";
-import {
-  AUDIENCES,
-  HOW_WE_WORK,
-  PRACTICES,
-  PROJECT_INCLUDES,
-  SOLUTIONS,
-} from "@/content/company";
+import { Reveal } from "@/components/shared/reveal";
+import { INDUSTRIES } from "@/content/industries";
+import { OPERATING_MODEL_NOTE } from "@/content/services";
+import { DIFFERENTIATORS, METHODOLOGY } from "@/content/company";
 import { ContentIcon } from "@/components/services/icon-map";
 
 /* ------------------------------------------------------------------ */
-/* Practical solutions — white canvas, parchment tiles                  */
+/* Operating model                                                      */
 /* ------------------------------------------------------------------ */
 
-export function PracticalSolutions() {
+const DELIVERY_STRUCTURES = [
+  {
+    title: "Direct delivery",
+    body: "Consulting, advisory, and technology services are delivered by SGG Ventures under a written scope, with a named engagement lead.",
+    icon: "Building2",
+  },
+  {
+    title: "Specialist coordination",
+    body: "Where legal, tax, accounting, securities, or regulated technology work is required, a qualified third party performs it and is named in the engagement.",
+    icon: "Handshake",
+  },
+  {
+    title: "Independent by design",
+    body: "We do not earn commissions from software vendors, cloud providers, or transaction counterparties. The advice is the service.",
+    icon: "ShieldCheck",
+  },
+];
+
+export function OperatingModel() {
   return (
-    <section className="bg-white py-20 md:py-28" aria-labelledby="solutions-heading">
+    <section aria-labelledby="operating-model" className="bg-white py-20 md:py-28">
       <div className="container-x">
         <SectionHeading
-          id="solutions-heading"
-          title="The kind of problems we build for."
-          lead="Examples of tools a small business or online seller typically asks for. Each project starts from your own workflow."
+          id="operating-model"
+          eyebrow="How We Work"
+          title="Clear delivery boundaries."
+          lead="Every engagement states who does the work, what is included, and where a qualified third party is required. Nothing material is left implied."
+          as="h2"
         />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2">
-          {SOLUTIONS.map((item) => (
-            <li key={item.title}>
-              <Link
-                href={item.href}
-                className="group flex h-full flex-col rounded-xl bg-coolgray p-7 transition-colors duration-200 hover:bg-divider"
-              >
-                <span className="font-display text-[21px] font-bold leading-tight tracking-[-0.01em] text-midnight">
-                  {item.title}
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {DELIVERY_STRUCTURES.map((structure, i) => (
+            <Reveal key={structure.title} delay={i * 0.08}>
+              <div className="flex h-full flex-col rounded-2xl border border-linehair bg-coolgray p-7">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-royal text-white">
+                  <ContentIcon name={structure.icon} className="h-5.5 w-5.5" />
                 </span>
-                <span className="mt-3 flex-1 text-[17px] leading-[1.47] text-slateink">
-                  {item.body}
-                </span>
-                <span className="mt-5 inline-flex items-center gap-1 text-[15px] text-royal underline-offset-4 group-hover:underline">
-                  See the service <span aria-hidden="true">›</span>
-                </span>
-              </Link>
-            </li>
+                <h3 className="mt-4 font-display text-[17px] font-bold tracking-tight">
+                  {structure.title}
+                </h3>
+                <p className="mt-2.5 flex-1 text-[14px] leading-relaxed text-slateink">
+                  {structure.body}
+                </p>
+              </div>
+            </Reveal>
           ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* What your project includes — photograph beside the list              */
-/* ------------------------------------------------------------------ */
-
-export function ProjectIncludes({ withPhoto = true }: { withPhoto?: boolean }) {
-  return (
-    <section className="bg-white py-20 md:py-28" aria-labelledby="includes-heading">
-      <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        {withPhoto && (
-          <PhotoFigure
-            photo={PHOTOS.meeting}
-            aspect="aspect-[4/3]"
-            sizes="(min-width: 1024px) 34rem, 100vw"
-          />
-        )}
-        <div className={withPhoto ? "" : "lg:col-span-2"}>
-          <SectionHeading
-            id="includes-heading"
-            title="Agreed before work begins."
-            lead="The specifics are set out in the proposal for each project. These are the things every proposal covers."
-          />
-          <ul className="mt-8 divide-y divide-linehair border-y border-linehair">
-            {PROJECT_INCLUDES.map((item) => (
-              <li key={item.title} className="flex gap-4 py-5">
-                <ContentIcon name={item.icon} className="mt-0.5 h-6 w-6 shrink-0 text-midnight" />
-                <span>
-                  <span className="block text-[17px] font-semibold text-midnight">
-                    {item.title}
-                  </span>
-                  <span className="mt-1 block text-[15px] leading-[1.47] text-slateink">
-                    {item.body}
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ul>
         </div>
+        <p className="mt-8 rounded-xl border border-linehair bg-mist p-5 text-[13px] leading-relaxed text-slateink">
+          {OPERATING_MODEL_NOTE}
+        </p>
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* How we work — dark tile                                              */
+/* Methodology                                                          */
 /* ------------------------------------------------------------------ */
 
-export function HowWeWork({ id = "how-we-work" }: { id?: string }) {
+export function Methodology() {
   return (
     <section
-      id={id}
-      className="navy-grid scroll-mt-20 py-20 md:py-28"
-      aria-labelledby={`${id}-heading`}
+      className="navy-grid py-20 text-white md:py-24"
+      aria-labelledby="methodology-heading"
     >
       <div className="container-x">
         <SectionHeading
-          id={`${id}-heading`}
-          title="Four steps, the same on every project."
+          id="methodology-heading"
+          eyebrow="Methodology"
+          title="A method that survives the handover."
+          lead="The same four-stage discipline applies to a strategy question, a technology programme, and a software build."
           tone="light"
-          align="center"
+          as="h2"
         />
-        <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {HOW_WE_WORK.map((step) => (
-            <li key={step.step} className="border-t border-white/20 pt-6">
-              <span className="text-[15px] font-semibold text-white/70">{step.step}</span>
-              <h3 className="mt-2 font-display text-[21px] font-bold leading-tight tracking-[-0.01em] text-white">
+        <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {METHODOLOGY.map((step) => (
+            <li key={step.step} className="border-l border-white/15 pl-6">
+              <span className="font-display text-[12.5px] font-bold leading-none tracking-[0.16em] text-azure-light">
+                {step.step}
+              </span>
+              <h3 className="mt-2 font-display text-[18px] font-bold tracking-tight">
                 {step.title}
               </h3>
-              <p className="mt-3 text-[17px] leading-[1.47] text-white/80">{step.body}</p>
+              <p className="mt-2 text-[14px] leading-relaxed text-white/65">
+                {step.body}
+              </p>
             </li>
           ))}
         </ol>
@@ -126,55 +105,90 @@ export function HowWeWork({ id = "how-we-work" }: { id?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Who we help — parchment                                              */
+/* Why SGG Ventures                                                        */
 /* ------------------------------------------------------------------ */
 
-export function WhoWeHelp() {
+export function WhySggVentures() {
   return (
-    <section
-      id="who-we-help"
-      className="mist-grid scroll-mt-20 py-20 md:py-28"
-      aria-labelledby="who-we-help-heading"
-    >
+    <section className="bg-white py-20 md:py-28" aria-label="Why SGG Ventures">
       <div className="container-x">
-        <SectionHeading id="who-we-help-heading" title="Three kinds of customer." align="center" />
-        <ul className="mt-12 grid gap-5 md:grid-cols-3">
-          {AUDIENCES.map((audience) => (
-            <li key={audience.title} className="rounded-xl bg-white p-7">
-              <ContentIcon name={audience.icon} className="h-7 w-7 text-midnight" />
-              <h3 className="mt-6 font-display text-[21px] font-bold leading-tight tracking-[-0.01em] text-midnight">
-                {audience.title}
-              </h3>
-              <p className="mt-3 text-[17px] leading-[1.47] text-slateink">{audience.body}</p>
-            </li>
+        <SectionHeading
+          eyebrow="Why SGG Ventures"
+          title="What you are actually buying."
+          lead="Independent advice, a written scope, and technology delivery that is tied to a business outcome rather than a product licence."
+          as="h2"
+        />
+        <div className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:gap-x-16">
+          {DIFFERENTIATORS.map((item, i) => (
+            <Reveal key={item.title} delay={i * 0.05}>
+              <div className="flex gap-4 border-b border-linehair pb-7">
+                <div>
+                  <h3 className="font-display text-[17.5px] font-bold tracking-tight text-midnight">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-slateink">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Why work with SGG — white, hairline rows                             */
+/* Industries strip                                                     */
 /* ------------------------------------------------------------------ */
 
-export function WhySgg() {
+export function IndustriesStrip() {
   return (
-    <section className="bg-white py-20 md:py-28" aria-labelledby="why-heading">
+    <section
+      className="bg-coolgray py-20 md:py-24"
+      aria-labelledby="industries-heading"
+    >
       <div className="container-x">
-        <SectionHeading
-          id="why-heading"
-          title="How we run a project."
-          lead="These are working practices you can hold us to, written into the scope of each project."
-        />
-        <ul className="mt-12 grid gap-x-12 md:grid-cols-2 lg:grid-cols-3">
-          {PRACTICES.map((item) => (
-            <li key={item.title} className="border-t border-linehair py-6">
-              <h3 className="text-[17px] font-semibold text-midnight">{item.title}</h3>
-              <p className="mt-2 text-[15px] leading-[1.47] text-slateink">{item.body}</p>
-            </li>
+        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <SectionHeading
+            id="industries-heading"
+            eyebrow="Who We Serve"
+            title="Built for the mid-market."
+            lead="SMEs, growth-stage companies, private owners, family businesses, technology firms, investors, and corporate teams."
+            as="h2"
+          />
+          <Link
+            href="/industries"
+            className="inline-flex shrink-0 items-center gap-2 font-display text-[14px] font-bold text-royal transition-colors hover:text-azure-deep"
+          >
+            All industries <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {INDUSTRIES.map((industry, i) => (
+            <Reveal key={industry.slug} delay={(i % 4) * 0.06}>
+              <Link
+                href={`/industries/${industry.slug}`}
+                className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-azure/40 hover:shadow-card"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
+                  <ContentIcon name={industry.icon} className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 font-display text-[15.5px] font-bold leading-snug tracking-tight text-midnight">
+                  {industry.name}
+                </h3>
+                <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slateink/90">
+                  {industry.summary.split(",")[0]}.
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 font-display text-[12.5px] font-bold text-royal opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  Read more <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+              </Link>
+            </Reveal>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

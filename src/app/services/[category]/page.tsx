@@ -18,9 +18,15 @@ export async function generateMetadata({
   if (!category) return {};
 
   return createMetadata({
-    title: category.name,
+    title: `${category.name} Services`,
     description: category.summary,
     path: `/services/${category.slug}`,
+    keywords: [
+      `${category.name} consulting`,
+      `${category.shortName} consulting`,
+      "business advisory",
+      "technology consulting",
+    ],
   });
 }
 

@@ -1,38 +1,57 @@
 /**
- * Photographs supplied by the company. They are illustrative and must keep
- * the caption below wherever they appear: they do not show SGG Ventures
- * staff, clients, or premises. Replace them with screenshots of real work
- * when publishable material exists.
+ * Photographs are illustrative: they do not show SGG Ventures staff, clients,
+ * or premises. Company-supplied images (photo-*.webp) plus free Unsplash
+ * photographs (https://unsplash.com/license).
  */
 export const PHOTO_NOTE =
   "Illustrative image. Not SGG Ventures staff, clients, or premises.";
 
-export type Photo = { src: string; alt: string; width: number; height: number };
-
 export const PHOTOS = {
-  laptop: {
-    src: "/images/photo-laptop.webp",
-    alt: "Two colleagues reviewing work together on a laptop",
-    width: 1280,
-    height: 720,
-  },
-  meeting: {
+  consulting: {
     src: "/images/photo-meeting.webp",
     alt: "A small team discussing a project around a meeting table",
-    width: 1280,
-    height: 720,
   },
-  workshop: {
+  finance: {
+    src: "/images/finance.jpg",
+    alt: "Glass office towers seen from street level",
+  },
+  businessConsulting: {
     src: "/images/photo-workshop.webp",
     alt: "A colleague pointing at a laptop while others take notes",
-    width: 820,
-    height: 630,
   },
-} satisfies Record<string, Photo>;
+  managementConsulting: {
+    src: "/images/management-consulting.jpg",
+    alt: "Executives in discussion around a conference table",
+  },
+  itConsulting: {
+    src: "/images/it-consulting.jpg",
+    alt: "Rows of network servers in a data centre",
+  },
+  digitalTransformation: {
+    src: "/images/digital-transformation.jpg",
+    alt: "Business analytics dashboard on a laptop screen",
+  },
+  businessApplications: {
+    src: "/images/photo-laptop.webp",
+    alt: "Two colleagues reviewing work together on a laptop",
+  },
+  softwareDevelopment: {
+    src: "/images/software-development.jpg",
+    alt: "Source code displayed on a computer screen",
+  },
+  aiAutomation: {
+    src: "/images/ai-automation.jpg",
+    alt: "Abstract artificial intelligence visualisation",
+  },
+} as const;
 
-/** Service slug → photograph. A missing key renders no image. */
-export const CATEGORY_PHOTO: Record<string, Photo> = {
-  websites: PHOTOS.laptop,
-  "business-applications": PHOTOS.meeting,
-  automation: PHOTOS.workshop,
+/** Category slug → hero photograph. Keys mirror SERVICE_CATEGORIES. */
+export const CATEGORY_PHOTO: Record<string, { src: string; alt: string }> = {
+  "business-consulting": PHOTOS.businessConsulting,
+  "management-consulting": PHOTOS.managementConsulting,
+  "it-consulting": PHOTOS.itConsulting,
+  "digital-transformation": PHOTOS.digitalTransformation,
+  "business-applications": PHOTOS.businessApplications,
+  "software-development": PHOTOS.softwareDevelopment,
+  "ai-automation": PHOTOS.aiAutomation,
 };

@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { NAV, PRIMARY_CTA } from "@/lib/navigation";
+import { ChevronDown, Menu, X, Phone } from "lucide-react";
+import { NAV } from "@/lib/navigation";
 import { COMPANY } from "@/lib/site";
 import { Logo } from "@/components/brand/logo";
 import { buttonClass } from "@/components/ui/button";
@@ -18,12 +18,13 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
 
   // Close menus whenever a navigation occurs.
   useEffect(() => {
     setOpenMenu(null);
     setMobileOpen(false);
+    setMobileSection(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -33,41 +34,56 @@ export function SiteHeader() {
     };
   }, [mobileOpen]);
 
-  // Escape closes any open menu; focus leaving the header closes dropdowns.
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpenMenu(null);
-        setMobileOpen(false);
-      }
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, []);
-
   return (
     <header
-      ref={headerRef}
-      className="sticky top-0 z-50 border-b border-linehair bg-white/85 backdrop-blur-xl backdrop-saturate-150"
+      className="sticky top-0 z-50 border-b border-linehair bg-white"
       onMouseLeave={() => setOpenMenu(null)}
-      onBlur={(event) => {
-        if (!headerRef.current?.contains(event.relatedTarget as Node | null)) {
-          setOpenMenu(null);
-        }
-      }}
     >
-      <div className="container-x relative flex h-16 items-center justify-between gap-4">
+      {/* Utility bar */}
+      <div className="hidden bg-midnight text-white lg:block">
+        <div className="container-x flex h-9 items-center justify-between text-[12.5px]">
+          <p className="font-display font-semibold uppercase tracking-[0.14em] text-azure-light">
+            {COMPANY.tagline}
+          </p>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/portal/login"
+              className="text-white/70 transition-colors hover:text-white"
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/legal/regulatory-disclosures"
+              className="text-white/70 transition-colors hover:text-white"
+            >
+              Regulatory Disclosures
+            </Link>
+            <span className="h-3.5 w-px bg-white/20" aria-hidden="true" />
+            <a
+              href={COMPANY.phoneHref}
+              className="flex items-center gap-1.5 font-semibold text-white transition-colors hover:text-azure-light"
+            >
+              <Phone className="h-3.5 w-3.5" aria-hidden="true" />
+              {COMPANY.phone}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main bar */}
+      <div className="container-x relative flex h-[4.5rem] items-center justify-between md:h-20">
         <Link
           href="/"
-          aria-label={`${COMPANY.legalName} — home`}
+          aria-label="SGG Ventures — home"
           className="shrink-0 rounded-md transition-opacity hover:opacity-80"
+          prefetch={false}
         >
           <Logo decorative priority />
         </Link>
 
         {/* Desktop navigation */}
         <nav aria-label="Primary" className="hidden items-center lg:flex">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0.5">
             {NAV.map((section) => {
               const active = isActive(pathname, section.href);
               const hasLinks = Boolean(section.links?.length);
@@ -76,18 +92,17 @@ export function SiteHeader() {
                 <li
                   key={section.label}
                   className="relative"
-                  onMouseEnter={() =>
-                    setOpenMenu(hasLinks ? section.label : null)
-                  }
+                  onMouseEnter={() => setOpenMenu(section.label)}
                 >
-                  <div className="flex items-stretch">
+                  <div
+                    className="flex items-stretch"
+                    onFocus={() => setOpenMenu(section.label)}
+                  >
                     <Link
                       href={section.href}
                       aria-current={active ? "page" : undefined}
-                      className={`flex min-h-11 items-center rounded-full px-3.5 text-[14px] transition-colors ${
-                        active
-                          ? "font-semibold text-midnight"
-                          : "text-slateink hover:text-midnight"
+                      className={`flex items-center rounded-lg px-3.5 py-2.5 font-display text-[14.5px] font-bold tracking-tight transition-colors ${
+                        active ? "text-royal" : "text-midnight hover:text-royal"
                       }`}
                     >
                       {section.label}
@@ -96,15 +111,14 @@ export function SiteHeader() {
                       <button
                         type="button"
                         aria-expanded={isOpen}
-                        aria-controls="services-menu"
-                        aria-label={`${isOpen ? "Close" : "Open"} ${section.label} menu`}
+                        aria-label={`Toggle ${section.label} submenu`}
                         onClick={() =>
                           setOpenMenu(isOpen ? null : section.label)
                         }
-                        className="-ml-2 flex min-h-11 w-8 items-center justify-center rounded-full text-slateink transition-colors hover:text-midnight"
+                        className="flex items-center pr-2 pl-0.5 text-slateink transition-colors hover:text-royal"
                       >
                         <ChevronDown
-                          className={`h-4 w-4 transition-transform ${
+                          className={`h-3.5 w-3.5 transition-transform ${
                             isOpen ? "rotate-180" : ""
                           }`}
                           aria-hidden="true"
@@ -114,55 +128,76 @@ export function SiteHeader() {
                   </div>
                   {hasLinks && isOpen && (
                     <div
-                      id="services-menu"
-                      className="absolute left-1/2 top-full z-50 w-[22rem] -translate-x-1/2 pt-2"
+                      className={`absolute top-full z-50 -translate-x-1/2 pt-2 ${
+                        section.links!.length > 6
+                          ? "left-1/2 w-[34rem]"
+                          : "left-1/2 w-80 xl:w-[340px]"
+                      }`}
+                      onMouseEnter={() => setOpenMenu(section.label)}
                     >
-                      <ul className="rounded-xl border border-linehair bg-white p-2">
-                        {section.links!.map((link) => (
-                          <li key={link.href}>
-                            <Link
-                              href={link.href}
-                              className="block rounded-lg px-4 py-3 transition-colors hover:bg-coolgray"
-                            >
-                              <span className="block text-[15px] font-semibold text-midnight">
-                                {link.label}
-                              </span>
-                              {link.description && (
-                                <span className="mt-0.5 block text-[13px] leading-snug text-slateink">
-                                  {link.description}
+                      <div className="max-h-[calc(100vh-7rem)] overflow-y-auto rounded-[14px] border border-linehair bg-white">
+                        <ul
+                          className={`p-2 ${
+                            section.links!.length > 6
+                              ? "grid grid-cols-2 gap-1"
+                              : ""
+                          }`}
+                        >
+                          {section.links!.map((link, i) => (
+                            <li key={link.href} className={i > 0 ? "mt-0.5" : ""}>
+                              <Link
+                                href={link.href}
+                                className="block rounded-xl px-4 py-3 transition-colors hover:bg-mist"
+                              >
+                                <span className="font-display text-[14px] font-bold text-midnight">
+                                  {link.label}
                                 </span>
-                              )}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                                {link.description && (
+                                  <span className="mt-0.5 block text-[12.5px] leading-snug text-slateink/80">
+                                    {link.description}
+                                  </span>
+                                )}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="border-t border-linehair bg-coolgray px-5 py-3">
+                          <Link
+                            href={section.href}
+                            className="font-display text-[13px] font-bold text-royal transition-colors hover:text-azure-deep"
+                          >
+                            {section.label} overview →
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </li>
               );
             })}
+            <li aria-hidden="true" className="mx-2.5 h-5 w-px bg-linehair" />
           </ul>
           <Link
-            href={PRIMARY_CTA.href}
-            className={buttonClass("primary", "sm") + " ml-4 whitespace-nowrap"}
+            href="/contact"
+            className={buttonClass("primary", "sm") + " whitespace-nowrap"}
           >
-            {PRIMARY_CTA.label}
+            Request a consultation
           </Link>
         </nav>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile controls */}
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-full text-midnight transition-colors hover:bg-coolgray lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-lg text-midnight transition-colors hover:bg-coolgray lg:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMobileOpen((value) => !value)}
+          onClick={() => setMobileOpen((v) => !v)}
         >
           {mobileOpen ? (
-            <X className="h-6 w-6" aria-hidden="true" />
+            <X className="h-5.5 w-5.5" aria-hidden="true" />
           ) : (
-            <Menu className="h-6 w-6" aria-hidden="true" />
+            <Menu className="h-5.5 w-5.5" aria-hidden="true" />
           )}
         </button>
       </div>
@@ -171,58 +206,84 @@ export function SiteHeader() {
       {mobileOpen && (
         <div
           id="mobile-nav"
-          className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col bg-white lg:hidden"
+          className="fixed inset-0 top-[4.5rem] z-40 flex flex-col bg-white md:top-20 lg:hidden"
         >
           <nav
             aria-label="Primary mobile"
-            className="flex-1 overflow-y-auto px-5 pb-8 pt-2"
+            className="flex-1 overflow-y-auto px-5 pb-8 pt-4"
           >
-            <ul>
-              {NAV.map((section) => (
-                <li key={section.label} className="border-b border-linehair">
-                  <Link
-                    href={section.href}
-                    aria-current={
-                      isActive(pathname, section.href) ? "page" : undefined
-                    }
-                    className={`flex min-h-12 items-center py-3 font-display text-[24px] font-bold tracking-[-0.01em] ${
-                      isActive(pathname, section.href)
-                        ? "text-royal"
-                        : "text-midnight"
-                    }`}
-                  >
-                    {section.label}
-                  </Link>
-                  {section.links && (
-                    <ul className="pb-3">
-                      {section.links.map((link) => (
-                        <li key={link.href}>
-                          <Link
-                            href={link.href}
-                            aria-current={
-                              isActive(pathname, link.href) ? "page" : undefined
-                            }
-                            className={`flex min-h-11 items-center rounded-lg px-3 text-[17px] ${
-                              isActive(pathname, link.href)
-                                ? "bg-coolgray font-semibold text-midnight"
-                                : "text-slateink hover:bg-coolgray"
+            <ul className="space-y-1">
+              {NAV.map((section) => {
+                const sectionOpen = mobileSection === section.label;
+                return (
+                  <li key={section.label} className="border-b border-linehair/80">
+                    <div className="flex items-center">
+                      <Link
+                        href={section.href}
+                        className={`flex-1 py-3.5 font-display text-[17px] font-bold ${
+                          isActive(pathname, section.href)
+                            ? "text-royal"
+                            : "text-midnight"
+                        }`}
+                      >
+                        {section.label}
+                      </Link>
+                      {section.links && (
+                        <button
+                          type="button"
+                          aria-expanded={sectionOpen}
+                          aria-label={`Toggle ${section.label} submenu`}
+                          onClick={() =>
+                            setMobileSection(sectionOpen ? null : section.label)
+                          }
+                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-slateink hover:bg-coolgray"
+                        >
+                          <ChevronDown
+                            className={`h-4.5 w-4.5 transition-transform ${
+                              sectionOpen ? "rotate-180" : ""
                             }`}
-                          >
-                            {link.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
+                            aria-hidden="true"
+                          />
+                        </button>
+                      )}
+                    </div>
+                    {section.links && sectionOpen && (
+                      <ul className="pb-3 pl-1">
+                        {section.links.map((link) => (
+                          <li key={link.href}>
+                            <Link
+                              href={link.href}
+                              className={`block rounded-lg px-3 py-2.5 text-[15px] ${
+                                isActive(pathname, link.href)
+                                  ? "bg-mist font-semibold text-royal"
+                                  : "text-slateink hover:bg-coolgray"
+                              }`}
+                            >
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
-            <Link
-              href={PRIMARY_CTA.href}
-              className={buttonClass("primary", "lg") + " mt-6 w-full"}
-            >
-              {PRIMARY_CTA.label}
-            </Link>
+            <div className="mt-6 space-y-3">
+              <Link
+                href="/contact"
+                className={buttonClass("primary", "lg") + " w-full"}
+              >
+                Request a consultation
+              </Link>
+              <a
+                href={COMPANY.phoneHref}
+                className="flex items-center justify-center gap-2 py-2 text-[15px] font-semibold text-midnight"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                {COMPANY.phone}
+              </a>
+            </div>
           </nav>
         </div>
       )}
