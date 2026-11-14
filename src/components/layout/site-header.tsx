@@ -46,13 +46,6 @@ export function SiteHeader() {
             {COMPANY.tagline}
           </p>
           <div className="flex items-center gap-5">
-            <Link
-              href="/legal/regulatory-disclosures"
-              className="text-white/70 transition-colors hover:text-white"
-            >
-              Regulatory Disclosures
-            </Link>
-            <span className="h-3.5 w-px bg-white/20" aria-hidden="true" />
             <a
               href={COMPANY.phoneHref}
               className="flex items-center gap-1.5 font-semibold text-white transition-colors hover:text-azure-light"
