@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { COMPANY } from "@/lib/site";
 import { PHOTOS, PHOTO_NOTE } from "@/lib/photos";
 import { buttonClass } from "@/components/ui/button";
@@ -27,13 +27,6 @@ export function HomepageHero() {
               <Link href="/services" className={buttonClass("inverse", "lg")}>
                 Explore our services
               </Link>
-              <a
-                href={COMPANY.phoneHref}
-                className="inline-flex h-[52px] items-center gap-2 rounded-full px-4 font-display text-[15px] font-semibold text-white/80 transition-colors hover:text-azure-light"
-              >
-                <Phone className="h-4 w-4" aria-hidden />
-                {COMPANY.phone}
-              </a>
             </div>
           </div>
           <div className="lg:col-span-5">

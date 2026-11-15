@@ -70,7 +70,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop navigation */}
-        <nav aria-label="Primary" className="hidden items-center xl:flex">
+        <nav aria-label="Primary" className="hidden items-center lg:flex">
           <ul className="flex items-center gap-0.5">
             {NAV.map((section) => {
               const active = isActive(pathname, section.href);
@@ -89,9 +89,9 @@ export function SiteHeader() {
                     <Link
                       href={section.href}
                       aria-current={active ? "page" : undefined}
-                      className={`flex items-center whitespace-nowrap rounded-lg px-3.5 py-2.5 font-display text-[15px] font-semibold tracking-tight transition-colors ${
- active ? "text-royal" : "text-midnight hover:text-royal"
- }`}
+                      className={`flex items-center whitespace-nowrap rounded-lg px-2 py-2.5 font-display text-[14px] font-semibold tracking-tight transition-colors xl:px-3.5 xl:text-[15px] ${
+                        active ? "text-royal" : "text-midnight hover:text-royal"
+                      }`}
                     >
                       {section.label}
                     </Link>
@@ -107,8 +107,8 @@ export function SiteHeader() {
                       >
                         <ChevronDown
                           className={`h-3.5 w-3.5 transition-transform ${
- isOpen ? "rotate-180" : ""
- }`}
+                            isOpen ? "rotate-180" : ""
+                          }`}
                           aria-hidden="true"
                         />
                       </button>
@@ -117,22 +117,25 @@ export function SiteHeader() {
                   {hasLinks && isOpen && (
                     <div
                       className={`absolute top-full z-50 -translate-x-1/2 pt-2 ${
- section.links!.length > 6
- ? "left-1/2 w-[34rem]"
- : "left-1/2 w-80 xl:w-[340px]"
- }`}
+                        section.links!.length > 6
+                          ? "left-1/2 w-[34rem]"
+                          : "left-1/2 w-80 xl:w-[340px]"
+                      }`}
                       onMouseEnter={() => setOpenMenu(section.label)}
                     >
                       <div className="max-h-[calc(100vh-7rem)] overflow-y-auto rounded-[14px] border border-linehair bg-white">
                         <ul
                           className={`p-2 ${
- section.links!.length > 6
- ? "grid grid-cols-2 gap-1"
- : ""
- }`}
+                            section.links!.length > 6
+                              ? "grid grid-cols-2 gap-1"
+                              : ""
+                          }`}
                         >
                           {section.links!.map((link, i) => (
-                            <li key={link.href} className={i > 0 ? "mt-0.5" : ""}>
+                            <li
+                              key={link.href}
+                              className={i > 0 ? "mt-0.5" : ""}
+                            >
                               <Link
                                 href={link.href}
                                 className="block rounded-xl px-4 py-3 transition-colors hover:bg-mist"
@@ -163,23 +166,28 @@ export function SiteHeader() {
                 </li>
               );
             })}
-            <li aria-hidden="true" className="mx-2.5 h-5 w-px bg-linehair" />
+            <li
+              aria-hidden="true"
+              className="mx-1.5 h-5 w-px bg-linehair xl:mx-2.5"
+            />
             <li>
               <HeaderAuth current={isActive(pathname, "/login")} />
             </li>
           </ul>
-          <Link
-            href="/contact"
-            className={buttonClass("primary", "sm") + " whitespace-nowrap"}
-          >
-            Request a consultation
-          </Link>
+          <span className="hidden xl:block">
+            <Link
+              href="/contact"
+              className={buttonClass("primary", "sm") + " whitespace-nowrap"}
+            >
+              Request a consultation
+            </Link>
+          </span>
         </nav>
 
         {/* Mobile controls */}
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-lg text-midnight transition-colors hover:bg-coolgray xl:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-lg text-midnight transition-colors hover:bg-coolgray lg:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -197,7 +205,7 @@ export function SiteHeader() {
       {mobileOpen && (
         <div
           id="mobile-nav"
-          className="fixed inset-0 top-[4.5rem] z-40 flex flex-col bg-white md:top-20 lg:top-[7.25rem] xl:hidden"
+          className="fixed inset-0 top-[4.5rem] z-40 flex flex-col bg-white md:top-20 lg:top-[7.25rem] lg:hidden"
         >
           <nav
             aria-label="Primary mobile"
@@ -207,15 +215,18 @@ export function SiteHeader() {
               {NAV.map((section) => {
                 const sectionOpen = mobileSection === section.label;
                 return (
-                  <li key={section.label} className="border-b border-linehair/80">
+                  <li
+                    key={section.label}
+                    className="border-b border-linehair/80"
+                  >
                     <div className="flex items-center">
                       <Link
                         href={section.href}
                         className={`flex-1 py-3.5 font-display text-[17px] font-bold ${
- isActive(pathname, section.href)
- ? "text-royal"
- : "text-midnight"
- }`}
+                          isActive(pathname, section.href)
+                            ? "text-royal"
+                            : "text-midnight"
+                        }`}
                       >
                         {section.label}
                       </Link>
@@ -231,8 +242,8 @@ export function SiteHeader() {
                         >
                           <ChevronDown
                             className={`h-4.5 w-4.5 transition-transform ${
- sectionOpen ? "rotate-180" : ""
- }`}
+                              sectionOpen ? "rotate-180" : ""
+                            }`}
                             aria-hidden="true"
                           />
                         </button>
@@ -245,10 +256,10 @@ export function SiteHeader() {
                             <Link
                               href={link.href}
                               className={`block rounded-lg px-3 py-2.5 text-[15px] ${
- isActive(pathname, link.href)
- ? "bg-mist font-semibold text-royal"
- : "text-slateink hover:bg-coolgray"
- }`}
+                                isActive(pathname, link.href)
+                                  ? "bg-mist font-semibold text-royal"
+                                  : "text-slateink hover:bg-coolgray"
+                              }`}
                             >
                               {link.label}
                             </Link>

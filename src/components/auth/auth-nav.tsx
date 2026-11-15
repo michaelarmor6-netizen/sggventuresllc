@@ -6,12 +6,16 @@ import { clerkEnabled } from "@/lib/clerk-config";
 import { buttonClass } from "@/components/ui/button";
 
 const linkClass =
-  "flex min-h-11 items-center whitespace-nowrap rounded-lg px-3.5 font-display text-[15px] font-semibold tracking-tight text-midnight transition-colors hover:text-royal";
+  "flex min-h-11 items-center whitespace-nowrap rounded-lg px-2 font-display text-[14px] xl:px-3.5 xl:text-[15px] font-semibold tracking-tight text-midnight transition-colors hover:text-royal";
 
 /** Desktop header: "Log in" when signed out; portal link and account menu when signed in. */
 export function HeaderAuth({ current }: { current: boolean }) {
   const login = (
-    <Link href="/login" aria-current={current ? "page" : undefined} className={linkClass}>
+    <Link
+      href="/login"
+      aria-current={current ? "page" : undefined}
+      className={linkClass}
+    >
       Log in
     </Link>
   );
@@ -43,7 +47,10 @@ export function MobileAuth() {
     <>
       <Show when="signed-out">{login}</Show>
       <Show when="signed-in">
-        <Link href="/portal" className={buttonClass("outline", "lg") + " w-full"}>
+        <Link
+          href="/portal"
+          className={buttonClass("outline", "lg") + " w-full"}
+        >
           Your portal
         </Link>
       </Show>
