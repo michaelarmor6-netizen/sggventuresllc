@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { CATEGORY_PHOTO, PHOTOS } from "@/lib/photos";
 import { ArrowRight } from "lucide-react";
 import { SERVICE_CATEGORIES } from "@/content/services";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -34,8 +36,19 @@ export function ServicesSection() {
             <Reveal key={category.slug} delay={(i % 4) * 0.06}>
               <Link
                 href={`/services/${category.slug}`}
-                className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-7 transition-colors duration-200 hover:bg-pearl"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-linehair bg-white p-7 transition-colors duration-200 hover:bg-pearl"
               >
+                <div className="photo-zoom relative -mx-7 -mt-7 mb-6 aspect-[16/10] overflow-hidden bg-mist">
+                  <Image
+                    src={
+                      (CATEGORY_PHOTO[category.slug] ?? PHOTOS.consulting).src
+                    }
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 18rem, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
                 <div className="flex items-center justify-between">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
                     <ContentIcon

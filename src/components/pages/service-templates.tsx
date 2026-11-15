@@ -16,6 +16,8 @@ import { Reveal } from "@/components/shared/reveal";
 import { buttonClass } from "@/components/ui/button";
 import { COMPANY } from "@/lib/site";
 import { CATEGORY_PHOTO, PHOTOS, PHOTO_NOTE } from "@/lib/photos";
+import { servicePhoto, UNSPLASH_NOTE } from "@/lib/service-photos";
+import { RevealPhoto } from "@/components/motion/reveal-photo";
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/lib/seo";
 
 /* ------------------------------------------------------------------ */
@@ -31,11 +33,23 @@ export function ServiceCard({
   service: ServiceContent;
   showCategoryCode?: string;
 }) {
+  const photo = servicePhoto(service.slug);
   return (
     <Link
       href={`/services/${categorySlug}/${service.slug}`}
-      className="group flex h-full flex-col rounded-xl border border-linehair bg-white p-7 transition-colors duration-200 hover:bg-pearl"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-linehair bg-white p-7 transition-colors duration-200 hover:bg-pearl"
     >
+      {photo && (
+        <div className="photo-zoom relative -mx-7 -mt-7 mb-6 aspect-[16/9] overflow-hidden bg-mist">
+          <Image
+            src={photo.src}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 24rem, (min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-mist text-royal transition-colors group-hover:bg-royal group-hover:text-white">
           <ContentIcon
@@ -114,15 +128,12 @@ export function ServiceCategoryPage({
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <figure className="mb-10">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-[14px] bg-midnight">
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="(min-width: 1024px) 42rem, 100vw"
-                  className="object-cover"
-                />
-              </div>
+              <RevealPhoto
+                src={photo.src}
+                alt={photo.alt}
+                sizes="(min-width: 1024px) 42rem, 100vw"
+                className="aspect-[16/9]"
+              />
               <figcaption className="mt-2.5 text-[13px] leading-snug text-slateink/85">
                 {PHOTO_NOTE}
               </figcaption>
@@ -252,6 +263,7 @@ export function ServiceDetailPage({
     )
     .filter((item) => item.service.slug !== service.slug)
     .slice(0, 3);
+  const detailPhoto = servicePhoto(service.slug);
 
   return (
     <>
@@ -310,6 +322,22 @@ export function ServiceDetailPage({
           </div>
         </div>
       </section>
+
+      {detailPhoto && (
+        <section className="bg-white pb-14 md:pb-20" aria-label="Photograph">
+          <figure className="container-x">
+            <RevealPhoto
+              src={detailPhoto.src}
+              alt={detailPhoto.alt}
+              sizes="(min-width: 1280px) 72rem, 100vw"
+              className="aspect-[16/9] md:aspect-[21/8]"
+            />
+            <figcaption className="mt-2.5 text-[13px] leading-snug text-slateink/85">
+              {UNSPLASH_NOTE}
+            </figcaption>
+          </figure>
+        </section>
+      )}
 
       {/* Challenges */}
       <section className="mist-grid border-t border-linehair py-16 md:py-20">

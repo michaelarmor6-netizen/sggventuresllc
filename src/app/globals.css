@@ -296,6 +296,30 @@ textarea {
   transform: scaleX(0);
 }
 
+/* Photograph reveal on scroll ----------------------------------------- */
+.reveal-photo {
+  clip-path: inset(0 0 0 0 round 14px);
+  transition: clip-path 900ms var(--ease-arrive);
+}
+.reveal-photo img {
+  transition: transform 1400ms var(--ease-arrive);
+}
+[data-motion="armed"].reveal-photo {
+  clip-path: inset(0 0 0 100% round 14px);
+}
+[data-motion="armed"].reveal-photo img {
+  transform: scale(1.08);
+}
+
+/* Photo cards: slow zoom on hover, feedback not spectacle ------------- */
+.photo-zoom img {
+  transition: transform 600ms var(--ease-arrive);
+}
+.group:hover .photo-zoom img,
+.group:focus-visible .photo-zoom img {
+  transform: scale(1.045);
+}
+
 /* Hero photograph: one clip reveal on first paint (CSS only) --------- */
 .hero-photo {
   animation: hero-clip 900ms var(--ease-arrive) 120ms both;
