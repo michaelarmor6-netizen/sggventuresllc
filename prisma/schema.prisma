@@ -1,8 +1,7 @@
 // SGG Ventures LLC — Website Database Schema
 //
-// Local development uses SQLite (DATABASE_URL=file:./prisma/dev.db).
-// For production, point DATABASE_URL at PostgreSQL — no schema changes
-// are required; only the datasource provider below.
+// PostgreSQL everywhere (Neon in production, via Vercel Storage). The build
+// runs scripts/db-sync.mjs, which applies this schema to the database.
 
 generator client {
   provider      = "prisma-client-js"
@@ -10,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite" // switch to "postgresql" for production
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
